@@ -19,6 +19,9 @@ class SearchStatusController extends Controller
 
                 $request->session()->put('email',$data[0]->email);
                 $request->session()->put('applicant_id',$data[0]->applicant_id);
+                $request->session()->put('name',$data[0]->name);
+                $request->session()->put('phone',$data[0]->phone);
+                $request->session()->put('reg_no',$data[0]->registration_no);
                 return view('frontend.pages.searchInfo',compact('data'));
 
             }

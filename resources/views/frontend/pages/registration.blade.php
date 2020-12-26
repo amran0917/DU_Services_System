@@ -71,7 +71,7 @@
                                                     
                                                 <div class="form-group ">
                                                     <label for="email">Email address:</label>
-                                                    <input type="email" class="form-control" id="email" name="email" required>
+                                                    <input type="email" class="form-control" id="email" name="email" >
                                                 </div>
 
                                             
@@ -112,7 +112,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
+
+
 <script type="text/javascript">
+
     $.ajaxSetup({
 
         headers: {
@@ -127,6 +130,11 @@
    
     e.preventDefault();
 
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
     var form_data = $(this);
 
@@ -137,20 +145,46 @@
                 dataType: 'json',
                 data    : form_data.serialize(),
                 success : function(data){
-                            console.log('working');
+                            // console.log(data);
+                            console.log(data.applicant_id);
+                        if($('#checkdata').html()){
                             $('#myModal').modal('show');
-                    // alert(data.success);
 
+                        }
+
+                        else{
+                            console.log('not working')
+                        }
+                        $("#applicaId").text(data.applicant_id);
+                        // alert(data.success);
                 }      
         });
 
 
         });
 
-
-
-
  </script>
+
+ {{-- section for checking existing database --}}
+
+ <div id="checkdata">
+    @php
+            $user = App\Models\AllStudent::all();
+            $user2= App\Models\Student::all();
+        @endphp
+
+        @foreach($user as $row)
+            @foreach($user2 as $col)
+                @if($row->registration_no == $col->registration_no && $row->name==$col->name  && $row->father_name==$col->father_name
+                    && $row->mother_name==$col->mother_name  && $row->session==$col->session  && $row->roll_no==$col->roll_no
+                    && $row->running_year==$col->running_year  && $row->birth_date==$col->birth_date
+                )
+                
+                @endif
+            @endforeach
+                
+        @endforeach
+</div>
  
  <div id="myModal" class="modal fade">
             <div class="modal-dialog modal-confirm">
@@ -163,14 +197,13 @@
                     </div>
                     <div class="modal-body">
                         <p class="text-center">You are registerd.Now Pay Fees with <br>
-                            @if(session()->has('applicant_id'))
                             Your applicant ID:
-                            <mark > {{session('applicant_id')}}</mark>                           
-                            @endif 
+                             <mark id="applicaId">  </mark>                           
+                          
                             <b> Next </b> button </p>
                     </div>
                     <div class="modal-footer">
-                        <a href="#" class="btn btn-primary  mr-auto" data-dismiss="modal">Close</a>
+                        <a href="#" class="btn btn-danger mr-auto" data-dismiss="modal">Close</a>
                         <a href="{{url('example1')}}" class="btn btn-success ">Next</a>
                     </div>
                 </div>

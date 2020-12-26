@@ -12,6 +12,7 @@ use App\Http\Controllers\Frontend\StudentController;
 use App\Http\Controllers\Frontend\SearchStatusController;
 use App\Http\Controllers\SslCommerzPaymentController;
 
+use App\Http\Controllers\Backend\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,9 +38,18 @@ Route::get('/student/search/status',[StudentController::class,'search_status'])-
 
 Route::post('/student/reg_info',[StudentController::class,'store'])->name('student.storeInfo');
 Route::post('/student/search_info',[SearchStatusController::class,'index'])->name('student.searchinfo');
-// Route::get('/student/sessionData',[StudentController::class,'sessionData'])->name('student.sessionData');
 
+/* 
+ admin routes
+*/
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/', [AdminController::class,'index']);
+    Route::get('/studentlist', [AdminController::class,'getStudent'])->name('student.list');
+    Route::get('/student_details/{applicant_id}', [AdminController::class,'showDetails'])->name('admin.student.showDetails');
+   
+    Route::post('/student_details/approve/{applicant_id}', [AdminController::class,'approveTestimonial'])->name('admin.student.update');
 
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

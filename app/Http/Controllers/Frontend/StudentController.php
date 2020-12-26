@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use App\Models\Student;
+use App\Models\AllStudent;
 use Illuminate\Http\Request;
 use Session;
 
@@ -101,8 +102,7 @@ class StudentController extends Controller
         
         
         // return redirect()->back();
-        // return response($student);
-
+       
         $sessionData = $request->session()->put('applicant_id',$applicant_id);
         $sessionData2= $request->session()->put('email',$request->email);
          $request->session()->put('name',$request->name);
@@ -110,7 +110,9 @@ class StudentController extends Controller
          $request->session()->put('reg_no',$request->registration_no);
         //  $request->reflash();
 
-        return response()->json(['success'=>'Got Simple Ajax Request.']);
+        // return response()->json(['success'=>'Got Simple Ajax Request.']);
+        return response()->json($student);
+        // return response($student);
  
     }
 
