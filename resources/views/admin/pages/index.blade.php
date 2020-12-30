@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 @section('contents')
 
-<div class="wrapper">
+{{-- <div class="wrapper"> --}}
     <div class="container">
         <div class="row">
             <div class="span3">
@@ -92,7 +92,7 @@
         </div>
     </div>
     <!--/.container-->
-</div>
+{{-- </div> --}}
 <!--/.wrapper-->
 
 @endsection

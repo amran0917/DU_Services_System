@@ -1,7 +1,6 @@
 @extends('admin.layouts.master')
 @section('contents')
 
-<div class="wrapper">
     <div class="container">
         <div class="row">
             <div class="span3">
@@ -11,14 +10,14 @@
             <!--/.span3-->
                 
            
-            <div class="span9">
+            <div class="span9" style="text-align: center">
                 <div class="card-header">
                     Student Details : ID  <b class="label green "> {{ $stdnt->applicant_id}}</b>
                 </div>
-
+{{-- {{route('admin.student.update',$stdnt->applicant_id)}} --}}
                 <div class="card-body">
 
-                    <form action="{{route('admin.student.update',$stdnt->applicant_id)}}" method="POST" enctype="multipart/form-data">
+                    <form action="" method="POST" enctype="multipart/form-data">
                         @csrf 
                 
                         <div class="form-group">
@@ -80,7 +79,7 @@
     
     
                        
-                         <button type="submit" class="btn btn-primary">Accept</button>
+                         {{-- <button type="submit" class="btn btn-primary">Accept</button> --}}
                     </form>
                 </div>
 
@@ -92,8 +91,7 @@
         </div>
     </div>
     <!--/.container-->
-</div>
-<!--/.wrapper-->
+
 
 @endsection
 

@@ -1,7 +1,6 @@
 @extends('admin.layouts.master')
 @section('contents')
 
-<div class="wrapper">
     <div class="container">
         <div class="row">
             <div class="span3">
@@ -38,9 +37,12 @@
                                             <td>{{$row->name}}</td>
                                             <td>{{$row->registration_no}}</td>
                                             <td>
-                                                <a href="#" class="btn btn-sm btn-info">Edit</a>
                                                 <a href="{{ route('admin.student.showDetails',$row->applicant_id)}}" class="btn btn-sm btn-primary" >View Details</a> 
-{{--                                                  
+                                                <a href="{{route('admin.approve',$row->applicant_id)}}" class="btn btn-sm btn-info"  target="_blank" >Approve</a>
+                                                <a href="#" class="btn btn-sm btn-danger">Cancel</a>
+
+
+                                                {{--                                                  
                                                 @php
                                                         $user2= App\Models\AdminApproveStatus::all();
                                                  @endphp
@@ -78,8 +80,7 @@
         </div>
     </div>
     <!--/.container-->
-</div>
-<!--/.wrapper-->
+
 
 @endsection
 

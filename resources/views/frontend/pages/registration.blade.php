@@ -171,7 +171,7 @@
     @php
             $user = App\Models\AllStudent::all();
             $user2= App\Models\Student::all();
-        @endphp
+    @endphp
 
         @foreach($user as $row)
             @foreach($user2 as $col)

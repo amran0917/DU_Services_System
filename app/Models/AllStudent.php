@@ -14,12 +14,14 @@ class AllStudent extends Model
         'name',
         'father_name',
         'mother_name',
+        'address',
         'session',
         'running_year',
         'roll_no',
         'birth_date',
         'email',
         'phone',
+        'cgpa',
     ];
 
     public function student()

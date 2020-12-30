@@ -3,11 +3,12 @@
     <div class="navbar-inner">
         <div class="container">
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                <i class="icon-reorder shaded"></i></a><a class="brand" href="{{asset('adminPanel/code/index.html')}}">Admin </a>
+                <i class="icon-reorder shaded"></i></a><a class="brand" href="#">Admin </a>
             <div class="nav-collapse collapse navbar-inverse-collapse">
                 <ul class="nav nav-icons">
                     {{-- <li class="active"><a href="#"><i class="icon-envelope"></i></a></li>
                     <li><a href="#"><i class="icon-eye-open"></i></a></li>
+                    adminPanel/code/index.html
                     <li><a href="#"><i class="icon-bar-chart"></i></a></li> --}}
                 </ul>
                 <form class="navbar-search pull-left input-append" action="#">
@@ -32,11 +33,11 @@
                         <img src="{{asset('adminPanel/code/images/user.png')}}" class="nav-avatar" />
                         <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Your Profile</a></li>
-                            <li><a href="#">Edit Profile</a></li>
-                            <li><a href="#">Account Settings</a></li>
+                            <li><a href="{{route('admin.logIn')}}"
+                                class="nav-link" > Log In</a></li>
+                            
                             <li class="divider"></li>
-                            <li><a href="#">Logout</a></li>
+                            <li><a href="{{route('admin.logout')}}">Logout</a></li>
                         </ul>
                     </li>
                 </ul>

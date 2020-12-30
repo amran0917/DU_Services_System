@@ -42,12 +42,29 @@ Route::post('/student/search_info',[SearchStatusController::class,'index'])->nam
 /* 
  admin routes
 */
-Route::group(['prefix' => 'admin'], function () {
-    Route::get('/', [AdminController::class,'index']);
+ Route::get('admin',[AdminController::class,'admin'])->name('admin.logIn');
+ Route::post('admin/logIn',[AdminController::class,'logInData'])->name('admin.loggedin');
+ Route::get('admin/logout',[AdminController::class,'logout'])->name('admin.logout');
+
+
+Route::group(['prefix' => 'admin','middleware' => 'admincheck'], function () {
+    Route::get('/index', [AdminController::class,'index'])->name('student.index');
     Route::get('/studentlist', [AdminController::class,'getStudent'])->name('student.list');
     Route::get('/student_details/{applicant_id}', [AdminController::class,'showDetails'])->name('admin.student.showDetails');
-   
     Route::post('/student_details/approve/{applicant_id}', [AdminController::class,'approveTestimonial'])->name('admin.student.update');
+    Route::get('/student/approve/{applicant_id}', [AdminController::class,'approve'])->name('admin.approve');
+
+    
+    
+    Route::get('/adminList', [AdminController::class,'getAdmin'])->name('admin.list');
+    Route::get('/create', [AdminController::class,'createAdmin'])->name('admin.create');
+    Route::get('/view/{id}', [AdminController::class,'viewAdmin'])->name('admin.view');
+    Route::get('/edit/{id}', [AdminController::class,'editAdmin'])->name('admin.edit');
+    Route::post('/storeAdmin', [AdminController::class,'storeAdmin'])->name('admin.storeAdmin');
+    Route::post('/update/{id}', [AdminController::class,'updateAdmin'])->name('admin.update');
+    Route::post('/deleteAdmin/{id}', [AdminController::class,'deleteAdmin'])->name('admin.delete');
+
+
 
 });
 
