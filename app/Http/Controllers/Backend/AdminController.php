@@ -11,6 +11,7 @@ use App\Models\AdminApproveStatus;
 use PDF;
 use Session;
 use Auth;
+use DB;
 class AdminController extends Controller
 {
     function index(){
@@ -94,6 +95,13 @@ class AdminController extends Controller
 
         
         $stdnt = Student::find($applicant_id);
+
+        // $stdnt = DB:: table('students')
+        //             ->join('all_students','students.registration_no','all_students.registration_no')
+        //             ->select('students.*','all_students.address','all_students.cgpa')
+        //             ->where('students.applicant_id',$applicant_id)
+        //             ->first();
+        
 
         $pdf = PDF::loadView('admin.pages.testmonial', compact('stdnt'));
         return $pdf->stream('Testimonial.pdf');

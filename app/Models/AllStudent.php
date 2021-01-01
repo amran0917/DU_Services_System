@@ -23,7 +23,7 @@ class AllStudent extends Model
         'phone',
         'cgpa',
     ];
-
+    protected $primaryKey = 'registration_no';
     public function student()
     {
         return $this->hasOne(Student::class,'registration_no','registration_no');   // first reg foreign key / nijer tables pKey
