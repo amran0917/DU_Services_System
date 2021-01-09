@@ -66,7 +66,7 @@
 
                 <div class="mb-3">
                     <label for="address">Address</label>
-                    <input type="text" class="form-control" id="address" placeholder="1234 Main St"
+                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" name="address"
                            value="93 B, New Eskaton Road" required>
                     <div class="invalid-feedback">
                         Please enter your shipping address.

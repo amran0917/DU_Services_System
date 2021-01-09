@@ -20,6 +20,7 @@ class Order extends Model
         'application_status',
         'status',
         'transaction_id',
+        'applicant_id',
         'currency',
        
         

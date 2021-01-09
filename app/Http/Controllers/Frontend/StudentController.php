@@ -98,6 +98,7 @@ class StudentController extends Controller
         $student->birth_date = $request->birth_date;
         $student->email = $request->email;
         $student->phone = $request->phone;
+        $student->status = 'pending';
         $student->save();
         
         

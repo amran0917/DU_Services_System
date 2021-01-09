@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Student;
 use App\Models\Admin;
+use App\Models\Testimonial;
 use App\Models\AdminApproveStatus;   
 use PDF;
 use Session;
@@ -65,6 +67,19 @@ class AdminController extends Controller
         return view('admin.pages.studentlist',compact('student'));
     }
 
+    public function changeActiveStatus(Request $request)
+    {
+
+
+        $applicant = Student::find($request->applicant_id);
+        $applicant->status = $request->status;
+        $applicant->save();
+
+        // // $applicant = Student::find($request->applicant_id)->update(['status' => $request->status]);
+
+        return response()->json(['success'=>'Status changed successfully.']);
+    }
+
 
 
     public function showDetails($applicant_id) {
@@ -91,22 +106,43 @@ class AdminController extends Controller
         // return view('admin.pages.testmonial',compact('stdnt'));
     }
 
-    public function approve($applicant_id){
+    public function approve($applicant_id, Request $request){
 
         
         $stdnt = Student::find($applicant_id);
 
-        // $stdnt = DB:: table('students')
-        //             ->join('all_students','students.registration_no','all_students.registration_no')
-        //             ->select('students.*','all_students.address','all_students.cgpa')
-        //             ->where('students.applicant_id',$applicant_id)
-        //             ->first();
+        $testimonial_id =rand(10000,99999);
+        $response['testimonial_id'] =$applicant_id;
+        $testmonial = new Testimonial();
+        $tst = Testimonial::where('testimonial_id',  $request->get('testimonial_id'))->count();
+        if($tst>0){ echo 'There is duplicate id';}
+        else{ 
+
+            $testmonial->testimonial_id = $testimonial_id; 
+
+        }
         
+        $testmonial->applicant_id=$applicant_id;
+        $testmonial->applicant_name=$stdnt->name;
+
+    
+// 3 times eta database e save hoye Jai
+        $path = ' public/file/' . Str::random(25) . '.pdf';
 
         $pdf = PDF::loadView('admin.pages.testmonial', compact('stdnt'));
-        return $pdf->stream('Testimonial.pdf');
+       
         
-        // return $pdf->setPaper('a4')->stream();
+
+      
+
+        $fileName = $testimonial_id. '.' . 'pdf' ;
+        // $testmonial->path = $pdf->save($path . '/' . $fileName);
+        $testmonial->path = $path;
+        $testmonial->save();
+        // return response()->download($path);
+
+        return $pdf->stream($fileName);
+        
     }
     
     public function getAdmin(){

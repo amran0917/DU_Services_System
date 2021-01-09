@@ -123,12 +123,12 @@ class SslCommerzPaymentController extends Controller
         $post_data['total_amount'] = '100'; # You cant not pay less than 100// $requestData['amount']
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = uniqid(); // tran_id must be unique
-
+        $post_data['applicant_id'] = $request->session()->get('applicant_id');
         # CUSTOMER INFORMATION
         $post_data['cus_name'] = $requestData['cus_name'];
         $post_data['cus_email'] = $requestData['cus_email'];
         $post_data['reg_no'] = $requestData['reg_no'];
-        $post_data['cus_add1'] = $requestData['cus_addr1'];
+        $post_data['cus_add1'] = $request->address;
         $post_data['cus_add2'] = "";
         $post_data['cus_city'] = "";
         $post_data['cus_state'] = "";
@@ -173,6 +173,7 @@ class SslCommerzPaymentController extends Controller
                 'status' => 'Pending',
                 'address' => $post_data['cus_add1'],
                 'transaction_id' => $post_data['tran_id'],
+                'applicant_id'=>$post_data['applicant_id'],
                 'currency' => $post_data['currency']
             ]);
 

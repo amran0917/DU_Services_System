@@ -6,3 +6,4 @@
 <script src="{{asset('adminPanel/code/scripts/flot/jquery.flot.resize.js')}}" type="text/javascript"></script>
 <script src="{{asset('adminPanel/code/scripts/datatables/jquery.dataTables.js')}}" type="text/javascript"></script>
 <script src="{{asset('adminPanel/code/scripts/common.js')}}" type="text/javascript"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>

@@ -21,6 +21,7 @@ class Student extends Model
         'birth_date',
         'email',
         'phone',
+        'status',
     ];
     protected $primaryKey = 'applicant_id';
 
