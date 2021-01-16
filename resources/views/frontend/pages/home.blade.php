@@ -1,4 +1,6 @@
 @extends('frontend.layouts.master')
+@section('title', 'HomePage')
+
 @section('content')
 
 <div class="container " id="main-div">

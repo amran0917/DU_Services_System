@@ -46,16 +46,13 @@ Route::post('/student/search_info',[SearchStatusController::class,'index'])->nam
  Route::post('admin/logIn',[AdminController::class,'logInData'])->name('admin.loggedin');
  Route::get('admin/logout',[AdminController::class,'logout'])->name('admin.logout');
 
- Route::post('studentlist/change-status', [AdminController::class,'changeActiveStatus']);
-
-
 Route::group(['prefix' => 'admin','middleware' => 'admincheck'], function () {
     Route::get('/index', [AdminController::class,'index'])->name('student.index');
     Route::get('/studentlist', [AdminController::class,'getStudent'])->name('student.list');
     Route::get('/student_details/{applicant_id}', [AdminController::class,'showDetails'])->name('admin.student.showDetails');
     Route::post('/student_details/approve/{applicant_id}', [AdminController::class,'approveTestimonial'])->name('admin.student.update');
     Route::get('/student/approve/{applicant_id}', [AdminController::class,'approve'])->name('admin.approve');
-    // Route::post('/studentlist/change-status', [AdminController::class,'changeActiveStatus'])->name('change.status');
+    Route::post('/studentlist/change-status', [AdminController::class,'changeActiveStatus'])->name('change.status');
 
     
     

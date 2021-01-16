@@ -1,4 +1,6 @@
 @extends('frontend.layouts.master')
+@section('title', 'Transaction')
+
 @section('content')
 
 

@@ -1,4 +1,7 @@
 @extends('admin.layouts.master')
+@section('title', 'AdminPanel|StudentList')
+
+
 @section('contents')
 
     <div class="container">
@@ -15,11 +18,11 @@
                     <div class="btn-controls">
                         <div class="btn-box-row row-fluid">
                                                    
-                            <div class="card-header">
+                            <div class="card-header " class="text-align:center">
                                 Applicant List
                             </div>
                 
-                            <div class="card-body">
+                           <div class="card-body">
                 
                                 <table style="width:100%" class="table table-hover table-stripped">
                                         <tr>
@@ -41,7 +44,7 @@
                                                 <a href="{{ route('admin.student.showDetails',$row->applicant_id)}}" class="btn btn-sm btn-primary" >View Details</a> 
 
                                                 @if ($row->status=='pending')
-                                                <a href="#" class="btn btn-sm btn-info"  target="_blank" onclick="changeUserStatus(event.target, {{$row->applicant_id}});"> Approve </a> 
+                                                     <a href="#" class="btn btn-sm btn-info" onclick="changeUserStatus(event.target, {{$row->applicant_id}});"> Approve </a> 
 
                                                 @else 
                                                   <a href="#" class="btn btn-sm btn-success"  >Approved</a>
@@ -54,30 +57,27 @@
 
                                                 <a href="#" class="btn btn-sm btn-danger">Cancel</a>
 
-                                                {{-- <div class="form-group">
-                                                    <div class="custom-control custom-switch">
-                                                      <input type="checkbox" class="custom-control-input"
-                                                       id="{{$row->applicant_id}}" {{($row->status) ? 'pending' : ''}}
-                                                         onclick="changeUserStatus(event.target, {{$row->applicant_id}});">
-                                                      <label class="custom-control-label pointer"></label>
-                                                </div> --}}
-
                                                 <script>
                                                     function changeUserStatus(_this, applicant_id) {
-                                                        var status = $(_this).prop('pending') == true ? 'success' : 'pending';
+                                                     
+                                                        var status = $(_this).prop('pending') == true ? 'pending' : 'complete';
+                                                        console.log(status);
                                                         let _token = $('meta[name="csrf-token"]').attr('content');
+
                                                     
                                                         $.ajax({
-                                                            url: "{{url('studentlist/change-status')}}",
+                                                           
+                                                           
+                                                            url: "{{route('change.status')}}",
                                                             type: 'post',
                                                             data: {
-                                                                _token: _token,
-                                                                id: applicant_id,
-                                                                status: status 
+                                                                 _token: _token,
+                                                                'applicant_id': applicant_id,
+                                                                'status': status 
                                                             },
-                                                            success: function (result) {
-                                                                console.log(result);
-                                                                alert(result);
+                                                            success: function (data) {
+                                                                console.log(data);
+                                                                // alert(data);
                                                             }
                                                         });
                                                     }
@@ -105,12 +105,12 @@
                                             </td>
                                         </tr>
                                         @endforeach
-                                        
+                                   
                                 </table>
-                            {{-- </div> --}}
-                        </div>
-                        
                             
+                            </div>
+                        {{-- pagination --}}
+                         {{ $student->render() }}
                         </div> 
                     </div>
                  

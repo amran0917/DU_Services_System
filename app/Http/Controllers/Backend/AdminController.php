@@ -14,6 +14,7 @@ use PDF;
 use Session;
 use Auth;
 use DB;
+use Hash;
 class AdminController extends Controller
 {
     function index(){
@@ -63,21 +64,30 @@ class AdminController extends Controller
 
     public function getStudent(){
 
-        $student = Student::all();
+        $student = Student::paginate(4);
         return view('admin.pages.studentlist',compact('student'));
     }
 
     public function changeActiveStatus(Request $request)
     {
-
-
         $applicant = Student::find($request->applicant_id);
+        $input = $request->all();
+
+        
         $applicant->status = $request->status;
+       
+        echo $request->status;
+
         $applicant->save();
+        // $x = json_encode($request->all());
 
-        // // $applicant = Student::find($request->applicant_id)->update(['status' => $request->status]);
+        //  return $request->status;
 
-        return response()->json(['success'=>'Status changed successfully.']);
+        // // // $applicant = Student::find($request->applicant_id)->update(['status' => $request->status]);
+
+        if($applicant->status=='success'){ 
+            return response()->json(['success'=>'Status changed successfully.']);
+        }
     }
 
 
@@ -112,9 +122,10 @@ class AdminController extends Controller
         $stdnt = Student::find($applicant_id);
 
         $testimonial_id =rand(10000,99999);
-        $response['testimonial_id'] =$applicant_id;
+        $response['testimonial_id'] =$testimonial_id;
         $testmonial = new Testimonial();
         $tst = Testimonial::where('testimonial_id',  $request->get('testimonial_id'))->count();
+         Log::info($tst);
         if($tst>0){ echo 'There is duplicate id';}
         else{ 
 
@@ -128,13 +139,7 @@ class AdminController extends Controller
     
 // 3 times eta database e save hoye Jai
         $path = ' public/file/' . Str::random(25) . '.pdf';
-
         $pdf = PDF::loadView('admin.pages.testmonial', compact('stdnt'));
-       
-        
-
-      
-
         $fileName = $testimonial_id. '.' . 'pdf' ;
         // $testmonial->path = $pdf->save($path . '/' . $fileName);
         $testmonial->path = $path;
@@ -170,7 +175,7 @@ class AdminController extends Controller
         $admin->type = $request->adminType;
 
         $admin->save();
-
+  // Hash::make
         if($admin){
             $notification = array(
                 'message' =>'Successfully added admin',

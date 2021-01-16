@@ -1,4 +1,6 @@
 @extends('admin.layouts.master')
+@section('title', 'AdminPanel|Index')
+
 @section('contents')
 
 {{-- <div class="wrapper"> --}}

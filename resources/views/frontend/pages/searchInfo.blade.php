@@ -1,4 +1,6 @@
 @extends('frontend.layouts.master')
+@section('title', 'ApplicantResult')
+
 @section('content')
 <div class="reg_img">
     <div class="row">

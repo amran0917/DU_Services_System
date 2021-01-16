@@ -1,4 +1,6 @@
 @extends('admin.layouts.master')
+@section('title', 'AdminPanel|Add_admin')
+
 @section('contents')
 
 <div class="wrapper">

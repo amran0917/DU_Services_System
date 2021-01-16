@@ -8,7 +8,7 @@
   
 
     @include('frontend.partials.headerLink')
-    <title>Online Testimonial </title>
+    <title>Online Testimonial | @yield('title')</title>
 
   </head>
 

@@ -1,4 +1,6 @@
 @extends('admin.layouts.master')
+@section('title', 'AdminPanel|StudentView')
+
 @section('contents')
 
     <div class="container">

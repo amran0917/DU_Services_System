@@ -1,4 +1,6 @@
 @extends('frontend.layouts.master')
+@section('title', 'Applicant_status')
+
 @section('content')
 <div class="reg_img">
     @if(session()->get('msg'))
