@@ -9,7 +9,7 @@
        {{-- <b> DU sWelcome to the ervices System </b>  --}}
 
        <div class="card text-white bg-info mb-3" style="width: 100%">
-            <div class="card-header"> Welcome to the DU services System </div>
+            <div class="card-header"> Welcome to the DU Testmonial services System </div>
             {{-- <div class="card-body">
                 <h5 class="card-title"></h5>
                 <p class="card-text">
@@ -41,22 +41,16 @@
                         
                             
                     </p>
-                </div>
+            </div>
           </div>
 
 
         </div> 
 
         <div class="col-6">
-           <b> <h1 style="font-famiy: sans-serif"> To get testimonial and Language certificate click here</h1>  </b>  <br>
+           <b> <h1 style="font-famiy: sans-serif"> To get testimonial click here</h1>  </b>  <br>
 
-             <div class="button_cont" ><a class="example_b" href="{{route('student.registration')}}"  rel="nofollow noopener">Get Testimonial</a>
-            
-                <a class="example_a" href="#"  
-                rel="nofollow noopener">Get Language Certificate</a>
-            
-            </div> 
-
+             <div class="button_cont" ><a class="example_b" href="{{route('student.registration')}}"  rel="nofollow noopener">Get Testimonial</a></div> 
              <br> <br>
        
              <b> <h1>To know Application status ? click here</h1>  </b>  <br>

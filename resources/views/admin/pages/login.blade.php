@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Testimonial|Admin Panel|Log In</title>
+<link rel="icon" href="https://www.du.ac.bd/assets/img/favicon.png" type="image/x-icon">
+
+<title>DU services system|Admin Panel|Log In</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">

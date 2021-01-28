@@ -15,6 +15,7 @@ class AllStudent extends Model
         'father_name',
         'mother_name',
         'address',
+        'department',
         'session',
         'running_year',
         'roll_no',

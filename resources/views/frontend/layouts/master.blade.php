@@ -8,7 +8,8 @@
   
 
     @include('frontend.partials.headerLink')
-    <title>Online Testimonial | @yield('title')</title>
+    <link rel="icon" href="https://www.du.ac.bd/assets/img/favicon.png" type="image/x-icon">
+    <title>University of Dhaka || the highest echelon of academic excellence || Services|| @yield('title')</title>
 
   </head>
 

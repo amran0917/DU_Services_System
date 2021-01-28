@@ -14,6 +14,7 @@ class Student extends Model
         'name',
         'father_name',
         'mother_name',
+        'department',
         'registration_no',
         'session',
         'running_year',

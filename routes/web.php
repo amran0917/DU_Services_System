@@ -13,6 +13,8 @@ use App\Http\Controllers\Frontend\SearchStatusController;
 use App\Http\Controllers\SslCommerzPaymentController;
 
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\SearchController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,15 +32,31 @@ use App\Http\Controllers\Backend\AdminController;
 
 
 Route::get('/',[PagesController::class,'index']);
-Route::get('/hoMe',[PagesController::class,'index'])->name('home');
+Route::get('/home',[PagesController::class,'index'])->name('home');
 Route::get('/about',[PagesController::class,'about'])->name('about');
 Route::get('/contact',[PagesController::class,'contact'])->name('contact');
+
+/*
+     GEt testimonial route
+*/
+
+Route::group(['prefix' => 'testimonial'], function () {
+    Route::get('/home',[PagesController::class,'testmonialIndex'])->name('t_home');
+
+});
+
 Route::get('/student/regisration',[StudentController::class,'registration'])->name('student.registration');
 Route::get('/student/search/status',[StudentController::class,'search_status'])->name('student.search_status');
-
 Route::post('/student/reg_info',[StudentController::class,'store'])->name('student.storeInfo');
 Route::post('/student/search_info',[SearchStatusController::class,'index'])->name('student.searchinfo');
 
+/*
+ language certificate route
+*/
+Route::group(['prefix' => 'language'], function () {
+    Route::get('/home',[PagesController::class,'languageIndex'])->name('l_home');
+
+});
 /* 
  admin routes
 */
@@ -65,12 +83,24 @@ Route::group(['prefix' => 'admin','middleware' => 'admincheck'], function () {
     Route::post('/deleteAdmin/{id}', [AdminController::class,'deleteAdmin'])->name('admin.delete');
 
 
+    Route::group(['prefix' => 'departments'], function () {
+            
+        Route::get('/', [AdminController::class,'getDept'])->name('dept.list');
+        Route::get('/add', [AdminController::class,'createDepartment'])->name('dept.create');
+        Route::post('/storeDepartment', [AdminController::class,'storeDepartment'])->name('admin.storeDept');
+        Route::get('/edit/{id}', [AdminController::class,'editDept'])->name('dept.edit');
+        Route::post('/update/{id}', [AdminController::class,'updateDept'])->name('dept.update');
+        Route::post('/delete/{id}', [AdminController::class,'deleteDept'])->name('dept.delete');
+        Route::get('/view/{id}', [AdminController::class,'viewDept'])->name('dept.view');
+
+    
+    });
+
+    Route::get('/search', [SearchController::class,'search'])->name('search');
+
+
 
 });
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
 
 // SSLCOMMERZ Start
 Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout'])->middleware('paymentcheck');
@@ -85,3 +115,7 @@ Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');

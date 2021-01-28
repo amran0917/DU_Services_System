@@ -11,9 +11,9 @@
                     adminPanel/code/index.html
                     <li><a href="#"><i class="icon-bar-chart"></i></a></li> --}}
                 </ul>
-                <form class="navbar-search pull-left input-append" action="#">
-                <input type="text" class="span3">
-                <button class="btn" type="button">
+                <form class="navbar-search pull-left input-append" action="{{route('search')}}" method="GET">
+                <input type="text" class="span3" name="search" placeholder="search applicant or dept">
+                <button class="btn" type="submit">
                     <i class="icon-search"></i>
                 </button>
                 </form>
