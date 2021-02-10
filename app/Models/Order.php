@@ -15,6 +15,7 @@ class Order extends Model
         'email', 
         'phone',
         'reg_no',
+        'department',
         'amount',
         'address',
         'application_status',

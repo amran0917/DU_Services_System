@@ -24,10 +24,10 @@ class Student extends Model
         'phone',
         'status',
     ];
-    protected $primaryKey = 'applicant_id';
 
     public function allstudent(){
         return $this->hasOne(AllStudent::class,'registration_no','registration_no');
     }
+
 
 }

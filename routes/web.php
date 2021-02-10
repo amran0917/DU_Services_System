@@ -14,6 +14,9 @@ use App\Http\Controllers\SslCommerzPaymentController;
 
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\SearchController;
+use App\Http\Controllers\Backend\ForgotPasswordController;
+use App\Http\Controllers\Backend\ResetPasswordController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -44,11 +47,20 @@ Route::group(['prefix' => 'testimonial'], function () {
     Route::get('/home',[PagesController::class,'testmonialIndex'])->name('t_home');
 
 });
+/*
+* Applicant/Student information
 
-Route::get('/student/regisration',[StudentController::class,'registration'])->name('student.registration');
-Route::get('/student/search/status',[StudentController::class,'search_status'])->name('student.search_status');
-Route::post('/student/reg_info',[StudentController::class,'store'])->name('student.storeInfo');
-Route::post('/student/search_info',[SearchStatusController::class,'index'])->name('student.searchinfo');
+*/
+
+Route::group(['prefix' => 'student'], function () {
+    Route::get('/application',[StudentController::class,'registration'])->name('student.registration');
+    Route::get('/search/status',[StudentController::class,'search_status'])->name('student.search_status');
+    Route::post('/registered',[StudentController::class,'store'])->name('student.registered');
+    Route::post('/search_info',[SearchStatusController::class,'index'])->name('student.searchinfo');
+
+
+});
+
 
 /*
  language certificate route
@@ -58,11 +70,23 @@ Route::group(['prefix' => 'language'], function () {
 
 });
 /* 
- admin routes
+ admin auth routes
 */
- Route::get('admin',[AdminController::class,'admin'])->name('admin.logIn');
- Route::post('admin/logIn',[AdminController::class,'logInData'])->name('admin.loggedin');
- Route::get('admin/logout',[AdminController::class,'logout'])->name('admin.logout');
+ 
+ Route::group(['prefix' => 'admin'], function () {
+    Route::get('/',[AdminController::class,'admin'])->name('admin.logIn');
+    Route::post('/logIn',[AdminController::class,'logInData'])->name('admin.loggedin');
+    Route::get('/logout',[AdminController::class,'logout'])->name('admin.logout');
+
+    //forget password
+    Route::get('forget-password', [ForgotPasswordController::class,'getEmail'])->name('forget-password');
+    Route::post('forgot-password', [ForgotPasswordController::class,'postEmail'])->name('forgot-password');
+
+    // reset-password
+    Route::get('reset-password/{token}', [ResetPasswordController::class,'getPassword']);
+    Route::post('reset-Password', [ResetPasswordController::class,'updatePassword'])->name('rest-pass');
+
+ });
 
 Route::group(['prefix' => 'admin','middleware' => 'admincheck'], function () {
     Route::get('/index', [AdminController::class,'index'])->name('student.index');
@@ -104,9 +128,9 @@ Route::group(['prefix' => 'admin','middleware' => 'admincheck'], function () {
 
 // SSLCOMMERZ Start
 Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout'])->middleware('paymentcheck');
-Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+// Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
 
-Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+// Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
 Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
 
 Route::post('/success', [SslCommerzPaymentController::class, 'success']);

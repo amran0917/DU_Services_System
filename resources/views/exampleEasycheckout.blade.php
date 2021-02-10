@@ -7,9 +7,13 @@
 
 <div class="container">
     <div class="py-5 text-center">
-        <h2>EasyCheckout (Popup) - SSLCommerz</h2>
+        <div class="card">
+            <div class="card-header secondary">
+                <h2>Payment Gateway</h2>
 
-        <p class="lead">Here is the SSLCommerz form sample for payment student.</p>
+            </div>
+
+        </div>
     </div>
 
     <div class="row">
@@ -17,7 +21,6 @@
         </div>
 
         <div class="col-md-8 order-md-1">
-            <h4 class="mb-3">Billing address</h4>
             <form method="POST" class="needs-validation" novalidate>
             @csrf
             <input type="hidden" value="{{ csrf_token() }}" name="_token" />
@@ -65,6 +68,14 @@
                     </div>
                 </div>
 
+                <div class="mb-3">
+                    <label for="department">Department</label>
+                    <input type="text" name="department" class="form-control" id="department"
+                           placeholder="" value="{{ session('department')}}" >
+                    <div class="invalid-feedback">
+                        Please enter a valid email address for shipping updates.
+                    </div>
+                </div>
 
                 <div class="mb-3">
                     <label for="address">Address</label>
@@ -77,7 +88,7 @@
 
                 
 
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-5 mb-3">
                         <label for="country">Country</label>
                         <select class="custom-select d-block w-100" id="country" required>
@@ -108,37 +119,29 @@
                             Zip code required.
                         </div>
                     </div>
-                </div>
-                <hr class="mb-4">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="same-address">
-                    <input type="hidden" value="100" name="amount" id="total_amount" required/>
-                    <label class="custom-control-label" for="same-address">Shipping address is the same as my billing
-                        address</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="save-info">
-                    <label class="custom-control-label" for="save-info">Save this information for next time</label>
-                </div>
-                <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block" id="sslczPayBtn"
+                </div> --}}
+                <div class="mb-3">
+                    <button class="btn btn-primary btn-lg btn-block" id="sslczPayBtn"
                         token="if you have any token validation"
                         postdata="your javascript arrays or objects which requires in backend"
                         order="If you already have the transaction generated for current order"
-                        endpoint="{{ url('/pay-via-ajax') }}"> Pay Now
-                </button>
+                         endpoint="{{ url('/pay-via-ajax') }}"> Pay Now
+                     </button>
+                </div>
+
+                <footer class="my-5 pt-5 text-muted text-center text-small">
+                    {{-- <p class="mb-1">&copy; 2019 Company Name</p>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href="#">Privacy</a></li>
+                        <li class="list-inline-item"><a href="#">Terms</a></li>
+                        <li class="list-inline-item"><a href="#">Support</a></li>
+                    </ul> --}}
+                </footer>
+                
             </form>
         </div>
     </div>
 
-    <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">&copy; 2019 Company Name</p>
-        <ul class="list-inline">
-            <li class="list-inline-item"><a href="#">Privacy</a></li>
-            <li class="list-inline-item"><a href="#">Terms</a></li>
-            <li class="list-inline-item"><a href="#">Support</a></li>
-        </ul>
-    </footer>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -157,6 +160,7 @@
     obj.cus_name = $('#customer_name').val();
     obj.cus_phone = $('#mobile').val();
     obj.reg_no=$('#reg_no').val();
+    obj.department=$('#department').val();
     obj.cus_email = $('#email').val();
     obj.cus_addr1 = $('#address').val();
     obj.amount = $('#total_amount').val();
@@ -167,22 +171,27 @@
     });
 
     $('#email').change(function(){
-        obj.cus_name = $('#email').val();
+        obj.cus_email = $('#email').val();
 
     });
 
     $('#reg_no').change(function(){
-        obj.cus_name = $('#reg_no').val();
+        obj.reg_no = $('#reg_no').val();
+
+    });
+
+    $('#department').change(function(){
+        obj.department = $('#department').val();
 
     });
 
     $('#address').change(function(){
-        obj.cus_name = $('#address').val();
+        obj.cus_addr1 = $('#address').val();
 
     });
 
     $('#mobile').change(function(){
-        obj.cus_name = $('#mobile').val();
+        obj.cus_phone = $('#mobile').val();
 
     });
     

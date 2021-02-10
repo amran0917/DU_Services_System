@@ -6,27 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use App\Models\Student;
 use App\Models\AllStudent;
+use App\Models\Departments;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
 use Session;
 
 class StudentController extends Controller
 {
-    /**
-     *  Str::random(6)
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function sessionData(Request $request)
     {
 
@@ -63,10 +51,12 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        
         $validation= $request->validate([
             'name' => 'required',
             'father_name' => 'required',
             'mother_name' => 'required',
+            // 'department' => 'required',
             'registration_no' => 'required',
             'session' => 'required',
             'running_year' => 'required',
@@ -77,12 +67,24 @@ class StudentController extends Controller
 
         ]);
 
+        // dd($request->all());
+
+    $exist = AllStudent::where('registration_no',$request->registration_no)
+                        ->where('department',$request->dept)
+                        ->count();
+    // Log::info('essdd');
+
+    if($exist>0){
+        //  Log::info($exist);
         $applicant_id =rand(100000,999999);
         $response['applicant_id'] =$applicant_id;
 
         $student = new Student();
+
         $stdnt = Student::where('applicant_id',  $request->get('applicant_id'))->count();
-        if($stdnt>0){ echo 'There is duplicate id';}
+        if($stdnt>0){
+             echo 'There is duplicate id';
+            }
         else{ 
 
             $student->applicant_id = $applicant_id; 
@@ -91,6 +93,7 @@ class StudentController extends Controller
         $student->name = $request->name; 
         $student->father_name = $request->father_name; 
         $student->mother_name = $request->mother_name; 
+        $student->department= $request->dept;
         $student->registration_no = $request->registration_no; 
         $student->session = $request->session; 
         $student->running_year = $request->running_year; 
@@ -101,73 +104,36 @@ class StudentController extends Controller
         $student->status = 'pending';
         $student->save();
         
-        
-        // return redirect()->back();
-       
+               
         $sessionData = $request->session()->put('applicant_id',$applicant_id);
         $sessionData2= $request->session()->put('email',$request->email);
          $request->session()->put('name',$request->name);
          $request->session()->put('phone' ,$request->phone);
          $request->session()->put('reg_no',$request->registration_no);
-        //  $request->reflash();
+         $request->session()->put('department',$request->dept);
 
-        // return response()->json(['success'=>'Got Simple Ajax Request.']);
         return response()->json($student);
+
+    }
+
+    else{
+       
+       return redirect()->back()->with(['msg', 'Your data didn"t matched .Please input correctly.']);
+
+    }
+
+
+      
         // return response($student);
  
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Student $student)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Student $student)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Student $student)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Student $student)
-    {
-        //
     }
 
 
 
     public function registration()
     {
-
-        return view('frontend.pages.registration');
+        $dept = Departments::all();
+        return view('frontend.pages.registration',compact('dept'));
     }
 
     public function search_status()

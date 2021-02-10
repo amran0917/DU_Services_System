@@ -24,7 +24,7 @@ class AdminController extends Controller
     }
     
     function admin(){
-        return view('admin.pages.login');
+        return view('admin.pages.partials.login');
     }
 
     public function logInData(Request $request){
@@ -42,6 +42,7 @@ class AdminController extends Controller
             $request->session()->put('email',$data[0]->email);
             $request->session()->put('password',$data[0]->password);
             $request->session()->put('type',$data[0]->type);
+            $request->session()->put('department',$data[0]->department);
 
             return view('admin.pages.index');
         }
@@ -68,8 +69,26 @@ class AdminController extends Controller
 
     public function getStudent(){
 
-        $student = Student::paginate(4);
-        return view('admin.pages.studentlist',compact('student'));
+        if(Session::get('type')=='admin')
+        { 
+            $type = Session::get('type'); 
+            $admin = Admin::where('type',$type)->get();
+            // Log::info($admin[1]->department);
+            //  Log::info(Session::get('department'));
+            $cnt = count($admin);
+            if($cnt>0){
+               
+                    $student = Student::where('department',Session::get('department'))->paginate(4);
+
+            }
+            return view('admin.pages.applicant.studentlist',compact('student'));
+        }
+
+        else{
+            $student = Student::paginate(4);
+            return view('admin.pages.applicant.studentlist',compact('student'));
+        }
+        
     }
 
     public function changeActiveStatus(Request $request)
@@ -99,7 +118,7 @@ class AdminController extends Controller
     public function showDetails($applicant_id) {
         $stdnt = Student::find($applicant_id);
         // Log::info($stdnt);
-        return view('admin.pages.studentView',compact('stdnt'));
+        return view('admin.pages.applicant.studentView',compact('stdnt'));
     }
 
     public function approveTestimonial(Request $request,$applicant_id){
@@ -114,7 +133,7 @@ class AdminController extends Controller
 
         $stdnt = Student::find($applicant_id);
 
-        $pdf = PDF::loadView('admin.pages.testmonial', compact('stdnt'));
+        $pdf = PDF::loadView('admin.pages.partials.testmonial', compact('stdnt'));
         return $pdf->stream('Testimonial.pdf');
         // return $pdf->stream();
         // return view('admin.pages.testmonial',compact('stdnt'));
@@ -135,7 +154,7 @@ class AdminController extends Controller
         $count = Testimonial::where('applicant_id',  $applicant_id)->count();
         if($count>0){
             $path = ' public/file/' . Str::random(25) . '.pdf';
-            $pdf = PDF::loadView('admin.pages.testmonial', compact('stdnt'));
+            $pdf = PDF::loadView('admin.pages.partials.testmonial', compact('stdnt'));
             $fileName = $testimonial_id. '.' . 'pdf' ;
             Testimonial::where('applicant_id',  $applicant_id)->update(
                 ["path" => $path]
@@ -149,7 +168,7 @@ class AdminController extends Controller
             $testmonial->applicant_name=$stdnt->name;
             // 3 times eta database e save hoye Jai
             $path = 'public/file/' . Str::random(25) . '.pdf';
-            $pdf = PDF::loadView('admin.pages.testmonial', compact('stdnt'));
+            $pdf = PDF::loadView('admin.pages.partials.testmonial', compact('stdnt'));
             $fileName = $testimonial_id. '.' . 'pdf' ;
             // $testmonial->path = $pdf->save($path . '/' . $fileName);
             $testmonial->path = $path;
@@ -167,8 +186,8 @@ class AdminController extends Controller
     }
 
     function createAdmin(){
-
-        return view('admin.pages.admin.create'); 
+        $dept = Departments::all();
+        return view('admin.pages.admin.create',compact('dept')); 
     }
 
     function storeAdmin(Request $request){
@@ -182,6 +201,7 @@ class AdminController extends Controller
         $admin->name =  $request->name;
         $admin->email= $request->email;
         $admin->password = $request->password;
+        $admin->department = $request->dept;
         $admin->type = $request->adminType;
 
         $admin->save();
@@ -234,6 +254,7 @@ class AdminController extends Controller
         $admin = Admin::find($id);
         $admin->name =  $request->name;
         $admin->email= $request->email;
+        $admin->department = $request->dept;
         $admin->password = $request->pasword; //bcrypt
         $admin->type = $request->adminType;
         $admin->update();

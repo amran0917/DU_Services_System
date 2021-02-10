@@ -48,6 +48,18 @@
                                                         <input type="password" class="form-control" id="password" name="password" required>
                                                     </div> 
                                                     <div class="form-group">
+                                                        <label for="dept">Choose a Department:</label> <br>
+                                                        <select name="dept" id="dept">
+                                                            @foreach($dept as $type)
+                                                                <option value = "{{$type->department_name}}">
+                                                                    {{$type->department_name}}
+                                                                </option>
+                                                             @endforeach
+                                                                
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group">
                                                         <p>Please select your gender:</p>
                                                             <input type="radio" id="super-admin" name="adminType" value="super-admin">
                                                             <label for="super-admin">super-admin</label><br>

@@ -16,7 +16,6 @@ class SslCommerzPaymentController extends Controller
             return "stop no session"; 
         }
     
-        // $request->session()->get('applicant_id');
     //    $data= $request->session()->get('name');
         $data = $request->session()->all();
         Log::info( $data);
@@ -114,7 +113,6 @@ class SslCommerzPaymentController extends Controller
         # Here you have to receive all the order data to initate the payment.
         # Lets your oder trnsaction informations are saving in a table called "orders"
         # In orders table order uniq identity is "transaction_id","status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
-        Log::info('hello');
 
          $requestData= (array)json_decode($request->cart_json);
          Log::info($requestData);
@@ -128,6 +126,7 @@ class SslCommerzPaymentController extends Controller
         $post_data['cus_name'] = $requestData['cus_name'];
         $post_data['cus_email'] = $requestData['cus_email'];
         $post_data['reg_no'] = $requestData['reg_no'];
+        $post_data['department'] = $request->department;
         $post_data['cus_add1'] = $request->address;
         $post_data['cus_add2'] = "";
         $post_data['cus_city'] = "";
@@ -168,6 +167,7 @@ class SslCommerzPaymentController extends Controller
                 'email' => $post_data['cus_email'],
                 'phone' => $post_data['cus_phone'],
                 'reg_no' => $post_data['reg_no'],
+                'department' => $post_data['department'],
                 'amount' => $post_data['total_amount'],
                 'application_status' => 'Pending',
                 'status' => 'Pending',
@@ -190,7 +190,7 @@ class SslCommerzPaymentController extends Controller
 
     public function success(Request $request)
     {
-        echo "Transaction is Successful";
+        // echo "Transaction is Successful";
 
         $tran_id = $request->input('tran_id');
         $amount = $request->input('amount');
@@ -215,7 +215,6 @@ class SslCommerzPaymentController extends Controller
                 $update_product = DB::table('orders')
                     ->where('transaction_id', $tran_id)
                     ->update(['status' => 'Processing']);
-
                 echo "<br >Transaction is successfully Completed";
             } else {
                 /*
@@ -231,8 +230,10 @@ class SslCommerzPaymentController extends Controller
             /*
              That means through IPN Order status already updated. Now you can just show the customer that transaction is completed. No need to udate database.
              */
-            echo "Transaction is successfully Completed";
-        } else {
+            echo "<br >Transaction is successfully Completed";
+
+
+            } else {
             #That means something wrong happened. You can redirect customer to your product page.
             echo "Invalid Transaction";
         }
