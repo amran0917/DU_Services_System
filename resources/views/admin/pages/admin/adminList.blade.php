@@ -16,7 +16,28 @@
                     <div class="btn-controls">
                         <div class="btn-box-row row-fluid">
                             <div class="card text-white bg-success mb-3" style="max-width: 100%">
-                      
+                                <div > 
+                                    @if(session()->has('message'))
+                                        <div class="alert alert-info">
+                                            {{ session()->get('message') }}
+                                        </div>
+                                    @endif
+                                </div>
+                                <div > 
+                                    @if(session()->has('delete'))
+                                        <div class="alert alert-danger">
+                                            {{ session()->get('delete') }}
+                                        </div>
+                                    @endif
+                                </div>
+                                <div > 
+                                    @if(session()->has('success'))
+                                        <div class="alert alert-success">
+                                            {{ session()->get('success') }}
+                                        </div>
+                                    @endif
+                                </div>
+                               
                                 <div class="card-header " style="text-align: center">
                                     <b style="color: rgb(0, 255, 42)">  Admin List</b> 
                                 </div>
@@ -41,7 +62,7 @@
                                                 <td>
                                                     <a href="{{route('admin.view',$row->id)}}" class="btn btn-sm btn-primary" >View</a> 
                                                     <a href="{{ route('admin.edit',$row->id)}}" class="btn btn-sm btn-info">Edit</a>
-                                                    {{-- <a href="#myModal{{$row->id}}"  class="btn btn-danger btn-sm" data-toggle="modal" > Delete</a> --}}
+                                                    <a href="#myModal{{$row->id}}"  class="btn btn-danger btn-sm" data-toggle="modal" > Delete</a>
                                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal{{$row->id}}">
                                                         Delete
                                                     </button>

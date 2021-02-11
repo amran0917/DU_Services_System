@@ -25,9 +25,9 @@ class Student extends Model
         'status',
     ];
 
-    public function allstudent(){
-        return $this->hasOne(AllStudent::class,'registration_no','registration_no');
-    }
+    // public function allstudent(){
+    //     return $this->hasOne(AllStudent::class,'registration_no','registration_no');
+    // }
 
 
 }

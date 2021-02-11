@@ -25,9 +25,9 @@ class AllStudent extends Model
         'cgpa',
     ];
     // protected $primaryKey = 'registration_no';
-    public function student()
-    {
-        return $this->hasOne(Student::class,'registration_no','registration_no');   // first reg foreign key / nijer tables pKey
-    }
+    // public function student()
+    // {
+    //     return $this->hasOne(Student::class,'registration_no','registration_no');   // first reg foreign key / nijer tables pKey
+    // }
 
 }

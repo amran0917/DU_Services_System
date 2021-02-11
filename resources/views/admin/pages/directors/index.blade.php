@@ -16,51 +16,53 @@
                     <div class="btn-controls">
                         <div class="btn-box-row row-fluid">
                             <div class="card text-white bg-success mb-3" style="max-width: 100%">
-                            <div> 
-                                @if(session()->has('message'))
-                                <div class="alert alert-info">
-                                    {{ session()->get('message') }}
-                                </div>
-                            @endif
-                        </div>
-                        <div > 
-                            @if(session()->has('delete'))
-                                <div class="alert alert-danger">
-                                    {{ session()->get('delete') }}
-                                </div>
-                            @endif
-                        </div>
-                        <div > 
-                            @if(session()->has('success'))
-                                <div class="alert alert-success">
-                                    {{ session()->get('success') }}
-                                </div>
-                            @endif
-                        </div>
                                 <div class="card-header " style="text-align: center">
-                                    <b style="color: rgb(76, 0, 255)">  Departments List</b> 
+                                    <b style="color: rgb(76, 0, 255)">  Directors List</b> 
 
                                 </div>
+                                <div > 
+                                    @if(session()->has('message'))
+                                        <div class="alert alert-info">
+                                            {{ session()->get('message') }}
+                                        </div>
+                                    @endif
+                                </div>
+                                <div > 
+                                    @if(session()->has('delete'))
+                                        <div class="alert alert-danger">
+                                            {{ session()->get('delete') }}
+                                        </div>
+                                    @endif
+                                </div>
+                                <div > 
+                                    @if(session()->has('success'))
+                                        <div class="alert alert-success">
+                                            {{ session()->get('success') }}
+                                        </div>
+                                    @endif
+                                </div>
+                               
 
-                
                             <div class="card-body">
                 
                                 <table style="width:100%" class="table table-hover table-stripped">
                                         <tr>
                                             <th>#</th>
+                                            <th>Director Name</th>
                                             <th>Department Name</th>
                                             <th>Faculty/Institute name</th>
                                             <th>Action</th>
                 
                                         </tr>
-                                        @foreach($dept as $row)
+                                        @foreach($dir as $row)
                                         <tr>
                                             <td>#</td>
-                                            <td>{{$row->department_name}}</td>
+                                            <td>{{$row->dir_name}}</td>
+                                            <td>{{$row->department}}</td>
                                             <td>{{$row->fac_name}}</td>
                                             <td>
-                                                <a href="{{route('dept.view',$row->id)}}" class="btn btn-sm btn-primary" >View</a> 
-                                                <a href="{{ route('dept.edit',$row->id)}}" class="btn btn-sm btn-info">Edit</a>
+                                                <a href="{{route('director.view',$row->id)}}" class="btn btn-sm btn-primary" >View</a> 
+                                                <a href="{{ route('director.edit',$row->id)}}" class="btn btn-sm btn-info">Edit</a>
                                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal{{$row->id}}">
                                                     Delete
                                                   </button>
@@ -77,7 +79,7 @@
                                                             </div>
                 
                                                             <div class="modal-body">
-                                                                <form action="{{ route('dept.delete',$row->id)}}" method="POST">
+                                                                <form action="{{ route('director.delete',$row->id)}}" method="POST">
                                                                 @csrf 
                 
                                                                     <button type="submit" class="btn btn-success">Permanent Delete</button>
@@ -103,7 +105,7 @@
                             {{-- </div> --}}
                         </div>
                     </div>
-                    {{ $dept->render() }}
+                    {{ $dir->render() }}
 
                             
                         </div> 

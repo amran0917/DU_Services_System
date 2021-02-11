@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Student;
+use App\Models\AllStudent;
+
 use App\Models\Admin;
 use App\Models\Testimonial;
 use App\Models\AdminApproveStatus;   
@@ -140,43 +142,46 @@ class AdminController extends Controller
     }
 
     public function approve($applicant_id, Request $request){
+       // $stdnt = Student::find($applicant_id);
+        $stdnt = Student::where('applicant_id', $request->applicant_id)->first();
 
-        
-        $stdnt = Student::find($applicant_id);
+        $allstdnt = AllStudent::where('registration_no',$stdnt->registration_no)->get();
+        Log::info($allstdnt->cgpa);
+
         $testimonial_id =rand(10000,99999);
         $count = Testimonial::where('testimonial_id',  $request->get('testimonial_id'))->count();
-        while($count>0)
-        {
-            $testimonial_id =rand(10000,99999);
-            $count = Testimonial::where('testimonial_id',  $request->get('testimonial_id'))->count();
-        }
-        $response['testimonial_id'] =$testimonial_id;
-        $count = Testimonial::where('applicant_id',  $applicant_id)->count();
-        if($count>0){
-            $path = ' public/file/' . Str::random(25) . '.pdf';
-            $pdf = PDF::loadView('admin.pages.partials.testmonial', compact('stdnt'));
-            $fileName = $testimonial_id. '.' . 'pdf' ;
-            Testimonial::where('applicant_id',  $applicant_id)->update(
-                ["path" => $path]
-            );
-            return $pdf->stream($fileName);
-        }
-        else{
-            $testmonial = new Testimonial();
-            $testmonial->testimonial_id = $testimonial_id; 
-            $testmonial->applicant_id=$applicant_id;
-            $testmonial->applicant_name=$stdnt->name;
-            // 3 times eta database e save hoye Jai
-            $path = 'public/file/' . Str::random(25) . '.pdf';
-            $pdf = PDF::loadView('admin.pages.partials.testmonial', compact('stdnt'));
-            $fileName = $testimonial_id. '.' . 'pdf' ;
-            // $testmonial->path = $pdf->save($path . '/' . $fileName);
-            $testmonial->path = $path;
-            $testmonial->save();
-            // return response()->download($path);
-            return $pdf->stream($fileName);
-        }
-        
+        // while($count>0)
+        // {
+        //     $testimonial_id =rand(10000,99999);
+        //     $count = Testimonial::where('testimonial_id',  $request->get('testimonial_id'))->count();
+        // }
+        // $response['testimonial_id'] =$testimonial_id;
+        // $count = Testimonial::where('applicant_id',  $applicant_id)->count();
+        // if($count>0){
+        //     $path = ' public/file/' . Str::random(25) . '.pdf';
+        //     $pdf = PDF::loadView('admin.pages.partials.testmonial', compact('stdnt','allstdnt'));
+        //     $fileName = $testimonial_id. '.' . 'pdf' ;
+        //     Testimonial::where('applicant_id',  $applicant_id)->update(
+        //         ["path" => $path]
+        //     );
+        //     return $pdf->stream($fileName);
+        // }
+        // else{
+        //     $testmonial = new Testimonial();
+        //     $testmonial->testimonial_id = $testimonial_id; 
+        //     $testmonial->applicant_id=$applicant_id;
+        //     // $testmonial->applicant_name=$stdnt->name;
+        //     // 3 times eta database e save hoye Jai
+        //     $path = 'public/file/' . Str::random(25) . '.pdf';
+        //     $pdf = PDF::loadView('admin.pages.partials.testmonial', compact('stdnt','allstdnt'));
+        //     $fileName = $testimonial_id. '.' . 'pdf' ;
+        //     // $testmonial->path = $pdf->save($path . '/' . $fileName);
+        //     $testmonial->path = $path;
+        //     $testmonial->save();
+        //     // return response()->download($path);
+        //     return $pdf->stream($fileName);
+        // }
+        // /
     }
     
     public function getAdmin(){
@@ -207,11 +212,8 @@ class AdminController extends Controller
         $admin->save();
   // Hash::make
         if($admin){
-            $notification = array(
-                'message' =>'Successfully added admin',
-                'alert-type' => 'success'
-            );
-            return Redirect()->route('admin.list')->with($notification);
+           
+            return Redirect()->route('admin.list')->with('success', 'Successfully saved!');;
 
         }
 
@@ -226,14 +228,10 @@ class AdminController extends Controller
 
         if(!is_null($admin)){
             $admin->delete();
-            $notification = array(
-                'message' =>'Successfully admin Deleted',
-                'alert-type' => 'success'
-            );
-        }
+            return Redirect()->route('admin.list')->with('delete', 'Successfully deleted!');;
 
-    //   session()->flash('success','Successfully deleted');
-      return Redirect()->route('admin.list') ->with($notification);
+
+        }
 
     }
 
@@ -261,11 +259,9 @@ class AdminController extends Controller
 
    
         if($admin){
-            $notification = array(
-                'message' =>'Successfully UPDated admin',
-                'alert-type' => 'success'
-            );
-            return Redirect()->route('admin.list') ->with($notification);
+          
+            return Redirect()->route('admin.list')->with('message', 'Successfully updated!');;
+
 
         }
        
@@ -292,15 +288,12 @@ class AdminController extends Controller
         $dept->fac_name =  $request->fac_name;
         
         $dept->save();
+ 
+            if($dept){
+                return Redirect()->route('dept.list')->with('success', 'Successfully saved!');;
+    
+            }
 
-        if($dept){
-            $notification = array(
-                'message' =>'Successfully added dept',
-                'alert-type' => 'success'
-            );
-         return Redirect()->route('dept.list') ->with($notification);
-
-        }
 
     }
 
@@ -321,21 +314,17 @@ class AdminController extends Controller
             'dept_name' => 'required',
         ]);
 
-        $dept = new Departments();
+        $dept = Departments::find($request->id);
         $dept->department_name = $request->dept_name;
         $dept->fac_name =  $request->fac_name;
-        echo $request;
-        echo $dept; 
-        $dept->update();
+        $dept->save();
 
+       
         if($dept){
-            $notification = array(
-                'message' =>'Successfully Updated dept',
-                'alert-type' => 'success'
-            );
-         return Redirect()->route('dept.list') ->with($notification);
+            return Redirect()->route('dept.list')->with('message', 'Successfully updated!');;
 
         }
+        
        
     }
 
@@ -345,13 +334,10 @@ class AdminController extends Controller
 
         if(!is_null($dept)){
             $dept->delete();
-            $notification = array(
-                'message' =>'Successfully Department Deleted',
-                'alert-type' => 'success'
-            );
+            
         }
+        return Redirect()->route('dept.list')->with('delete', 'Successfully deleted!');;
 
-      return Redirect()->route('dept.list') ->with($notification);
     }
 
     public function viewDept($id){

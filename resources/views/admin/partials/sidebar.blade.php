@@ -41,7 +41,19 @@
     
         </ul>
 
-        <li><a href="form.html"><i class="menu-icon icon-paste"></i>Forms </a></li>
+        <ul class="widget widget-menu unstyled">
+            <li><a class="collapsed" data-toggle="collapse" href="#dirPage"><i class="menu-icon icon-paste">
+            </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
+            </i>Directors </a>
+                <ul id="dirPage" class="collapse unstyled">
+                    <li><a href="{{route('director.list')}}"><i class="icon-inbox"></i>Director List </a></li>
+                    <li><a href="{{route('director.create')}}"><i class="icon-inbox"></i>Add Director</a></li>
+
+                </ul>
+            </li>
+    
+        </ul>
+
         <li><a href="table.html"><i class="menu-icon icon-table"></i>Tables </a></li>
         <li><a href="charts.html"><i class="menu-icon icon-bar-chart"></i>Charts </a></li>
     </ul>

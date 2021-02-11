@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\SearchController;
 use App\Http\Controllers\Backend\ForgotPasswordController;
 use App\Http\Controllers\Backend\ResetPasswordController;
+use App\Http\Controllers\Backend\DirectorController;
 
 
 /*
@@ -119,6 +120,20 @@ Route::group(['prefix' => 'admin','middleware' => 'admincheck'], function () {
 
     
     });
+
+    Route::group(['prefix' => 'directors'], function () {
+            
+        Route::get('/', [DirectorController::class,'index'])->name('director.list');
+        Route::get('/add', [DirectorController::class,'create'])->name('director.create');
+        Route::post('/store', [DirectorController::class,'store'])->name('admin.store');
+        Route::get('/edit/{id}', [DirectorController::class,'edit'])->name('director.edit');
+        Route::post('/update/{id}', [DirectorController::class,'update'])->name('director.update');
+        Route::post('/delete/{id}', [DirectorController::class,'delete'])->name('director.delete');
+        Route::get('/view/{id}', [DirectorController::class,'view'])->name('director.view');
+
+    
+    });
+
 
     Route::get('/search', [SearchController::class,'search'])->name('search');
 
