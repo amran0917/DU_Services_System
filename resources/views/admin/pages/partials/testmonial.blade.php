@@ -15,10 +15,9 @@
     <br>
     
     <div>
-        {{-- This is to certify that {{ $stdnt->name}} S/o, {{$stdnt->father_name}} &amp; {{$stdnt->mother_name}},{{$stdnt->allstudent->address}}, was a student of the Master in
-        Information Technology (MIT) course, conducted by the Institute of Information Technology
-        (IIT), University of Dhaka. He has successfully completed the final examination of “Master
-        in Information Technology (MIT)” course (Session- {{$stdnt->session}}, Roll-{{$stdnt->roll_no}}) and his --}}
+        This is to certify that {{ $stdnt->name}} S/o, {{$stdnt->father_name}} &amp; {{$stdnt->mother_name}},{{$allstdnt->address}}, was a student of  {{$stdnt->department}}
+        , University of Dhaka. He has successfully completed the final examination of “Master
+        in Information Technology (MIT)” course (Session- {{$stdnt->session}}, Roll-{{$stdnt->roll_no}}) and his
         CGPA is {{$allstdnt->cgpa}} on a scale of 4.00.
         <br>
         <br>
@@ -33,8 +32,14 @@
         <br>
         <br>
         <br>
-        (Prof. Dr. Md. Shafiul Alam Khan)
+        (Prof.
+        {{        $dir->dir_name
+        }} ) 
+        <br>
         Director
+        <br>
+        {{       $dir->fac_name 
+        }}
     </div>
 </body>
 </html>

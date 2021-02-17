@@ -45,10 +45,9 @@
                                                             <td>{{$row->registration_no}}</td>
                                                             <td>{{$row->department}}</td>
 
-                                        
                                                             <td>
                                                                 <a href="{{ route('admin.student.showDetails',$row->applicant_id)}}" class="btn btn-sm btn-primary" >View Details</a> 
-
+                                                                
                                                                 @if ($row->status=='pending')
                                                                     <a href="#" class="btn btn-sm btn-info" onclick="changeUserStatus(event.target, {{$row->applicant_id}});"> Approve </a> 
 
@@ -65,9 +64,9 @@
 
                                                                 <script>
                                                                     function changeUserStatus(_this, applicant_id) {
-                                                                    
+                                                                       
                                                                         var status = $(_this).prop('pending') == true ? 'pending' : 'complete';
-                                                                        console.log(status);
+                                                                       
                                                                         let _token = $('meta[name="csrf-token"]').attr('content');
 
                                                                     

@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use App\Models\Student;
 use App\Models\AllStudent;
 
+use App\Models\Director;
 use App\Models\Admin;
 use App\Models\Testimonial;
 use App\Models\AdminApproveStatus;   
@@ -16,7 +17,7 @@ use Redirect;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Input;
 use PDF;
-use Auth;
+use Auth,Storage;
 use DB,Hash,Session;
 use App\Models\Departments;
 class AdminController extends Controller
@@ -95,14 +96,9 @@ class AdminController extends Controller
 
     public function changeActiveStatus(Request $request)
     {
-        $applicant = Student::find($request->applicant_id);
-        $input = $request->all();
-
-        
+        $applicant = Student::where('applicant_id', $request->applicant_id)->first(); 
+        $input = $request->all();  
         $applicant->status = $request->status;
-       
-        echo $request->status;
-
         $applicant->save();
         // $x = json_encode($request->all());
 
@@ -117,9 +113,9 @@ class AdminController extends Controller
 
 
 
-    public function showDetails($applicant_id) {
-        $stdnt = Student::find($applicant_id);
-        // Log::info($stdnt);
+    public function showDetails($applicant_id,Request $request) {
+
+        $stdnt = Student::where('applicant_id', $request->applicant_id)->first();
         return view('admin.pages.applicant.studentView',compact('stdnt'));
     }
 
@@ -142,21 +138,22 @@ class AdminController extends Controller
     }
 
     public function approve($applicant_id, Request $request){
-       // $stdnt = Student::find($applicant_id);
-        $stdnt = Student::where('applicant_id', $request->applicant_id)->first();
 
-        $allstdnt = AllStudent::where('registration_no',$stdnt->registration_no)->get();
-        Log::info($allstdnt->cgpa);
+        $stdnt = Student::where('applicant_id', $request->applicant_id)->first();
+        $allstdnt = AllStudent::where('registration_no',$stdnt->registration_no)->first();
+        $dir = Director::where('department',$stdnt->department)->first();
 
         $testimonial_id =rand(10000,99999);
-        $count = Testimonial::where('testimonial_id',  $request->get('testimonial_id'))->count();
+        // $count = Testimonial::where('testimonial_id',  $request->get('testimonial_id'))->count();
+         
         // while($count>0)
         // {
         //     $testimonial_id =rand(10000,99999);
         //     $count = Testimonial::where('testimonial_id',  $request->get('testimonial_id'))->count();
         // }
-        // $response['testimonial_id'] =$testimonial_id;
+        $response['testimonial_id'] =$testimonial_id;
         // $count = Testimonial::where('applicant_id',  $applicant_id)->count();
+        // Log::info($count);
         // if($count>0){
         //     $path = ' public/file/' . Str::random(25) . '.pdf';
         //     $pdf = PDF::loadView('admin.pages.partials.testmonial', compact('stdnt','allstdnt'));
@@ -167,21 +164,27 @@ class AdminController extends Controller
         //     return $pdf->stream($fileName);
         // }
         // else{
-        //     $testmonial = new Testimonial();
-        //     $testmonial->testimonial_id = $testimonial_id; 
-        //     $testmonial->applicant_id=$applicant_id;
-        //     // $testmonial->applicant_name=$stdnt->name;
-        //     // 3 times eta database e save hoye Jai
-        //     $path = 'public/file/' . Str::random(25) . '.pdf';
-        //     $pdf = PDF::loadView('admin.pages.partials.testmonial', compact('stdnt','allstdnt'));
-        //     $fileName = $testimonial_id. '.' . 'pdf' ;
-        //     // $testmonial->path = $pdf->save($path . '/' . $fileName);
-        //     $testmonial->path = $path;
-        //     $testmonial->save();
+            $testmonial = new Testimonial();
+            $testmonial->testimonial_id = $testimonial_id; 
+            $testmonial->applicant_id=$applicant_id;
+            $testmonial->applicant_name=$stdnt->name;
+
+          //  $path = 'public/file/' . Str::random(25) . '.pdf';
+
+            $path = public_path('file/');
+            $fileName = $testimonial_id. '.' .$testmonial->applicant_name.'.pdf' ;
+
+          $pdf = PDF::loadView('admin.pages.partials.testmonial', compact('stdnt','allstdnt', 'dir'));
+       
+          $pdf->save($path . '/' . $fileName);
+       //   $testmonial->path = $path;
+          $testmonial->path = $path . '/' . $fileName;
+          $testmonial->save();
+          return $pdf->stream($fileName);
+
         //     // return response()->download($path);
-        //     return $pdf->stream($fileName);
-        // }
-        // /
+        //     return $pdf->download($fileName);
+      
     }
     
     public function getAdmin(){
