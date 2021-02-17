@@ -17,6 +17,9 @@ use App\Http\Controllers\Backend\SearchController;
 use App\Http\Controllers\Backend\ForgotPasswordController;
 use App\Http\Controllers\Backend\ResetPasswordController;
 use App\Http\Controllers\Backend\DirectorController;
+use App\Http\Controllers\Backend\language\LangPageController;
+
+use App\Http\Controllers\Frontend\language\ApplicantController;
 
 
 /*
@@ -68,6 +71,8 @@ Route::group(['prefix' => 'student'], function () {
 */
 Route::group(['prefix' => 'language'], function () {
     Route::get('/home',[PagesController::class,'languageIndex'])->name('l_home');
+    Route::get('/application',[ApplicantController::class,'application'])->name('student.application');
+
 
 });
 /* 
@@ -130,6 +135,19 @@ Route::group(['prefix' => 'admin','middleware' => 'admincheck'], function () {
         Route::post('/update/{id}', [DirectorController::class,'update'])->name('director.update');
         Route::post('/delete/{id}', [DirectorController::class,'delete'])->name('director.delete');
         Route::get('/view/{id}', [DirectorController::class,'view'])->name('director.view');
+
+    
+    });
+
+    Route::group(['prefix' => 'language'], function () {
+            
+       Route::get('/', [LangPageController::class,'index'])->name('language.list');
+        Route::get('/add', [LangPageController::class,'create'])->name('language.create');
+        Route::post('/store', [LangPageController::class,'store'])->name('language.store');
+        Route::get('/edit/{id}', [LangPageController::class,'edit'])->name('language.edit');
+        Route::post('/update/{id}', [LangPageController::class,'update'])->name('language.update');
+        Route::post('/delete/{id}', [LangPageController::class,'delete'])->name('language.delete');
+        Route::get('/view/{id}', [LangPageController::class,'view'])->name('language.view');
 
     
     });
