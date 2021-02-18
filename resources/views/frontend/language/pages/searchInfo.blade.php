@@ -9,10 +9,10 @@
             <!-- <h1 style="text-align: center; font-size: 25px;">User Search Result</h1> -->
             <div class="card text-center" style="width: 1500px;">
                 <div class="card-header">
-                    User Profile
+                   <b> User Profile </b>
                 </div>
                 <div class="card-body"> 
-                    <h5 class="card-title">Special title treatment</h5> 
+                    <h5 class="card-title"> </h5> 
                     @foreach($data as $row)
 
                     <table style="width:70%; " class="center">
@@ -25,7 +25,7 @@
                         <tr>
                             <td> <h5>ID </h5></td>
                             <td>{{$row->applicant_id}}</td>
-                            <td rowspan="12"></td>
+                            <td rowspan="13"></td>
 
                            
                         </tr>
@@ -70,9 +70,15 @@
                             <td> <h5>Birth Date   </h5></td>
                             <td> {{$row->birth_date}} </td>
                         </tr>
+
                         <tr>
                             <td> <h5>Department   </h5></td>
                             <td> {{$row->department}} </td>
+                        </tr>
+
+                        <tr>
+                            <td> <h5>Language </h5></td>
+                            <td> {{$row->language}} </td>
                         </tr>
 
                     </table>

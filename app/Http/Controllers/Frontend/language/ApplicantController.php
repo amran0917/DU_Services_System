@@ -39,60 +39,64 @@ class ApplicantController extends Controller
 
        // dd($request->all());
 
-    $exist = AllStudent::where('registration_no',$request->registration_no)
+        $exist = AllStudent::where('registration_no',$request->registration_no)
                         ->where('department',$request->dept)
                         ->count();
 
-    if($exist>0){
-        //  Log::info($exist);
-        $applicant_id =rand(100000,999999);
-        $response['applicant_id'] =$applicant_id;
+        if($exist>0){
+            //  Log::info($exist);
+            $applicant_id =rand(100000,999999);
+            $response['applicant_id'] =$applicant_id;
 
-        $student = new Applicant();
+            $student = new Applicant();
 
-        $stdnt = Applicant::where('applicant_id',  $request->get('applicant_id'))->count();
-        if($stdnt>0){
-             echo 'There is duplicate id';
+            $stdnt = Applicant::where('applicant_id',  $request->get('applicant_id'))->count();
+            if($stdnt>0){
+                echo 'There is duplicate id';
+                }
+            else{ 
+
+                $student->applicant_id = $applicant_id; 
+
             }
-        else{ 
+            $student->name = $request->name; 
+            $student->father_name = $request->father_name; 
+            $student->mother_name = $request->mother_name; 
+            $student->department= $request->dept;
+            $student->registration_no = $request->registration_no; 
+            $student->session = $request->session; 
+            $student->running_year = $request->running_year; 
+            $student->roll_no = $request->roll_no;
+            $student->birth_date = $request->birth_date;
+            $student->email = $request->email;
+            $student->phone = $request->phone;
+            $student->language = $request->lang;
+            $student->status = 'pending';
+            $student->save();
+            
+                
+            $sessionData = $request->session()->put('applicant_id',$applicant_id);
+            $sessionData2= $request->session()->put('email',$request->email);
+            $request->session()->put('name',$request->name);
+            $request->session()->put('phone' ,$request->phone);
+            $request->session()->put('reg_no',$request->registration_no);
+            $request->session()->put('department',$request->dept);
+            $request->session()->put('language',$request->lang);
 
-            $student->applicant_id = $applicant_id; 
+            return response()->json($student);
 
         }
-        $student->name = $request->name; 
-        $student->father_name = $request->father_name; 
-        $student->mother_name = $request->mother_name; 
-        $student->department= $request->dept;
-        $student->registration_no = $request->registration_no; 
-        $student->session = $request->session; 
-        $student->running_year = $request->running_year; 
-        $student->roll_no = $request->roll_no;
-        $student->birth_date = $request->birth_date;
-        $student->email = $request->email;
-        $student->phone = $request->phone;
-        $student->language = $request->lang;
-        $student->status = 'pending';
-        $student->save();
+
+        else{
         
-               
-        $sessionData = $request->session()->put('applicant_id',$applicant_id);
-        $sessionData2= $request->session()->put('email',$request->email);
-         $request->session()->put('name',$request->name);
-         $request->session()->put('phone' ,$request->phone);
-         $request->session()->put('reg_no',$request->registration_no);
-         $request->session()->put('department',$request->dept);
-         $request->session()->put('language',$request->lang);
+            return redirect()->back()->with('message', 'Your data didn"t matched .Please input correctly.');
 
-        return response()->json($student);
-
+        }
+    
     }
 
-    else{
-       
-       return redirect()->back()->with('message', 'Your data didn"t matched .Please input correctly.');
-       // return Redirect()->route('language.list')->with('message', 'Successfully updated!');;
-
-    }
- 
+    public function status_search()
+    {
+        return view('frontend.language.pages.search_status');
     }
 }

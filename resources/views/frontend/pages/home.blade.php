@@ -59,8 +59,8 @@
 
              <br> <br>
        
-             <b> <h1>To know Application status ? click here</h1>  </b>  <br>
-             <div class="button_cont" ><a class="example_c" href="{{route('student.search_status')}}"  rel="nofollow noopener">Application status</a></div>
+             {{-- <b> <h1>To know Application status ? click here</h1>  </b>  <br>
+             <div class="button_cont" ><a class="example_c" href="{{route('student.search_status')}}"  rel="nofollow noopener">Application status</a></div> --}}
 
 
         </div>

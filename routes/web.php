@@ -73,8 +73,8 @@ Route::group(['prefix' => 'language'], function () {
     Route::get('/home',[PagesController::class,'languageIndex'])->name('l_home');
     Route::get('/application',[ApplicantController::class,'application'])->name('student.application');
     Route::post('/registered',[ApplicantController::class,'store'])->name('store');
-
-
+    Route::get('/status',[ApplicantController::class,'status_search'])->name('search_status');
+    Route::post('/search_result',[SearchStatusController::class,'languageSearch'])->name('searchInfo');
 
 });
 /* 

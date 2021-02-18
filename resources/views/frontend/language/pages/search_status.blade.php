@@ -2,8 +2,11 @@
 @section('title', 'Applicant_status')
 
 @section('content')
-   <div class="row">
-   
+<div class="reg_img_2">
+    
+    <div class="row">
+        
+
         <div class="search-box">
             <div>
                 @if(session()->has('message'))
@@ -13,9 +16,9 @@
                  @endif
             </div>
 
-            <h1 style="text-align: center; font-size: 25px;">User Search Status form</h1>
+            <h1 style="text-align: center; font-size: 25px;">See Your Status</h1>
 
-            <form name="" action="{{route('student.searchinfo')}}" method="POST">
+            <form name="" action="{{route('searchInfo')}}" method="POST">
                 @csrf
                 <div class="login">
 
