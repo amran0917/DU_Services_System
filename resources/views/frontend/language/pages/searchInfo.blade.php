@@ -85,7 +85,7 @@
            
                     @endforeach
                     <br>
-                    <a href="{{url('example1')}}" class="btn btn-success">Pay Now</a>
+                    <a href="{{route('payment')}}" class="btn btn-success">Pay Now</a>
 
                 </div>
 

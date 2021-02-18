@@ -367,7 +367,9 @@ class SslCommerzNotification extends AbstractSslCommerz
     {
         $this->data['cus_name'] = $info['cus_name']; // string (50)	Mandatory - Your customer name to address the customer in payment receipt email
         $this->data['cus_email'] = $info['cus_email']; // string (50)	Mandatory - Valid email address of your customer to send payment receipt from SSLCommerz end
-        $this->data['reg_no']   = $info['reg_no']; //newly added
+        $this->data['reg_no']   = $info['reg_no']; //newly added reistration
+        $this->data['department']   = $info['department']; //newly added deparrtment
+        $this->data['language']   = $info['language']; //newly added language
         $this->data['cus_add1'] = $info['cus_add1']; // string (50)	Mandatory - Address of your customer. Not mandatory but useful if provided
         $this->data['cus_add2'] = $info['cus_add2']; // string (50)	Address line 2 of your customer. Not mandatory but useful if provided
         $this->data['cus_city'] = $info['cus_city']; // string (50)	Mandatory - City of your customer. Not mandatory but useful if provided
