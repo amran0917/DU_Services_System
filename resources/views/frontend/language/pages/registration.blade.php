@@ -4,6 +4,14 @@
 @section('content')
 
 <div class="reg_img_2">
+    <div > 
+        @if(session()->has('message'))
+            <div class="alert alert-danger">
+                {{ session()->get('message') }}
+            </div>
+        @endif
+    </div>
+
     <div class="box2">
         <h1 style="text-align: center; font-size: 35px;font-family: Lucida Console;"> &nbsp; &nbsp; &nbsp; Language Certificate Management System</h1>
         <h1 style="text-align: center; font-size: 25px;"> Application Form</h1>
@@ -20,7 +28,7 @@
             @endif
         </div>
 
-        <form id="myForm" action="{{route('student.registered')}}" method="POST">
+        <form id="applicationForm" action="{{route('store')}}" method="POST">
         @csrf
 
             <div class="row">
@@ -87,8 +95,9 @@
                     </div>
 
                             
-                 </div>
+                </div>
 
+               
                 <div class="col-lg-4">
                         <div class="form-group">
                                 <label for="dept">Choose a Department:</label> <br>
@@ -98,9 +107,21 @@
                                             {{$type->department_name}}
                                         </option>
                                         @endforeach
-                                        
+                                       
                                 </select>
                         </div>
+
+                        <div class="form-group">
+                            <label for="lang">Choose Language:</label> <br>
+                            <select name="lang" id="lang">
+                                @foreach($lang as $type)
+                                    <option value = "{{$type->language_name}}">
+                                        {{$type->language_name}}
+                                    </option>
+                                    @endforeach
+                                   
+                            </select>
+                         </div>
                          
                 </div>    
             </div>
@@ -114,7 +135,7 @@
     
 
 
-{{-- 
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 
@@ -129,8 +150,11 @@
     });
 
 
-    $('#myForm').on('submit',function(e){
+    $('#applicationForm').on('submit',function(e){
     // $('#form2').submit(function(e) {
+        alert("success");
+               
+
         e.preventDefault();
 
         $.ajaxSetup({
@@ -164,10 +188,10 @@
                     // alert('error');
                     console.log(xhr);
 
-                        $('#error_name').html('');
-                        $.each(xhr.responseJSON.errors, function(key,value) {
-                            $('#error_name').append('<div class="alert alert-danger">'+value+'</div');
-                        }); 
+                        // $('#error_name').html('');
+                        // $.each(xhr.responseJSON.errors, function(key,value) {
+                        //     $('#error_name').append('<div class="alert alert-danger">'+value+'</div');
+                        // }); 
                 },      
         });
 

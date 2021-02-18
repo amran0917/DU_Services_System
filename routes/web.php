@@ -72,6 +72,8 @@ Route::group(['prefix' => 'student'], function () {
 Route::group(['prefix' => 'language'], function () {
     Route::get('/home',[PagesController::class,'languageIndex'])->name('l_home');
     Route::get('/application',[ApplicantController::class,'application'])->name('student.application');
+    Route::post('/registered',[ApplicantController::class,'store'])->name('store');
+
 
 
 });

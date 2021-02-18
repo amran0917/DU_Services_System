@@ -52,7 +52,7 @@
 
              <div class="button_cont" ><a class="example_b" href="{{route('student.registration')}}"  rel="nofollow noopener">Get Testimonial</a>
             
-                <a class="example_a" href="#"  
+                <a class="example_a" href="{{route('student.application')}}"
                 rel="nofollow noopener">Get Language Certificate</a>
             
             </div> 
