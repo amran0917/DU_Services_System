@@ -20,7 +20,7 @@
                     </li>
 
                     <li class="nav-item ">
-                        <a class="nav-link" href="{{route('student.search_status')}}" style="color:white; font-size:1.5vw;">Application_Status <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{route('status')}}" style="color:white; font-size:1.5vw;">Application_Status <span class="sr-only">(current)</span></a>
                     </li>
 
 

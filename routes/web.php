@@ -42,6 +42,8 @@ Route::get('/',[PagesController::class,'index']);
 Route::get('/home',[PagesController::class,'index'])->name('home');
 Route::get('/about',[PagesController::class,'about'])->name('about');
 Route::get('/contact',[PagesController::class,'contact'])->name('contact');
+Route::get('/applicant/status',[PagesController::class,'status'])->name('status');
+
 
 /*
      GEt testimonial route
@@ -58,7 +60,7 @@ Route::group(['prefix' => 'testimonial'], function () {
 
 Route::group(['prefix' => 'student'], function () {
     Route::get('/application',[StudentController::class,'registration'])->name('student.registration');
-    Route::get('/search/status',[StudentController::class,'search_status'])->name('student.search_status');
+    Route::get('/testimonial/status',[StudentController::class,'search_status'])->name('student.search_status');
     Route::post('/registered',[StudentController::class,'store'])->name('student.registered');
     Route::post('/search_info',[SearchStatusController::class,'index'])->name('student.searchinfo');
 

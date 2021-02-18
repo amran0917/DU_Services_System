@@ -6,8 +6,6 @@
 <div class="container " id="main-div">
     <div class="row">
      
-       {{-- <b> DU sWelcome to the ervices System </b>  --}}
-
        <div class="card text-white bg-info mb-3" style="width: 100%">
             <div class="card-header"> Welcome to the DU Language certificate services System </div>
             

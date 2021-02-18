@@ -2,6 +2,8 @@
 @section('title', 'Applicant_status')
 
 @section('content')
+<div class="reg_img">
+
    <div class="row">
    
         <div class="search-box">
@@ -13,7 +15,7 @@
                  @endif
             </div>
 
-            <h1 style="text-align: center; font-size: 25px;">User Search Status form</h1>
+            <h1 style="text-align: center; font-size: 25px;">Sign for seeing status.</h1>
 
             <form name="" action="{{route('student.searchinfo')}}" method="POST">
                 @csrf

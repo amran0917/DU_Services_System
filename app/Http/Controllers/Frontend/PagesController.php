@@ -30,4 +30,9 @@ class PagesController extends Controller
     {
         return view('frontend.pages.contact');
     } 
+
+    public function status()
+    {
+        return view('frontend.pages.status');
+    } 
 }
