@@ -18,7 +18,7 @@ class SslCommerzPaymentController extends Controller
     
     //    $data= $request->session()->get('name');
         $data = $request->session()->all();
-        Log::info( $data);
+      #  Log::info( $data);
         return view('exampleEasycheckout');
     }
 

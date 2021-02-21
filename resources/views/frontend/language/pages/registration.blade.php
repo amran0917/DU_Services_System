@@ -214,7 +214,7 @@
                     </div>
                     <div class="modal-footer">
                         <a href="#" class="btn btn-danger mr-auto" data-dismiss="modal">Close</a>
-                        <a href="{{url('example1')}}" class="btn btn-success ">Next</a>
+                        <a href="{{route('payment')}}" class="btn btn-success ">Next</a>
                     </div>
                 </div>
             </div>

@@ -18,6 +18,8 @@ use App\Http\Controllers\Backend\ForgotPasswordController;
 use App\Http\Controllers\Backend\ResetPasswordController;
 use App\Http\Controllers\Backend\DirectorController;
 use App\Http\Controllers\Backend\language\LangPageController;
+use App\Http\Controllers\Backend\language\ApplicationController;
+
 
 use App\Http\Controllers\Frontend\language\ApplicantController;
 use App\Http\Controllers\Frontend\language\PaymentController;
@@ -123,6 +125,21 @@ Route::group(['prefix' => 'admin','middleware' => 'admincheck'], function () {
     Route::post('/storeAdmin', [AdminController::class,'storeAdmin'])->name('admin.storeAdmin');
     Route::post('/update/{id}', [AdminController::class,'updateAdmin'])->name('admin.update');
     Route::post('/deleteAdmin/{id}', [AdminController::class,'deleteAdmin'])->name('admin.delete');
+
+
+    Route::group(['prefix' => 'applicant'], function () {
+            
+       // Route::get('/', [LangPageController::class,'index'])->name('language.list');
+         Route::get('/list', [ApplicationController::class,'getApplicant'])->name('applicant.list');
+         Route::get('/edit/{applicant_id}', [ApplicationController::class,'edit'])->name('applicant.edit');
+         Route::post('/update/{applicant_id}', [ApplicationController::class,'update'])->name('applicant.update');
+
+        //  Route::post('/store', [LangPageController::class,'store'])->name('language.store');
+        //  Route::post('/delete/{id}', [LangPageController::class,'delete'])->name('language.delete');
+        //  Route::get('/view/{id}', [LangPageController::class,'view'])->name('language.view');
+ 
+     
+     });
 
 
     Route::group(['prefix' => 'departments'], function () {

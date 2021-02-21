@@ -23,7 +23,7 @@ class SearchStatusController extends Controller
                 $request->session()->put('name',$data[0]->name);
                 $request->session()->put('phone',$data[0]->phone);
                 $request->session()->put('reg_no',$data[0]->registration_no);
-                $request->session()->put('department',$date[0]->department);
+                $request->session()->put('department',$data[0]->department);
 
                 return view('frontend.pages.searchInfo',compact('data'));
 

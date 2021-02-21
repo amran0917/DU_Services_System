@@ -8,7 +8,7 @@
             11</b> </a></li>
         <li><a href="{{route('student.list')}}"><i class="menu-icon icon-user"></i>Testimonial Applicant List <b class="label orange pull-right">
             19</b> </a></li>
-            <li><a href="activity.html"><i class="menu-icon icon-bullhorn"></i>Certificate Applicant List </a></li>
+        <li><a href="{{route('applicant.list')}}"><i class="menu-icon icon-bullhorn"></i>Certificate Applicant List </a></li>
 
     </ul>
     <!--/.widget-nav-->

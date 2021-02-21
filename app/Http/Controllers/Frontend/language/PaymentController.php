@@ -17,14 +17,14 @@ class PaymentController extends Controller
         }
   
         $data = $request->session()->all();
-        Log::info( $data);
+       # Log::info( $data);
         return view('frontend.language.pages.payment');
     }
 
 
     public function payViaAjax(Request $request)
     {
-        # dd($request->all());
+       dd($request->all());
         # Here you have to receive all the order data to initate the payment.
         # Lets your oder trnsaction informations are saving in a table called "orders"
         # In orders table order uniq identity is "transaction_id","status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.

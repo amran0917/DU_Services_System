@@ -12,7 +12,7 @@
                     User Profile
                 </div>
                 <div class="card-body"> 
-                    <h5 class="card-title">Special title treatment</h5> 
+                    <h5 class="card-title"></h5> 
                     @foreach($data as $row)
 
                     <table style="width:70%; " class="center">
