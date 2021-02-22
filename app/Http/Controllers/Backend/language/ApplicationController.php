@@ -109,11 +109,12 @@ class ApplicationController extends Controller
 
     public function changestatus (Request $request){
         $applicant = Applicant::where('applicant_id', $request->applicant_id)->first(); 
-        dd($applicant);
-
         $input = $request->all();  
         $applicant->status = $request->status;
+        $applicant->save();
+
         if($applicant->status=='success'){ 
+
             return response()->json(['success'=>'Status changed successfully.']);
         }
     }

@@ -172,7 +172,7 @@
                 data    : form_data.serialize(),
                 
                 success : function(data){
-                    alert('success');
+                    // alert('success');
 
                              $('#myModal').modal('show');
                             console.log('success');

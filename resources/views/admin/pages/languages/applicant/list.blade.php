@@ -57,7 +57,7 @@
                                                                 <a href="{{ route('applicant.edit',$row->applicant_id)}}" class="btn btn-sm btn-primary" >View Details</a> 
                                                                 
                                                                 @if ($row->status=='pending')
-                                                                    <a href="#" class="btn btn-sm btn-info" onclick="changeUserStatus(event.target, {{$row->applicant_id}});"> Approve </a> 
+                                                                    <a href="#" class="btn btn-sm btn-info" onclick="changeStatus(event.target, {{$row->applicant_id}});"> Approve </a> 
 
                                                                 @else 
                                                                 <a href="#" class="btn btn-sm btn-success"  >Approved</a>
@@ -71,8 +71,9 @@
                                                                 <a href="#" class="btn btn-sm btn-danger">Cancel</a>
 
                                                                 <script>
-                                                                    function changeUserStatus(_this, applicant_id) {
-                                                                       
+                                                                    function changeStatus(_this, applicant_id) {
+                                                                        alert(applicant_id);
+
                                                                         var status = $(_this).prop('pending') == true ? 'pending' : 'complete';
                                                                        
                                                                         let _token = $('meta[name="csrf-token"]').attr('content');
@@ -88,8 +89,7 @@
                                                                                 'status': status 
                                                                             },
                                                                             success: function (data) {
-                                                                                console.log(data);
-                                                                                 alert(data);
+                                                                                console.log(data.applicant_id);
                                                                             }
                                                                         });
                                                                     }
