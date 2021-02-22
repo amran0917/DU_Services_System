@@ -116,9 +116,56 @@ class AdminController extends Controller
     public function showDetails($applicant_id,Request $request) {
 
         $stdnt = Student::where('applicant_id', $request->applicant_id)->first();
-        return view('admin.pages.applicant.studentView',compact('stdnt'));
+        $dept= Departments::all();
+
+        return view('admin.pages.applicant.studentView',compact('stdnt','dept'));
     }
 
+   public function studentUpdate(Request $request, $id){
+        $validation= $request->validate([
+            'name' => 'required',
+            'father_name' => 'required',
+            'mother_name' => 'required',
+            'registration_no' => 'required',
+            'session' => 'required',
+            'running_year' => 'required',
+            'roll_no' => 'required',
+            'birth_date' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+
+        ]);
+
+
+            
+     $student = Student::where('applicant_id',$request->applicant_id)->first();
+
+     
+     $student->applicant_id =  $request->applicant_id; 
+
+    $student->name = $request->name; 
+    $student->father_name = $request->father_name; 
+    $student->mother_name = $request->mother_name; 
+    $student->department= $request->dept;
+    $student->registration_no = $request->registration_no; 
+    $student->session = $request->session; 
+    $student->running_year = $request->running_year; 
+    $student->roll_no = $request->roll_no;
+    $student->birth_date = $request->birth_date;
+    $student->email = $request->email;
+    $student->phone = $request->phone;
+    // $student->status = 'pending';
+    
+    $student->save();
+
+    if($student){
+        return Redirect()->route('student.list')->with('message', 'Successfully updated!');;
+
+    }
+    
+        
+
+    }
     public function approveTestimonial(Request $request,$applicant_id){
         $validation= $request->validate([
             'applicant_id' => 'required',

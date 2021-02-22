@@ -4,8 +4,8 @@
 
 @section('contents')
 
-    <div class="container">
-        <div class="row">
+<div class="container">
+    <div class="row">
             <div class="span3">
                 @include('admin.partials.sidebar')
                 <!--/.sidebar-->
@@ -79,9 +79,8 @@
 
                                                                     
                                                                         $.ajax({
-                                                                        
-                                                                        
-                                                                            url: "{{route('change.status')}}",
+                                                                                                                                            
+                                                                            url: "{{route('statusChange')}}",
                                                                             type: 'post',
                                                                             data: {
                                                                                 _token: _token,
@@ -90,7 +89,7 @@
                                                                             },
                                                                             success: function (data) {
                                                                                 console.log(data);
-                                                                                // alert(data);
+                                                                                 alert(data);
                                                                             }
                                                                         });
                                                                     }
@@ -101,78 +100,7 @@
                                                         </tr>
                                                     @endforeach
 
-                                                    {{-- @if(Session:: has('type'))
-
-                                                            @if (Session::get('type')=='admin' )
-                                                                    @php
-                                                                    $user = App\Models\Admin::all();
-                                                                    @endphp
-                                                                
-                                                                @foreach ($user as $ad )
-                                                                        @foreach($student as $row)
-
-                                                                            @if($ad->department === $row->department)
-                                                                            <tr>
-                                                                                <td>#</td>
-                                                                                <td>{{$row->applicant_id}}</td>
-                                                                                <td>{{$row->name}}</td>
-                                                                                <td>{{$row->registration_no}}</td>
-                                                                                <td>{{$row->department}}</td>
-
-                                                            
-                                                                                <td>
-                                                                                    <a href="{{ route('admin.student.showDetails',$row->applicant_id)}}" class="btn btn-sm btn-primary" >View Details</a> 
-
-                                                                                    @if ($row->status=='pending')
-                                                                                        <a href="#" class="btn btn-sm btn-info" onclick="changeUserStatus(event.target, {{$row->applicant_id}});"> Approve </a> 
-
-                                                                                    @else 
-                                                                                    <a href="#" class="btn btn-sm btn-success"  >Approved</a>
-
-                                                                                    @endif
-                                                                                    
-                                                                                    <a href=" {{route('admin.approve',$row->applicant_id)}}" target="_blank" ><button class="btnD "><i class="fa fa-download"></i> Download</button></a>
-
-                                                                                    
-
-                                                                                    <a href="#" class="btn btn-sm btn-danger">Cancel</a>
-
-                                                                                    <script>
-                                                                                        function changeUserStatus(_this, applicant_id) {
-                                                                                        
-                                                                                            var status = $(_this).prop('pending') == true ? 'pending' : 'complete';
-                                                                                            console.log(status);
-                                                                                            let _token = $('meta[name="csrf-token"]').attr('content');
-
-                                                                                        
-                                                                                            $.ajax({
-                                                                                            
-                                                                                            
-                                                                                                url: "{{route('change.status')}}",
-                                                                                                type: 'post',
-                                                                                                data: {
-                                                                                                    _token: _token,
-                                                                                                    'applicant_id': applicant_id,
-                                                                                                    'status': status 
-                                                                                                },
-                                                                                                success: function (data) {
-                                                                                                    console.log(data);
-                                                                                                    // alert(data);
-                                                                                                }
-                                                                                            });
-                                                                                        }
-                                                                                        
-                                                                                        </script>
-
-                                                                                </td>
-                                                                            </tr>
-                                                                            @endif
-                                                                        @endforeach
-
-                                                                @endforeach
-                                                                
-                                                            @endif
-                                                    @endif --}}
+                                                   
                                                 </table>
                                         
                                     </div>
@@ -187,8 +115,8 @@
             </div>
             <!--/.span9-->
 
-        </div>
     </div>
+</div>
     <!--/.container-->
 
 

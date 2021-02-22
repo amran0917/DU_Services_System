@@ -94,7 +94,7 @@ class ApplicationController extends Controller
         $student->email = $request->email;
         $student->phone = $request->phone;
         $student->language = $request->lang;
-        $student->status = 'pending';
+        // $student->status = 'pending';
         
         $student->save();
 
@@ -105,5 +105,16 @@ class ApplicationController extends Controller
         
             
 
+    }
+
+    public function changestatus (Request $request){
+        $applicant = Applicant::where('applicant_id', $request->applicant_id)->first(); 
+        dd($applicant);
+
+        $input = $request->all();  
+        $applicant->status = $request->status;
+        if($applicant->status=='success'){ 
+            return response()->json(['success'=>'Status changed successfully.']);
+        }
     }
 }

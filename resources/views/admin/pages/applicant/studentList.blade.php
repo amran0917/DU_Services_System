@@ -18,7 +18,13 @@
                     <div class="btn-controls">
                         {{-- <div class="btn-box-row row-fluid"> --}}
                             <div class="card text-white bg-success mb-3" style="max-width: 100%">
-                       
+                                <div> 
+                                    @if(session()->has('message'))
+                                        <div class="alert alert-info">
+                                            {{ session()->get('message') }}
+                                        </div>
+                                     @endif
+                                </div>
                                     <div class="card-header " style="text-align: center">
                                         <b style="color: rgb(76, 0, 255)">  Applicant List</b> 
     

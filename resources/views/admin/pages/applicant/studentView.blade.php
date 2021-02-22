@@ -16,15 +16,15 @@
                 <div class="card-header">
                     Student Details : ID  <b class="label green "> {{ $stdnt->applicant_id}}</b>
                 </div>
-{{-- {{route('admin.student.update',$stdnt->applicant_id)}} --}}
+
                 <div class="card-body">
 
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('studentUpdate',$stdnt->applicant_id)}}" method="POST" enctype="multipart/form-data">
                         @csrf 
                 
                         <div class="form-group">
-                            <label for="applicant_id">ID</label>
-                            <input type="text" class="form-control" name="applicant_id" id="applicant_id" value="{{$stdnt->applicant_id}}">
+                          {{-- #  <label for="applicant_id">ID</label> --}}
+                            <input type="hidden" class="form-control" name="applicant_id" id="applicant_id" value="{{$stdnt->applicant_id}}">
                         </div>
     
                         <div class="form-group ">
@@ -78,10 +78,22 @@
                             <label for="phone">Phone:</label>
                             <input type="tel" class="form-control" id="phone" name="phone" value="{{$stdnt->phone}}">
                         </div>
+
+                        <div class="form-group">
+                            <label for="dept">Choose a Department:</label> <br>
+                            <select name="dept" id="dept" class="form-control">
+                                @foreach($dept as $type)
+                                    <option value = "{{$type->department_name}}" {{ $type->department_name==$stdnt->department?'selected':''}}>
+                                        {{$type->department_name}}
+                                    </option>
+                                @endforeach
+                                
+                            </select>
+                        </div>
+                    </div>
     
-    
-                       
-                         {{-- <button type="submit" class="btn btn-primary">Accept</button> --}}
+         
+                        <button type="submit" class="btn btn-primary">Update</button> 
                     </form>
                 </div>
 

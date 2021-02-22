@@ -112,6 +112,8 @@ Route::group(['prefix' => 'admin','middleware' => 'admincheck'], function () {
     Route::get('/index', [AdminController::class,'index'])->name('student.index');
     Route::get('/studentlist', [AdminController::class,'getStudent'])->name('student.list');
     Route::get('/student_details/{applicant_id}', [AdminController::class,'showDetails'])->name('admin.student.showDetails');
+    Route::post('/student_details/update/{applicant_id}', [AdminController::class,'studentUpdate'])->name('studentUpdate');
+
     Route::post('/student_details/approve/{applicant_id}', [AdminController::class,'approveTestimonial'])->name('admin.student.update');
     Route::get('/student/approve/{applicant_id}', [AdminController::class,'approve'])->name('admin.approve');
     Route::post('/studentlist/change-status', [AdminController::class,'changeActiveStatus'])->name('change.status');
@@ -129,12 +131,11 @@ Route::group(['prefix' => 'admin','middleware' => 'admincheck'], function () {
 
     Route::group(['prefix' => 'applicant'], function () {
             
-       // Route::get('/', [LangPageController::class,'index'])->name('language.list');
          Route::get('/list', [ApplicationController::class,'getApplicant'])->name('applicant.list');
          Route::get('/edit/{applicant_id}', [ApplicationController::class,'edit'])->name('applicant.edit');
          Route::post('/update/{applicant_id}', [ApplicationController::class,'update'])->name('applicant.update');
+         Route::post('/change-status', [ApplicationController::class,'changestatus'])->name('statusChange');
 
-        //  Route::post('/store', [LangPageController::class,'store'])->name('language.store');
         //  Route::post('/delete/{id}', [LangPageController::class,'delete'])->name('language.delete');
         //  Route::get('/view/{id}', [LangPageController::class,'view'])->name('language.view');
  
