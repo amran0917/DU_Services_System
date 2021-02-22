@@ -1,15 +1,25 @@
 
 <div class="sidebar" id="side">
     <ul class="widget widget-menu unstyled">
-        <li class="active"><a href="#"><i class="menu-icon icon-dashboard"></i>Dashboard
-        </a></li>
-       
-        <li><a href="{{route('student.index')}}"><i class="menu-icon icon-inbox"></i>Inbox <b class="label green pull-right">
-            11</b> </a></li>
-        <li><a href="{{route('student.list')}}"><i class="menu-icon icon-user"></i>Testimonial Applicant List <b class="label orange pull-right">
-            19</b> </a></li>
+
+        <li><a href="{{route('student.index')}}"><i class="menu-icon icon-inbox"></i>Inbox 
+              </a></li>  {{-- <b class="label green pull-right">     11</b> --}}
+
+        <li><a href="{{route('student.list')}}"><i class="menu-icon icon-user"></i>Testimonial Applicant List
+             {{-- <b class="label orange pull-right"> 19</b> --}}
+            </a></li>
         <li><a href="{{route('applicant.list')}}"><i class="menu-icon icon-bullhorn"></i>Certificate Applicant List </a></li>
 
+        <li><a class="collapsed" data-toggle="collapse" href="#togglePage"><i class="menu-icon icon-book">
+        </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
+        </i>Departments </a>
+            <ul id="togglePage" class="collapse unstyled">
+                <li><a href="{{route('dept.list')}}"><i class="icon-inbox"></i>Department List </a></li>
+                <li><a href="{{route('dept.create')}}"><i class="icon-inbox"></i>Add Department</a></li>
+
+            </ul>
+        </li>
+    
     </ul>
     <!--/.widget-nav-->
     
@@ -29,15 +39,7 @@
             @endif
         @endif
 
-            <li><a class="collapsed" data-toggle="collapse" href="#togglePage"><i class="menu-icon icon-book">
-            </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
-            </i>Departments </a>
-                <ul id="togglePage" class="collapse unstyled">
-                    <li><a href="{{route('dept.list')}}"><i class="icon-inbox"></i>Department List </a></li>
-                    <li><a href="{{route('dept.create')}}"><i class="icon-inbox"></i>Add Department</a></li>
-
-                </ul>
-            </li>
+           
     
 
             <li><a class="collapsed" data-toggle="collapse" href="#dirPage"><i class="menu-icon icon-paste">
@@ -62,11 +64,16 @@
                 </ul>
             </li>
 
-            <li><a href="charts.html"><i class="menu-icon icon-bar-chart"></i>Charts </a></li>
+           
+
     </ul>
     <!--/.widget-nav-->
     <ul class="widget widget-menu unstyled">
-        <li><a class="collapsed" data-toggle="collapse" href="#x"><i class="menu-icon icon-cog">
+        <li><a href="{{route('admin.logout')}}"><i class="menu-icon icon-signout"></i>Sign out</a></li>
+
+        <li><a href="{{route('admin.logIn')}}"><i class="menu-icon icon-signin"></i>Sign in </a></li>
+
+        {{-- <li><a class="collapsed" data-toggle="collapse" href="#x"><i class="menu-icon icon-cog">
         </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
         </i>More Pages </a>
             <ul id="x" class="collapse unstyled">
@@ -74,8 +81,7 @@
                 <li><a href="other-user-profile.html"><i class="icon-inbox"></i>Profile </a></li>
                 <li><a href="other-user-listing.html"><i class="icon-inbox"></i>All Users </a></li>
             </ul>
-        </li>
-        <li><a href="{{route('admin.logout')}}"><i class="menu-icon icon-signout"></i>Logout</a></li>
+        </li> --}}
     </ul>
 
     </ul>
