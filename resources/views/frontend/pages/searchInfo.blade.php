@@ -25,8 +25,11 @@
                         <tr>
                             <td> <h5>ID </h5></td>
                             <td>{{$row->applicant_id}}</td>
-                            <td rowspan="12"></td>
-
+                            @if($row->status == 'complete')
+                            <td rowspan="12">  <mark style="background: rgb(0, 255, 170) "> success</mark> </td>
+                            @else  
+                            <td rowspan="12">  <mark style="background: rgb(255, 60, 0) "> Pending</mark> </td>
+                            @endif
                            
                         </tr>
                         <tr>
