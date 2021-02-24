@@ -4,10 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Notifications\ApplicantInvite;
+use Illuminate\Notifications\Notifiable;
+
 
 class Applicant extends Model
 {
     use HasFactory;
+    //use Notifiable;
+    // $applicant = Applicant::find(1);
+    //
+
     protected $fillable = [
         'applicant_id',
         'name',
@@ -24,4 +31,6 @@ class Applicant extends Model
         'status',
         'language',
     ];
+   
+
 }

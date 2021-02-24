@@ -112,6 +112,8 @@ class ApplicationController extends Controller
         $input = $request->all();  
         $applicant->status = $request->status;
         $applicant->save();
+        $applicant->notify(new ApplicantInvite);
+
 
         if($applicant->status=='success'){ 
 

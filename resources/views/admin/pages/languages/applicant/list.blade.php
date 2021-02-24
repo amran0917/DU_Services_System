@@ -72,8 +72,7 @@
 
                                                                 <script>
                                                                     function changeStatus(_this, applicant_id) {
-                                                                        alert(applicant_id);
-
+                                                                     
                                                                         var status = $(_this).prop('pending') == true ? 'pending' : 'complete';
                                                                        
                                                                         let _token = $('meta[name="csrf-token"]').attr('content');

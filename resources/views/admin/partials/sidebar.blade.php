@@ -2,8 +2,8 @@
 <div class="sidebar" id="side">
     <ul class="widget widget-menu unstyled">
 
-        <li><a href="{{route('student.index')}}"><i class="menu-icon icon-inbox"></i>Inbox 
-              </a></li>  {{-- <b class="label green pull-right">     11</b> --}}
+        <li><a href="{{route('student.list')}}"><i class="menu-icon icon-inbox"></i>Inbox 
+              </a></li>  {{-- <b class="label green pull-right">     11</b>  {{route('student.index')}} --}}
 
         <li><a href="{{route('student.list')}}"><i class="menu-icon icon-user"></i>Testimonial Applicant List
              {{-- <b class="label orange pull-right"> 19</b> --}}
