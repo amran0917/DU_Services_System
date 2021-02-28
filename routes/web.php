@@ -135,9 +135,11 @@ Route::group(['prefix' => 'admin','middleware' => 'admincheck'], function () {
          Route::get('/edit/{applicant_id}', [ApplicationController::class,'edit'])->name('applicant.edit');
          Route::post('/update/{applicant_id}', [ApplicationController::class,'update'])->name('applicant.update');
          Route::post('/change-status', [ApplicationController::class,'changestatus'])->name('statusChange');
+        //  Route::get('/notificatin', [ApplicationController::class,'notification'])->name('notify');
+        //  Route::get('/notification', [ApplicationController::class,'sendNotfication'])->name('notification');
+        Route::get('/approve/{applicant_id}', [ApplicationController::class,'download'])->name('approve');
 
-        //  Route::post('/delete/{id}', [LangPageController::class,'delete'])->name('language.delete');
-        //  Route::get('/view/{id}', [LangPageController::class,'view'])->name('language.view');
+      
  
      
      });

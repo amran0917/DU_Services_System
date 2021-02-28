@@ -60,11 +60,11 @@
                                                                     <a href="#" class="btn btn-sm btn-info" onclick="changeStatus(event.target, {{$row->applicant_id}});"> Approve </a> 
 
                                                                 @else 
-                                                                <a href="#" class="btn btn-sm btn-success"  >Approved</a>
+                                                                <a href="" class="btn btn-sm btn-success"  >Approved</a>
 
                                                                 @endif
                                                                 
-                                                                <a href=" {{route('admin.approve',$row->applicant_id)}}" target="_blank" ><button class="btnD "><i class="fa fa-download"></i> Download</button></a>
+                                                                <a href=" {{route('approve',$row->applicant_id)}}" target="_blank" ><button class="btnD "><i class="fa fa-download"></i> Download</button></a>
 
                                                                 
 

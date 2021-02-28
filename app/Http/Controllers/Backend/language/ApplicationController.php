@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 use App\Models\AllStudent;
 use App\Models\Director;
 use App\Models\Admin;
-use App\Models\Testimonial;
+use App\Models\Certificate;
 use App\Models\Applicant;
 use App\Models\Departments;
 use App\Models\Language;
@@ -112,12 +112,80 @@ class ApplicationController extends Controller
         $input = $request->all();  
         $applicant->status = $request->status;
         $applicant->save();
-        $applicant->notify(new ApplicantInvite);
 
 
-        if($applicant->status=='success'){ 
+        // if($applicant->status=='success'){ 
 
-            return response()->json(['success'=>'Status changed successfully.']);
-        }
+        //     return response()->json(['success'=>'Status changed successfully.']);
+        // }
+    }
+
+    public function sendNotfication(){
+        $token = "edL4ukAZ4vY:APA91bFgz4DFVeP29MqVayuEUvs-7Qix8buB1vI10mthr2sBahe8t7tFxfJ5ogA6FgNw3Wfyo_HyORDzlpKURPpc4m942LdscyOWloX_2Kn2CR1nwEpMxPLI5kViRIT16t_K1sbPbdZQ";  
+        $from = "AAAAJQfpSc4:APA91bH6fWzO0F-P1GpQWnsBHde1jDKsSvpi_M1Si1ZN439CtkaxqwUhgkVkKD8BCe6cIAQvezfydhXM81WAndf6TGluhM4JSkZVA6mxrSa6PskcyW6w2nfbaxyoKZXj9a4-QPTHruIR";
+        $msg = array
+              (
+                'body'  => "Testing Testing",
+                'title' => "Hi, From Raj",
+                'receiver' => 'erw',
+                'icon'  => "https://image.flaticon.com/icons/png/512/270/270014.png",/*Default Icon*/
+                'sound' => 'mySound'/*Default sound*/
+              );
+
+        $fields = array
+                (
+                    'to'        => $token,
+                    'notification'  => $msg
+                );
+
+        $headers = array
+                (
+                    'Authorization: key=' . $from,
+                    'Content-Type: application/json'
+                );
+        //#Send Reponse To FireBase Server 
+        $ch = curl_init();
+        curl_setopt( $ch,CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send' );
+        curl_setopt( $ch,CURLOPT_POST, true );
+        curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
+        curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
+        curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
+        curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
+        $result = curl_exec($ch );
+        dd($result);
+        curl_close( $ch );
+    }
+        
+
+    public function notification(){
+        return view ('admin.partials.notification');
+
+    }
+
+    public function download(Request $request, $applicant_id){
+        $stdnt = Applicant::where('applicant_id', $request->applicant_id)->first();
+        $allstdnt = AllStudent::where('registration_no',$stdnt->registration_no)->first();
+        $lang = Language::where('language_name',$stdnt->language)->first();
+         $dir = Director::where('fac_name',$lang->fac_name)->first();
+        //  Log::info($dir);
+         $certificate_id =rand(10000,99999);
+         $response['certificate_id'] =$certificate_id;
+         $certificate = new Certificate();
+         $certificate->certificate_id = $certificate_id; 
+         $certificate->applicant_id=$applicant_id;
+         $certificate->applicant_name=$stdnt->name;
+
+         $path = public_path('file/certificate');
+         $fileName = $certificate_id. '.' .$certificate->applicant_name.'.pdf' ;
+
+        $pdf = PDF::loadView('admin.pages.partials.certificate', compact('stdnt','allstdnt', 'dir'));
+        
+        // $pdf->save($path . '/' . $fileName);
+        $certificate->path = $path . '/' . $fileName;
+        $certificate->save();
+        // return $pdf->stream($fileName);
+
+
+
     }
 }
