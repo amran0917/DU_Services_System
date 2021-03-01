@@ -13,6 +13,7 @@ use App\Models\Certificate;
 use App\Models\Applicant;
 use App\Models\Departments;
 use App\Models\Language;
+// use App\Http\Controllers\Backend\PHPMailSender\mailsender.php;
 
 use Redirect;
 use Illuminate\Support\Facades\Input;
@@ -108,10 +109,15 @@ class ApplicationController extends Controller
     }
 
     public function changestatus (Request $request){
+        include(app_path() . '\Http\Controllers\Backend\PHPMailSender\mailsender.php');
+
         $applicant = Applicant::where('applicant_id', $request->applicant_id)->first(); 
         $input = $request->all();  
         $applicant->status = $request->status;
         $applicant->save();
+        $title =  'Application status';
+        $body = 'Your application is ready.';
+        sendMail($applicant->email, $title,$body);
 
 
         // if($applicant->status=='success'){ 

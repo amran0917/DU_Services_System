@@ -96,10 +96,17 @@ class AdminController extends Controller
 
     public function changeActiveStatus(Request $request)
     {
+        include(app_path() . '\Http\Controllers\Backend\PHPMailSender\mailsender.php');
+
         $applicant = Student::where('applicant_id', $request->applicant_id)->first(); 
         $input = $request->all();  
         $applicant->status = $request->status;
         $applicant->save();
+
+        $title =  'Application status';
+        $body = 'Your application is ready.';
+        sendMail($applicant->email, $title,$body);
+        
         // $x = json_encode($request->all());
 
         //  return $request->status;
