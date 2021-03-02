@@ -42,6 +42,14 @@
         </div> 
 
         <div class="col-6">
+            <div> 
+                @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div>
+                 @endif
+            </div>
+            
            <b> <h1 style="font-famiy: sans-serif"> To get Language Certificate click here</h1>  </b>  <br>
 
              <div class="button_cont" ><a class="example_a" href="{{route('student.application')}}"  rel="nofollow noopener">Get Language Certificate</a></div> 

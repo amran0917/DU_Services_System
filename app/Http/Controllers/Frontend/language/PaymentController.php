@@ -12,11 +12,11 @@ class PaymentController extends Controller
 {
     public function exampleEasyCheckout(Request $request)
     {
-        if(! $request->session()->has('applicant_id')) {
-            return "stop no session"; 
-        }
+        // if(! $request->session()->has('applicant_id')) {
+        //     return "stop no session"; 
+        // }
   
-        $data = $request->session()->all();
+        // $data = $request->session()->all();
        # Log::info( $data);
         return view('frontend.language.pages.payment');
     }
@@ -24,26 +24,26 @@ class PaymentController extends Controller
 
     public function payViaAjax(Request $request)
     {
-       dd($request->all());
+    //    dd($request->all());
         # Here you have to receive all the order data to initate the payment.
         # Lets your oder trnsaction informations are saving in a table called "orders"
         # In orders table order uniq identity is "transaction_id","status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
 
          $requestData= (array)json_decode($request->cart_json);
-         Log::info($requestData);
+     #    Log::info($requestData);
 
         $post_data = array();
         $post_data['total_amount'] = '100'; # You cant not pay less than 100// $requestData['amount']
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = uniqid(); // tran_id must be unique
-        $post_data['applicant_id'] = $request->session()->get('applicant_id');
+        // $post_data['applicant_id'] = $request->session()->get('applicant_id');
         # CUSTOMER INFORMATION
         $post_data['cus_name'] = $requestData['cus_name'];
         $post_data['cus_email'] = $requestData['cus_email'];
         $post_data['reg_no'] = $requestData['reg_no'];
-        $post_data['department'] = $request->department;
-        $post_data['language'] = $request->language;
-        $post_data['cus_add1'] = $requestData['address'];
+        $post_data['department'] =  $requestData['department'];
+        $post_data['language'] = $requestData['language'];
+        $post_data['cus_add1'] = $requestData['cus_addr1'];
         $post_data['cus_add2'] = "";
         $post_data['cus_city'] = "";
         $post_data['cus_state'] = "";
@@ -89,7 +89,7 @@ class PaymentController extends Controller
                 'status' => 'Pending',
                 'address' => $post_data['cus_add1'],
                 'transaction_id' => $post_data['tran_id'],
-                'applicant_id'=>$post_data['applicant_id'],
+                'applicant_id'=> $request->session()->get('applicant_id'),
                 'currency' => $post_data['currency'],
                 'language' => $post_data['language']
 
@@ -108,7 +108,7 @@ class PaymentController extends Controller
 
     public function success(Request $request)
     {
-        // echo "Transaction is Successful";
+        # echo "Transaction is Successful";
 
         $tran_id = $request->input('tran_id');
         $amount = $request->input('amount');
@@ -155,6 +155,7 @@ class PaymentController extends Controller
             #That means something wrong happened. You can redirect customer to your product page.
             echo "Invalid Transaction";
         }
+        return Redirect()->route('l_home')->with('message', 'Successfully Transaction completed.!');;
 
 
     }

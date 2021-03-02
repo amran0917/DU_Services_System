@@ -65,6 +65,8 @@ class Kernel extends HttpKernel
         'csrf' => \App\Http\Middleware\VerifyCsrfToken::class,
         'paymentcheck' => \App\Http\Middleware\PaymentCheck::class,
         'admincheck' => \App\Http\Middleware\AdminAuthorization::class,
+        'trancheck' => \App\Http\Middleware\Transactioncheck::class,
+
 
 
 

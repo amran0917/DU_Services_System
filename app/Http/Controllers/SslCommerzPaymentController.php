@@ -183,8 +183,10 @@ class SslCommerzPaymentController extends Controller
         $order_detials = DB::table('orders')
             ->where('transaction_id', $tran_id)
             ->select('transaction_id', 'status', 'currency', 'amount')->first();
+        
+        Log::info($order_detials->status);
 
-        if ($order_detials->status == 'Pending') {
+        if ($order_detials->status =='Pending') {
             $validation = $sslc->orderValidate($tran_id, $amount, $currency, $request->all());
 
             if ($validation == TRUE) {

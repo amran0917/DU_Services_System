@@ -62,7 +62,7 @@
                 <div class="mb-3">
                     <label for="reg_no">Registration No.</label>
                     <input type="text" name="reg_no" class="form-control" id="reg_no"
-                           placeholder="" value="{{ session('reg_no')}}" >
+                           value="{{ session('reg_no')}}" >
                     <div class="invalid-feedback">
                         Please enter a valid email address for shipping updates.
                     </div>
@@ -71,7 +71,7 @@
                 <div class="mb-3">
                     <label for="department">Department</label>
                     <input type="text" name="department" class="form-control" id="department"
-                           placeholder="" value="{{ session('department')}}" >
+                          value="{{ session('department')}}" >
                     <div class="invalid-feedback">
                         Please enter a valid email address for shipping updates.
                     </div>
@@ -79,8 +79,8 @@
 
                 <div class="mb-3">
                     <label for="address">Address</label>
-                    <input type="text" class="form-control" id="address"  name="address"
-                           value="" required>
+                    <input type="text" class="form-control" id="address" name="address"
+                           value="93 B, New Eskaton Road" required>
                     <div class="invalid-feedback">
                         Please enter your shipping address.
                     </div>

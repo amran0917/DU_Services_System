@@ -23,7 +23,7 @@ class CreatePaymentsTable extends Migration
             $table->longText('address')->nullable();
             $table->string('application_status')->nullable();
             $table->string('status')->nullable();
-            $table->string('transaction_id');
+            $table->string('transaction_id')->nullable();
             $table->string('language')->nullable();
             $table->string('currency')->nullable();
             $table->timestamps();
