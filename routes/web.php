@@ -80,12 +80,12 @@ Route::group(['prefix' => 'language'], function () {
     Route::post('/registered',[ApplicantController::class,'store'])->name('store');
     Route::get('/status',[ApplicantController::class,'status_search'])->name('search_status');
     Route::post('/search_result',[SearchStatusController::class,'languageSearch'])->name('searchInfo');
-    Route::get('/transaction', [PaymentController::class, 'exampleEasyCheckout'])->name('payment')->middleware('paymentcheck');
-    Route::post('/pay-with-ajax', [PaymentController::class, 'payViaAjax'])->name('pay');
-    Route::post('/success', [PaymentController::class, 'success']);
-    Route::post('/fail', [PaymentController::class, 'fail']);
-    Route::post('/cancel', [PaymentController::class, 'cancel']);
-    Route::post('/ipn', [PaymentController::class, 'ipn']);
+    // Route::get('/transaction', [PaymentController::class, 'exampleEasyCheckout'])->name('payment')->middleware('paymentcheck');
+    // Route::post('/pay-with-ajax', [PaymentController::class, 'payViaAjax'])->name('pay');
+    // Route::post('/success', [PaymentController::class, 'success']);
+    // Route::post('/fail', [PaymentController::class, 'fail']);
+    // Route::post('/cancel', [PaymentController::class, 'cancel']);
+    // Route::post('/ipn', [PaymentController::class, 'ipn']);
 
 
 });

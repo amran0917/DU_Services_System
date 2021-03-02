@@ -10,52 +10,37 @@ use Illuminate\Support\Facades\Log;
 class SslCommerzPaymentController extends Controller
 {
 
-    public function exampleEasyCheckout(Request $request)
+    public function exampleEasyCheckout()
     {
-        if(! $request->session()->has('applicant_id')) {
-            return "stop no session"; 
-        }
-    
-    //    $data= $request->session()->get('name');
-        $data = $request->session()->all();
-      #  Log::info( $data);
         return view('exampleEasycheckout');
     }
 
-    public function exampleHostedCheckout( Request $request)
+    public function exampleHostedCheckout()
     {
-
-        $request->session()->forget('applicant_id');
-
-        // return 'ID'.$request->session()->get('email');
-        // return view('exampleHosted');
+        return view('exampleHosted');
     }
 
     public function index(Request $request)
     {
-        #to store data dynamically
-        dd($request->all());
         # Here you have to receive all the order data to initate the payment.
         # Let's say, your oder transaction informations are saving in a table called "orders"
         # In "orders" table, order unique identity is "transaction_id". "status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
 
         $post_data = array();
-        $post_data['total_amount'] = '100'; # You cant not pay less than 10
+        $post_data['total_amount'] = '10'; # You cant not pay less than 10
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = uniqid(); // tran_id must be unique
 
         # CUSTOMER INFORMATION
-        $post_data['cus_name'] = $request->customer_name??'';
-        $post_data['cus_email'] = '';
-        // $post_data['reg_no'] = $request->customer_email;
-
+        $post_data['cus_name'] = 'Customer Name';
+        $post_data['cus_email'] = 'customer@mail.com';
         $post_data['cus_add1'] = 'Customer Address';
         $post_data['cus_add2'] = "";
         $post_data['cus_city'] = "";
         $post_data['cus_state'] = "";
         $post_data['cus_postcode'] = "";
         $post_data['cus_country'] = "Bangladesh";
-        $post_data['cus_phone'] = $request->customer_mobile;
+        $post_data['cus_phone'] = '8801XXXXXXXXX';
         $post_data['cus_fax'] = "";
 
         # SHIPMENT INFORMATION
@@ -86,9 +71,7 @@ class SslCommerzPaymentController extends Controller
                 'name' => $post_data['cus_name'],
                 'email' => $post_data['cus_email'],
                 'phone' => $post_data['cus_phone'],
-                // 'reg_no' => $post_data['reg_no'],
                 'amount' => $post_data['total_amount'],
-                'application_status' => 'Pending',
                 'status' => 'Pending',
                 'address' => $post_data['cus_add1'],
                 'transaction_id' => $post_data['tran_id'],
@@ -109,25 +92,23 @@ class SslCommerzPaymentController extends Controller
     public function payViaAjax(Request $request)
     {
 
-        // dd($request->all());
         # Here you have to receive all the order data to initate the payment.
         # Lets your oder trnsaction informations are saving in a table called "orders"
         # In orders table order uniq identity is "transaction_id","status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
-
-         $requestData= (array)json_decode($request->cart_json);
-         Log::info($requestData);
+        $requestData= (array)json_decode($request->cart_json);
 
         $post_data = array();
-        $post_data['total_amount'] = '100'; # You cant not pay less than 100// $requestData['amount']
+        $post_data['total_amount'] = '100'; # You cant not pay less than 10
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = uniqid(); // tran_id must be unique
-        $post_data['applicant_id'] = $request->session()->get('applicant_id');
+
         # CUSTOMER INFORMATION
         $post_data['cus_name'] = $requestData['cus_name'];
         $post_data['cus_email'] = $requestData['cus_email'];
+        $post_data['cus_add1'] = $requestData['cus_addr1'];
         $post_data['reg_no'] = $requestData['reg_no'];
-        $post_data['department'] = $request->department;
-        $post_data['cus_add1'] = $request->address;
+        $post_data['department'] = $requestData['department'];
+
         $post_data['cus_add2'] = "";
         $post_data['cus_city'] = "";
         $post_data['cus_state'] = "";
@@ -158,7 +139,6 @@ class SslCommerzPaymentController extends Controller
         $post_data['value_d'] = "ref004";
 
 
-
         #Before  going to initiate the payment order status need to update as Pending.
         $update_product = DB::table('orders')
             ->where('transaction_id', $post_data['tran_id'])
@@ -166,14 +146,15 @@ class SslCommerzPaymentController extends Controller
                 'name' => $post_data['cus_name'],
                 'email' => $post_data['cus_email'],
                 'phone' => $post_data['cus_phone'],
-                'reg_no' => $post_data['reg_no'],
-                'department' => $post_data['department'],
                 'amount' => $post_data['total_amount'],
-                'application_status' => 'Pending',
                 'status' => 'Pending',
+                 'reg_no' => $post_data['reg_no'],
+                 'department' => $post_data['department'],
+                 'application_status' => 'pending',
+                 'applicant_id' => $request->session()->get('applicant_id'),
+
                 'address' => $post_data['cus_add1'],
                 'transaction_id' => $post_data['tran_id'],
-                'applicant_id'=>$post_data['applicant_id'],
                 'currency' => $post_data['currency']
             ]);
 
@@ -190,7 +171,7 @@ class SslCommerzPaymentController extends Controller
 
     public function success(Request $request)
     {
-        // echo "Transaction is Successful";
+       # echo "Transaction is Successful";
 
         $tran_id = $request->input('tran_id');
         $amount = $request->input('amount');
@@ -215,6 +196,7 @@ class SslCommerzPaymentController extends Controller
                 $update_product = DB::table('orders')
                     ->where('transaction_id', $tran_id)
                     ->update(['status' => 'Processing']);
+
                 echo "<br >Transaction is successfully Completed";
             } else {
                 /*
@@ -230,13 +212,12 @@ class SslCommerzPaymentController extends Controller
             /*
              That means through IPN Order status already updated. Now you can just show the customer that transaction is completed. No need to udate database.
              */
-            echo "<br >Transaction is successfully Completed";
-
-
-            } else {
+            echo "Transaction is successfully Completed";
+        } else {
             #That means something wrong happened. You can redirect customer to your product page.
             echo "Invalid Transaction";
         }
+        return Redirect()->route('t_home')->with('message', 'Successfully Transaction completed.!');;
 
 
     }
@@ -337,5 +318,6 @@ class SslCommerzPaymentController extends Controller
             echo "Invalid Data";
         }
     }
+
 
 }

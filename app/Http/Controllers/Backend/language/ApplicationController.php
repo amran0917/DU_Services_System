@@ -13,7 +13,6 @@ use App\Models\Certificate;
 use App\Models\Applicant;
 use App\Models\Departments;
 use App\Models\Language;
-// use App\Http\Controllers\Backend\PHPMailSender\mailsender.php;
 
 use Redirect;
 use Illuminate\Support\Facades\Input;
@@ -118,12 +117,6 @@ class ApplicationController extends Controller
         $title =  'Application status';
         $body = 'Your application is ready.';
         sendMail($applicant->email, $title,$body);
-
-
-        // if($applicant->status=='success'){ 
-
-        //     return response()->json(['success'=>'Status changed successfully.']);
-        // }
     }
 
     public function sendNotfication(){

@@ -48,6 +48,13 @@
         </div> 
 
         <div class="col-6">
+                <div> 
+                    @if(session()->has('message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('message') }}
+                        </div>
+                     @endif
+                </div>
            <b> <h1 style="font-famiy: sans-serif"> To get testimonial click here</h1>  </b>  <br>
 
              <div class="button_cont" ><a class="example_b" href="{{route('student.registration')}}"  rel="nofollow noopener">Get Testimonial</a></div> 

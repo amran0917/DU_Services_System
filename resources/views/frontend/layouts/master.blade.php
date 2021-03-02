@@ -33,6 +33,7 @@
   
 <!-- all js script -->
   @include('frontend.partials.scripts')
+
    
   </body>
 </html>
