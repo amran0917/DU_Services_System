@@ -139,6 +139,8 @@ Route::group(['prefix' => 'admin','middleware' => 'admincheck'], function () {
         //  Route::get('/notificatin', [ApplicationController::class,'notification'])->name('notify');
         //  Route::get('/notification', [ApplicationController::class,'sendNotfication'])->name('notification');
         Route::get('/approve/{applicant_id}', [ApplicationController::class,'download'])->name('approve');
+        Route::post('/delete/{applicant_id}', [ApplicationController::class,'delete'])->name('cancel');
+
 
       
  
@@ -187,6 +189,9 @@ Route::group(['prefix' => 'admin','middleware' => 'admincheck'], function () {
 
 
     Route::get('/search', [SearchController::class,'search'])->name('search');
+    Route::get('/searchapplicant', [SearchController::class,'searchapplicant'])->name('searchapplicant');
+    Route::get('/searchStudent', [SearchController::class,'searchStudent'])->name('searchStudent');
+
 
 
 

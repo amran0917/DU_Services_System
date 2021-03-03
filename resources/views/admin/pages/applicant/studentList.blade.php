@@ -25,6 +25,17 @@
                                         </div>
                                      @endif
                                 </div>
+                                <div class="form-group">
+
+                                    <form action="{{ route('searchStudent') }}" method="GET">
+                                        <label>Type a Applicant</label> <br>
+        
+                                        <input type="text" name="searchapplicant" required/>
+                                        {{-- <button type="submit">Search</button> --}}
+                                    </form>
+                                </div>
+
+                                
                                     <div class="card-header " style="text-align: center">
                                         <b style="color: rgb(76, 0, 255)">  Applicant List</b> 
     

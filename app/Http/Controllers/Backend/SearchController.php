@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Departments;
 use App\Models\Student;
+use App\Models\Applicant;
 
 
 class SearchController extends Controller
@@ -19,22 +20,37 @@ class SearchController extends Controller
                                 ->orWhere('fac_name','like','%'.$search.'%')
                                 ->orderBy('id','desc')
                                 ->paginate(10);
-            Log::info($dept[0]->department_name);
+           // Log::info($dept[0]->department_name.','.$search);
         
-            $student = Student::orWhere('name','like','%'. $search.'%')
+           
+             return view('admin.pages.departments.index',compact('dept'));
+             
+   
+
+    }
+
+
+   public function searchapplicant(Request $request){
+    $search = $request->searchapplicant;
+
+    $student = Applicant::orWhere('name','like','%'. $search.'%')
                             ->orWhere('department','like','%'. $search.'%')
                             ->orWhere('registration_no','like','%'. $search.'%')
                             ->orderBy('id','desc')
                             ->paginate(4);
-            if($search==$dept[0]->department_name || $search==$dept[0]->fac_name){
-                return view('admin.pages.departments.index',compact('dept'));
+    
+     return view('admin.pages.languages.applicant.list',compact('student'));
 
-            }
-        //    else if( $std_search==$student[0]->name)
-        //    {
-        //     return view('admin.pages.studentlist',compact('student'));
-        //    } 
-   
+   }
 
-    }
+   public function searchStudent(Request $request){
+    $search = $request->searchapplicant;
+    $student = Student::orWhere('name','like','%'. $search.'%')
+                        ->orWhere('department','like','%'. $search.'%')
+                        ->orWhere('registration_no','like','%'. $search.'%')
+                        ->orderBy('id','desc')
+                        ->paginate(4);
+     return view('admin.pages.applicant.studentList',compact('student'));
+
+   }
 }

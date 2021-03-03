@@ -37,10 +37,29 @@
                                 </div>
                             @endif
                         </div>
-                                <div class="card-header " style="text-align: center">
-                                    <b style="color: rgb(76, 0, 255)">  Departments List</b> 
 
-                                </div>
+                        <div class="form-group">
+
+                            <form action="{{ route('search') }}" method="GET">
+                                <label>Type a Department name</label> <br>
+
+                                <input type="text" name="search" required/>
+                                {{-- <button type="submit">Search</button> --}}
+                            </form>
+                        </div>
+                       
+
+                        {{-- <div class="form-group" > 
+                            style="display: flex; justify-content: flex-end"
+                            <label>Type a Department name</label> <br>
+                            <input type="text" name="department" id="department" placeholder="Enter Department name" class="form-control">
+                        </div>
+                        <div id="dept_list"></div>      --}}
+
+                        <div class="card-header " style="text-align: center">
+                            <b style="color: rgb(76, 0, 255)">  Departments List</b> 
+
+                        </div>
 
                 
                             <div class="card-body">
@@ -107,6 +126,8 @@
 
                             
                         </div> 
+
+                       
                     </div>
                  
                 </div>
