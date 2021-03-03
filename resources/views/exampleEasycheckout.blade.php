@@ -71,6 +71,14 @@
                     </div>
                 </div>
 
+                <div class="mb-3">
+                    {{-- <label for="language">Language</label> --}}
+                    <input type="hidden" name="language" class="form-control" id="language"
+                        value="" >
+                    <div class="invalid-feedback">
+                        Please enter language.
+                    </div>
+                </div>
 
 
                 <div class="mb-3">
@@ -158,6 +166,8 @@
     obj.cus_addr1 = $('#address').val();
     obj.reg_no = $('#reg_no').val();
     obj.department = $('#department').val();
+    obj.language = $('#language').val();
+
 
     obj.amount = $('#total_amount').val();
     
@@ -187,7 +197,12 @@
     });
 
     $('#department').change(function(){
-        obj.reg_no = $('#department').val();
+        obj.department = $('#department').val();
+
+    });
+
+    $('#language').change(function(){
+        obj.language = $('#language').val();
 
     });
 

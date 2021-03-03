@@ -108,6 +108,8 @@ class SslCommerzPaymentController extends Controller
         $post_data['cus_add1'] = $requestData['cus_addr1'];
         $post_data['reg_no'] = $requestData['reg_no'];
         $post_data['department'] = $requestData['department'];
+        $post_data['language'] = $requestData['language'];
+
 
         $post_data['cus_add2'] = "";
         $post_data['cus_city'] = "";
@@ -150,6 +152,7 @@ class SslCommerzPaymentController extends Controller
                 'status' => 'Pending',
                  'reg_no' => $post_data['reg_no'],
                  'department' => $post_data['department'],
+                'language' => $post_data['language'],
                  'application_status' => 'pending',
                  'applicant_id' => $request->session()->get('applicant_id'),
 
@@ -184,7 +187,6 @@ class SslCommerzPaymentController extends Controller
             ->where('transaction_id', $tran_id)
             ->select('transaction_id', 'status', 'currency', 'amount')->first();
         
-        Log::info($order_detials->status);
 
         if ($order_detials->status =='Pending') {
             $validation = $sslc->orderValidate($tran_id, $amount, $currency, $request->all());

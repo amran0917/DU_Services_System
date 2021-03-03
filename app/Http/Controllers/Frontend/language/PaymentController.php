@@ -76,7 +76,7 @@ class PaymentController extends Controller
 
 
         #Before  going to initiate the payment order status need to update as Pending.
-        $update_product = DB::table('payments')
+        $update_product = DB::table('orders')
             ->where('transaction_id', $post_data['tran_id'])
             ->updateOrInsert([
                 'name' => $post_data['cus_name'],
@@ -117,7 +117,7 @@ class PaymentController extends Controller
         $sslc = new SslCommerzNotification();
 
         #Check order status in order tabel against the transaction id or order id.
-        $order_detials = DB::table('orders')
+        $order_detials = DB::table('payments')
             ->where('transaction_id', $tran_id)
             ->select('transaction_id', 'status', 'currency', 'amount')->first();
 
@@ -130,7 +130,7 @@ class PaymentController extends Controller
                 in order table as Processing or Complete.
                 Here you can also sent sms or email for successfull transaction to customer
                 */
-                $update_product = DB::table('orders')
+                $update_product = DB::table('payments')
                     ->where('transaction_id', $tran_id)
                     ->update(['status' => 'Processing']);
                 echo "<br >Transaction is successfully Completed";
@@ -139,7 +139,7 @@ class PaymentController extends Controller
                 That means IPN did not work or IPN URL was not set in your merchant panel and Transation validation failed.
                 Here you need to update order status as Failed in order table.
                 */
-                $update_product = DB::table('orders')
+                $update_product = DB::table('payments')
                     ->where('transaction_id', $tran_id)
                     ->update(['status' => 'Failed']);
                 echo "validation Fail";
@@ -164,12 +164,12 @@ class PaymentController extends Controller
     {
         $tran_id = $request->input('tran_id');
 
-        $order_detials = DB::table('orders')
+        $order_detials = DB::table('payments')
             ->where('transaction_id', $tran_id)
             ->select('transaction_id', 'status', 'currency', 'amount')->first();
 
         if ($order_detials->status == 'Pending') {
-            $update_product = DB::table('orders')
+            $update_product = DB::table('payments')
                 ->where('transaction_id', $tran_id)
                 ->update(['status' => 'Failed']);
             echo "Transaction is Falied";
@@ -185,12 +185,12 @@ class PaymentController extends Controller
     {
         $tran_id = $request->input('tran_id');
 
-        $order_detials = DB::table('orders')
+        $order_detials = DB::table('payments')
             ->where('transaction_id', $tran_id)
             ->select('transaction_id', 'status', 'currency', 'amount')->first();
 
         if ($order_detials->status == 'Pending') {
-            $update_product = DB::table('orders')
+            $update_product = DB::table('payments')
                 ->where('transaction_id', $tran_id)
                 ->update(['status' => 'Canceled']);
             echo "Transaction is Cancel";
@@ -212,7 +212,7 @@ class PaymentController extends Controller
             $tran_id = $request->input('tran_id');
 
             #Check order status in order tabel against the transaction id or order id.
-            $order_details = DB::table('orders')
+            $order_details = DB::table('payments')
                 ->where('transaction_id', $tran_id)
                 ->select('transaction_id', 'status', 'currency', 'amount')->first();
 
@@ -225,7 +225,7 @@ class PaymentController extends Controller
                     in order table as Processing or Complete.
                     Here you can also sent sms or email for successful transaction to customer
                     */
-                    $update_product = DB::table('orders')
+                    $update_product = DB::table('payments')
                         ->where('transaction_id', $tran_id)
                         ->update(['status' => 'Processing']);
 
@@ -235,7 +235,7 @@ class PaymentController extends Controller
                     That means IPN worked, but Transation validation failed.
                     Here you need to update order status as Failed in order table.
                     */
-                    $update_product = DB::table('orders')
+                    $update_product = DB::table('payments')
                         ->where('transaction_id', $tran_id)
                         ->update(['status' => 'Failed']);
 

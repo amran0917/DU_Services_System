@@ -16,6 +16,7 @@ class Order extends Model
         'phone',
         'reg_no',
         'department',
+        'language',
         'amount',
         'address',
         'application_status',
