@@ -26,10 +26,16 @@
                             <td> <h5>ID </h5></td>
                             <td>{{$row->applicant_id}}</td>
                             @if($row->status == 'complete')
-                            <td rowspan="13">  <mark style="background: rgb(0, 255, 170) "> success</mark> </td>
-                            @else  
-                            <td rowspan="13">  <mark style="background: rgb(255, 60, 0) "> Pending</mark> </td>
+                                <td rowspan="13">  <mark style="background: rgb(0, 255, 170) "> success</mark> </td>
                             @endif
+                            @if($row->status == 'cancel')
+                                <td rowspan="13">  <mark style="background: rgb(255, 51, 0) "> cancel</mark> </td>
+                            @endif  
+                            @if ($row->status == 'pending')
+                                <td rowspan="13">  <mark style="background: rgb(255, 217, 0) "> Pending</mark> </td>
+
+                            @endif
+
 
                            
                         </tr>
