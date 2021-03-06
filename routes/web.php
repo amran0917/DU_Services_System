@@ -118,6 +118,7 @@ Route::group(['prefix' => 'admin','middleware' => 'admincheck'], function () {
     Route::post('/student_details/approve/{applicant_id}', [AdminController::class,'approveTestimonial'])->name('admin.student.update');
     Route::get('/student/approve/{applicant_id}', [AdminController::class,'approve'])->name('admin.approve');
     Route::post('/studentlist/change-status', [AdminController::class,'changeActiveStatus'])->name('change.status');
+    Route::post('/studentlist/cancel', [AdminController::class,'cancel'])->name('cancel.status');
 
     
     
@@ -139,7 +140,7 @@ Route::group(['prefix' => 'admin','middleware' => 'admincheck'], function () {
         //  Route::get('/notificatin', [ApplicationController::class,'notification'])->name('notify');
         //  Route::get('/notification', [ApplicationController::class,'sendNotfication'])->name('notification');
         Route::get('/approve/{applicant_id}', [ApplicationController::class,'download'])->name('approve');
-        Route::post('/delete/{applicant_id}', [ApplicationController::class,'delete'])->name('cancel');
+        Route::post('/cancel', [ApplicationController::class,'cancelapplication'])->name('cancel');
 
 
       

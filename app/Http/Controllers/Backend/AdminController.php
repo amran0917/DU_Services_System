@@ -402,5 +402,12 @@ class AdminController extends Controller
         return view('admin.pages.departments.view',compact('dept'));
     }
 
+    public function cancel(Request $request){
+        
+         $applicant = Student::where('applicant_id', $request->applicant_id)->first(); 
+        $applicant->status = $request->status;
+        $applicant->save();
+    }
+
 }
 

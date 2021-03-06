@@ -66,6 +66,8 @@
      box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
     -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
     transition: all 0.4s ease 0s;
+	text-decoration: none;
+
  }
 
  .example_c {
@@ -86,6 +88,7 @@
      box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
     -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
     transition: all 0.4s ease 0s;
+	text-decoration: none;
  }
 
 
@@ -284,4 +287,5 @@ th,td {
   /* Darker background on mouse-over */
   .btnD:hover {
 	background-color: RoyalBlue;
+	text-decoration: none;
   }

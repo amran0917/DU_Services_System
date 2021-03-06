@@ -151,7 +151,7 @@
 
 
     $('#applicationForm').on('submit',function(e){
-               
+
         e.preventDefault();
 
         $.ajaxSetup({
@@ -162,6 +162,7 @@
 
         var form_data = $(this);
         var url = form_data.attr('action');
+        alert(url);
 
         $.ajax({
 
@@ -172,9 +173,9 @@
                 data    : form_data.serialize(),
                 
                 success : function(data){
-
+                        alert('success');
                          $('#myModal').modal('show');
-                        console.log('success');
+                        // console.log('success');
                   
                         $("#applicaId").text(data.applicant_id);
                         // alert(data.success);

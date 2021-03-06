@@ -188,15 +188,10 @@ class ApplicationController extends Controller
 
     }
 
-   public function delete($id) {
-        // $applicant = Applicant::findorfail($id);
+   public function cancelapplication(Request $request) {
+    $applicant = Applicant::where('applicant_id', $request->applicant_id)->first(); 
+    $applicant->status = $request->status;
+    $applicant->save();
 
-        // if(!is_null($applicant)){
-        //     $applicant->delete();
-        
-            
-        //         return Redirect()->route('applicant.list')->with('delete', 'Successfully ca!');;
-
-        // }
    }
 }

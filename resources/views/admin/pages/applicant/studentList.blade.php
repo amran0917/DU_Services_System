@@ -31,7 +31,6 @@
                                         <label>Type a Applicant</label> <br>
         
                                         <input type="text" name="searchapplicant" required/>
-                                        {{-- <button type="submit">Search</button> --}}
                                     </form>
                                 </div>
 
@@ -65,19 +64,51 @@
                                                             <td>
                                                                 <a href="{{ route('admin.student.showDetails',$row->applicant_id)}}" class="btn btn-sm btn-primary" >View Details</a> 
                                                                 
-                                                                @if ($row->status=='pending')
-                                                                    <a href="#" class="btn btn-sm btn-info" onclick="changeUserStatus(event.target, {{$row->applicant_id}});"> Approve </a> 
-
-                                                                @else 
-                                                                <a href="#" class="btn btn-sm btn-success"  >Approved</a>
+                                                                @if ($row->status=='pending' || $row->status=='cancel')
+                                                                    <a  class="btn btn-sm btn-info" onclick="changeUserStatus(event.target, {{$row->applicant_id}});"> Approve </a> 
 
                                                                 @endif
                                                                 
+                                                                @if($row->status=='complete')
+                                                                    <a href="" class="btn btn-sm btn-success"  >Approved</a>
+                                                                @endif
                                                                 <a href=" {{route('admin.approve',$row->applicant_id)}}" target="_blank" ><button class="btnD "><i class="fa fa-download"></i> Download</button></a>
 
-                                                                
+                                                                @if ($row->status=='pending' || $row->status=='complete')
+                                                                     <a  class="btn btn-sm btn-danger"  onclick="cancelStatus(event.target, {{$row->applicant_id}});" >Cancel</a>
 
-                                                                <a href="#" class="btn btn-sm btn-danger">Cancel</a>
+                                                                @endif
+
+                                                                @if($row->status=='cancel')
+                                                                    <a class="btn btn-sm btn-danger"  >Canceled</a>
+                                                                @endif
+
+
+                                                                <script>
+                                                                    function cancelStatus(_this, applicant_id) {
+                                                                     
+
+                                                                        var status = 'cancel';
+                                                                       
+                                                                        let _token = $('meta[name="csrf-token"]').attr('content');
+
+                                                                    
+                                                                        $.ajax({
+                                                                                                                                            
+                                                                            url: "{{route('cancel.status')}}",
+                                                                            type: 'post',
+                                                                            data: {
+                                                                                _token: _token,
+                                                                                'applicant_id': applicant_id,
+                                                                                'status': status 
+                                                                            },
+                                                                            success: function (data) {
+                                                                                console.log(data.applicant_id);
+                                                                            }
+                                                                        });
+                                                                    }
+                                                                    
+                                                                </script>
 
                                                                 <script>
                                                                     function changeUserStatus(_this, applicant_id) {
