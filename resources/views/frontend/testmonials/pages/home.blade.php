@@ -49,11 +49,14 @@
 
         <div class="col-6">
                 <div> 
-                    @if(session()->has('message'))
-                        <div class="alert alert-success">
-                            {{ session()->get('message') }}
-                        </div>
-                     @endif
+                                    
+                    @if(Session::has('message'))
+                    
+                        <script>
+                            
+                            swal("Success",<?php echo "'".Session::get('message')."'" ?>, "success");
+                        </script>
+                    @endif
                 </div>
            <b> <h1 style="font-famiy: sans-serif"> To get testimonial click here</h1>  </b>  <br>
 

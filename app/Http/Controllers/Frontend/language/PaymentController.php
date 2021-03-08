@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Library\SslCommerz\SslCommerzNotification;
 use Illuminate\Support\Facades\Log;
+Use Alert;
 
 class PaymentController extends Controller
 {
@@ -44,12 +45,14 @@ class PaymentController extends Controller
         $post_data['department'] =  $requestData['department'];
         $post_data['language'] = $requestData['language'];
         $post_data['cus_add1'] = $requestData['cus_addr1'];
-        $post_data['cus_add2'] = "";
-        $post_data['cus_city'] = "";
-        $post_data['cus_state'] = "";
-        $post_data['cus_postcode'] = "";
-        $post_data['cus_country'] = "Bangladesh";
         $post_data['cus_phone'] = $requestData['cus_phone'];
+
+
+        $post_data['cus_add2'] = "Dhaka";
+        $post_data['cus_city'] = "Dhaka";
+        $post_data['cus_state'] = "Dhaka";
+        $post_data['cus_postcode'] = "1000";
+        $post_data['cus_country'] = "Bangladesh";
         $post_data['cus_fax'] = "";
 
         # SHIPMENT INFORMATION
@@ -155,7 +158,10 @@ class PaymentController extends Controller
             #That means something wrong happened. You can redirect customer to your product page.
             echo "Invalid Transaction";
         }
-        return Redirect()->route('l_home')->with('message', 'Successfully Transaction completed.!');;
+       
+
+        return Redirect()->route('l_home')->with('message', 'Successfully Transaction completed.!');
+
 
 
     }

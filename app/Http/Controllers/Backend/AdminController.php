@@ -106,10 +106,7 @@ class AdminController extends Controller
         $title =  'Application status';
         $body = 'Your application is ready.';
         sendMail($applicant->email, $title,$body);
-        
-        // $x = json_encode($request->all());
 
-        //  return $request->status;
 
         // // // $applicant = Student::find($request->applicant_id)->update(['status' => $request->status]);
 
@@ -198,49 +195,41 @@ class AdminController extends Controller
         $dir = Director::where('department',$stdnt->department)->first();
 
         $testimonial_id =rand(10000,99999);
-        // $count = Testimonial::where('testimonial_id',  $request->get('testimonial_id'))->count();
-         
-        // while($count>0)
-        // {
-        //     $testimonial_id =rand(10000,99999);
-        //     $count = Testimonial::where('testimonial_id',  $request->get('testimonial_id'))->count();
-        // }
-        $response['testimonial_id'] =$testimonial_id;
-        // $count = Testimonial::where('applicant_id',  $applicant_id)->count();
-        // Log::info($count);
-        // if($count>0){
-        //     $path = ' public/file/' . Str::random(25) . '.pdf';
-        //     $pdf = PDF::loadView('admin.pages.partials.testmonial', compact('stdnt','allstdnt'));
-        //     $fileName = $testimonial_id. '.' . 'pdf' ;
-        //     Testimonial::where('applicant_id',  $applicant_id)->update(
-        //         ["path" => $path]
-        //     );
-        //     return $pdf->stream($fileName);
-        // }
-        // else{
+        $count = Testimonial::where('testimonial_id',  $request->get('testimonial_id'))->count();
+        while($count>0)
+        {
+            $testimonial_id =rand(10000,99999);
+            $count = Testimonial::where('testimonial_id',  $request->get('testimonial_id'))->count();
+        }
+       
+        $testimonial=Testimonial::where('applicant_id',  $applicant_id)->first();
+        if($testimonial){
+
+            $path =$testimonial->path;
+            $headers = [
+                'Content-Type' => 'application/pdf',
+             ];
+             $fileName =$testimonial->testimonial_id. '.' .$testimonial->applicant_name.'.pdf' ;
+            return  response()->download( $path, $fileName , $headers);
+          
+        }
+        else{
+           
+            $response['testimonial_id'] =$testimonial_id;
             $testmonial = new Testimonial();
             $testmonial->testimonial_id = $testimonial_id; 
             $testmonial->applicant_id=$applicant_id;
             $testmonial->applicant_name=$stdnt->name;
-
-          //  $path = 'public/file/' . Str::random(25) . '.pdf';
-
             $path = public_path('file/');
             $fileName = $testimonial_id. '.' .$testmonial->applicant_name.'.pdf' ;
-
-          $pdf = PDF::loadView('admin.pages.partials.testmonial', compact('stdnt','allstdnt', 'dir'));
-       
-          $pdf->save($path . '/' . $fileName);
-       //   $testmonial->path = $path;
-          $testmonial->path = $path . '/' . $fileName;
-          $testmonial->save();
+            $pdf = PDF::loadView('admin.pages.partials.testmonial', compact('stdnt','allstdnt', 'dir'));
+            $pdf->save($path . '/' . $fileName);
+            $testmonial->path = $path . '/' . $fileName;
+            $testmonial->save();
           return $pdf->stream($fileName);
-
-        //     // return response()->download($path);
-        //     return $pdf->download($fileName);
+        }
       
     }
-    
     public function getAdmin(){
 
         $admin = Admin::all();

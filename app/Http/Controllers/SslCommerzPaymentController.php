@@ -6,6 +6,7 @@ use DB;
 use Illuminate\Http\Request;
 use App\Library\SslCommerz\SslCommerzNotification;
 use Illuminate\Support\Facades\Log;
+Use Alert;
 
 class SslCommerzPaymentController extends Controller
 {
@@ -111,12 +112,12 @@ class SslCommerzPaymentController extends Controller
         $post_data['language'] = $requestData['language'];
 
 
-        $post_data['cus_add2'] = "";
-        $post_data['cus_city'] = "";
-        $post_data['cus_state'] = "";
-        $post_data['cus_postcode'] = "";
+        $post_data['cus_add2'] = "Dhaka";
+        $post_data['cus_city'] = "Dhaka";
+        $post_data['cus_state'] = "Dhaka";
+        $post_data['cus_postcode'] = "1000";
         $post_data['cus_country'] = "Bangladesh";
-        $post_data['cus_phone'] = $requestData['cus_phone'];
+        $post_data['cus_phone'] =$requestData['cus_phone'];
         $post_data['cus_fax'] = "";
 
         # SHIPMENT INFORMATION
@@ -221,7 +222,10 @@ class SslCommerzPaymentController extends Controller
             #That means something wrong happened. You can redirect customer to your product page.
             echo "Invalid Transaction";
         }
-        return Redirect()->route('t_home')->with('message', 'Successfully Transaction completed.!');;
+
+     
+        return Redirect()->route('t_home')->with('message', 'Successfully Transaction completed');
+
 
 
     }

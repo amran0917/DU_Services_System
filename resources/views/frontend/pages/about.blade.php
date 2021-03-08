@@ -1,6 +1,4 @@
 @extends('frontend.layouts.master')
-<br>
-<br>
 @section('title', 'AboutPage')
 
 @section('content')
