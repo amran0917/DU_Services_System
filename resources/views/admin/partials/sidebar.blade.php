@@ -20,11 +20,33 @@
                     }
 
               @endphp
-              
+
+            @php
+                                
+                $count_app = 0;
+                $student = \App\Models\Applicant::all();
+
+                foreach ($student as $st){
+
+                    if ($st->notification_status == 0){
+                        $count_app = $count_app +1;
+                    
+                    }
+
+                }
+
+            @endphp
+
         <li><a href="{{route('student.list')}}"><i class="menu-icon icon-user"></i>Testimonial Applicant List
              <b class="label orange pull-right"> {{$count}}</b>
             </a></li>
-        <li><a href="{{route('applicant.list')}}"><i class="menu-icon icon-bullhorn"></i>Certificate Applicant List </a></li>
+        <li>
+            <a href="{{route('applicant.list')}}"><i class="menu-icon icon-bullhorn"></i>Certificate Applicant List 
+                <b class="label green pull-right"> {{$count_app}}</b>
+
+            </a>
+        
+        </li>
 
         <li><a class="collapsed" data-toggle="collapse" href="#togglePage"><i class="menu-icon icon-book">
         </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">

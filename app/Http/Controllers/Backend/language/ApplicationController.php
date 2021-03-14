@@ -94,7 +94,7 @@ class ApplicationController extends Controller
         $student->email = $request->email;
         $student->phone = $request->phone;
         $student->language = $request->lang;
-        // $student->status = 'pending';
+         $student->notification_status = 1;
         
         $student->save();
 
@@ -113,6 +113,7 @@ class ApplicationController extends Controller
         $applicant = Applicant::where('applicant_id', $request->applicant_id)->first(); 
         $input = $request->all();  
         $applicant->status = $request->status;
+        $applicant->notification_status = 1;
         $applicant->save();
         $title =  'Application status';
         $body = 'Your application is ready.';
@@ -163,6 +164,9 @@ class ApplicationController extends Controller
 
     public function download(Request $request, $applicant_id){
         $stdnt = Applicant::where('applicant_id', $request->applicant_id)->first();
+        $stdnt->notification_status = 1;
+        $stdnt->save();
+
         $allstdnt = AllStudent::where('registration_no',$stdnt->registration_no)->first();
         $lang = Language::where('language_name',$stdnt->language)->first();
         $dir = Director::where('fac_name',$lang->fac_name)->first();
@@ -217,6 +221,7 @@ class ApplicationController extends Controller
    public function cancelapplication(Request $request) {
     $applicant = Applicant::where('applicant_id', $request->applicant_id)->first(); 
     $applicant->status = $request->status;
+    $applicant->notification_status=1;
     $applicant->save();
 
    }

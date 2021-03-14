@@ -30,6 +30,7 @@ class Applicant extends Model
         'phone',
         'status',
         'language',
+        'notification_status',
     ];
    
 

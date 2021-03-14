@@ -72,6 +72,8 @@ class ApplicantController extends Controller
             $student->phone = $request->phone;
             $student->language = $request->lang;
             $student->status = 'pending';
+            $student->notification_status = 0;
+
             $student->save();
             
                 
