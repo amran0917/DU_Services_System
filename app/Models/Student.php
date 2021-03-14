@@ -23,6 +23,7 @@ class Student extends Model
         'email',
         'phone',
         'status',
+        'notification_status',
     ];
 
     // public function allstudent(){

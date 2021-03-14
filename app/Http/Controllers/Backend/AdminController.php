@@ -101,6 +101,7 @@ class AdminController extends Controller
         $applicant = Student::where('applicant_id', $request->applicant_id)->first(); 
         $input = $request->all();  
         $applicant->status = $request->status;
+        $applicant->notification_status = 1;
         $applicant->save();
 
         $title =  'Application status';
@@ -120,6 +121,8 @@ class AdminController extends Controller
     public function showDetails($applicant_id,Request $request) {
 
         $stdnt = Student::where('applicant_id', $request->applicant_id)->first();
+        $stdnt->notification_status = 1;
+        $stdnt->save();
         $dept= Departments::all();
 
         return view('admin.pages.applicant.studentView',compact('stdnt','dept'));
@@ -158,6 +161,8 @@ class AdminController extends Controller
         $student->birth_date = $request->birth_date;
         $student->email = $request->email;
         $student->phone = $request->phone;
+        $student->notification_status = 1;
+
     // $student->status = 'pending';
     
         $student->save();
@@ -191,6 +196,9 @@ class AdminController extends Controller
     public function approve($applicant_id, Request $request){
 
         $stdnt = Student::where('applicant_id', $request->applicant_id)->first();
+        $stdnt->notification_status = 1;
+        $stdnt->save();
+
         $allstdnt = AllStudent::where('registration_no',$stdnt->registration_no)->first();
         $dir = Director::where('department',$stdnt->department)->first();
 
@@ -393,8 +401,9 @@ class AdminController extends Controller
 
     public function cancel(Request $request){
         
-         $applicant = Student::where('applicant_id', $request->applicant_id)->first(); 
+        $applicant = Student::where('applicant_id', $request->applicant_id)->first(); 
         $applicant->status = $request->status;
+        $applicant->notification->status =1;
         $applicant->save();
     }
 

@@ -5,8 +5,24 @@
         <li><a href="{{route('student.list')}}"><i class="menu-icon icon-inbox"></i>Inbox 
               </a></li>  {{-- <b class="label green pull-right">     11</b>  {{route('student.index')}} --}}
 
+              @php
+                
+                    $count = 0;
+                    $stdnt = \App\Models\Student::all();
+                    
+                    foreach ($stdnt as $st){
+
+                        if ($st->notification_status == 0){
+                            $count = $count +1;
+                           
+                        }
+
+                    }
+
+              @endphp
+              
         <li><a href="{{route('student.list')}}"><i class="menu-icon icon-user"></i>Testimonial Applicant List
-             {{-- <b class="label orange pull-right"> 19</b> --}}
+             <b class="label orange pull-right"> {{$count}}</b>
             </a></li>
         <li><a href="{{route('applicant.list')}}"><i class="menu-icon icon-bullhorn"></i>Certificate Applicant List </a></li>
 

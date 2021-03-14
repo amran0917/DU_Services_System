@@ -102,6 +102,7 @@ class StudentController extends Controller
         $student->email = $request->email;
         $student->phone = $request->phone;
         $student->status = 'pending';
+        $student->notification_status = 0;
         $student->save();
         
                
