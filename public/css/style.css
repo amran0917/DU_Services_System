@@ -111,8 +111,9 @@
 {
 	height: 100%;
 	margin-top: 0px;
-    background-image: url("../images/curzon.jpg");
 	background-size:auto 100%;
+	background-repeat: no-repeat;
+
 
 }
 
@@ -163,10 +164,7 @@
 	padding: 20px;
 }
 
-/* form .login
-{
-	margin: auto 50px;
-} */
+
 
 /*Modal*/
 /* /*  */

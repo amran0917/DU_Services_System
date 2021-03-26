@@ -3,6 +3,8 @@
 
 @section('content')
 <div class="about-img" style="height:80vh">
+    <img width="100%" height="80%" style="position:fixed;z-index:-1; opacity:0.8" src="../images/curzon.jpg">
+
     <div class="row">
         <div class="col-8">
 
