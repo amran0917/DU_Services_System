@@ -41,10 +41,9 @@
                         <div class="form-group">
 
                             <form action="{{ route('search') }}" method="GET">
-                                <label>Type a Department name</label> <br>
+                                 <br>
 
-                                <input type="text" name="search" required/>
-                                {{-- <button type="submit">Search</button> --}}
+                                <input type="text" name="search" placeholder="department name" required/>
                             </form>
                         </div>
                        

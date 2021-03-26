@@ -15,6 +15,7 @@
 <link type="text/css" href="{{asset('adminPanel/code/images/icons/css/font-awesome.css')}}" rel="stylesheet">
 <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
     rel='stylesheet'>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
 

@@ -46,6 +46,8 @@
      box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
     -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
     transition: all 0.4s ease 0s;
+	text-decoration: none;
+
  }
 
 .example_b {
@@ -58,6 +60,8 @@
     display: inline-block;
     border: none;
     transition: all 0.4s ease 0s;
+	outline:none;
+
 }
 
 .example_b:hover {
@@ -105,13 +109,25 @@
 
 .about-img
 {
-	height: 675px;
+	height: 100%;
 	margin-top: 0px;
     background-image: url("../images/curzon.jpg");
+	background-size:auto 100%;
+
 }
 
 
 /*------------------------------registration--------------------*/
+
+.home_img{
+	height: 100%;
+	margin-top: 0px;
+	opacity: 0.7;
+	background-repeat: no-repeat;
+
+
+
+}
 .reg_img
 {
 	height: 675px;
@@ -276,7 +292,9 @@ th,td {
 }
 
 .btnD {
-	background-color: DodgerBlue;
+	/* background-color: DodgerBlue; */
+	background-color: Transparent;
+	background: none;
 	border: none;
 	color: white;
 	padding: 12px 30px;

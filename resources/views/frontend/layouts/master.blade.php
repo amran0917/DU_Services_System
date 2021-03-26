@@ -17,7 +17,7 @@
 
   
   <body>
-    <div class="wrapper">
+    <div class="wrapper h-100">
     <!-- {{-- Navigation --}} -->
       @include('sweetalert::alert')
 

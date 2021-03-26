@@ -2,7 +2,7 @@
 @section('title', 'AboutPage')
 
 @section('content')
-<div class="about-img">
+<div class="about-img" style="height:80vh">
     <div class="row">
         <div class="col-8">
 
