@@ -33,8 +33,8 @@ class ForgotPasswordController extends Controller
         );
 
         Mail::send('admin.pages.partials.password.verify',['token' => $token], function($message) use ($request) {
-                  $message->from($request->email);
-                  $message->to('ahossain0917@gmail.com');
+                  $message->from('ahossain0917@gmail.com');
+                  $message->to($request->email); 
                   $message->subject('Reset Password Notification');
                });
 
