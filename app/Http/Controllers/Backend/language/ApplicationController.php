@@ -116,7 +116,11 @@ class ApplicationController extends Controller
         $applicant->notification_status = 1;
         $applicant->save();
         $title =  'Application status';
-        $body = 'Your application is ready.';
+        $body = '<h1 align=center> Congratulations!!!</h1> <br>
+        <h4 align=center> Your Applicantion is successfull. </h4> <br>
+         <h5 align=left> Regards</h5>
+         <h6 align=left> DU Services Team.</h6>
+         ';
         sendMail($applicant->email, $title,$body);
     }
 

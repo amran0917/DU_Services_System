@@ -105,11 +105,12 @@ class AdminController extends Controller
         $applicant->save();
 
         $title =  'Application status';
-        $body = 'Your application is ready.';
+        $body = '<h1 align=center> Congratulations!!!</h1> <br>
+                <h4 align=center> Your Applicantion is successfull. </h4> <br>
+                 <h5 align=left> Regards</h5>
+                 <h6 align=left> DU Services Team.</h6>
+                 ';
         sendMail($applicant->email, $title,$body);
-
-
-        // // // $applicant = Student::find($request->applicant_id)->update(['status' => $request->status]);
 
         if($applicant->status=='success'){ 
             return response()->json(['success'=>'Status changed successfully.']);
