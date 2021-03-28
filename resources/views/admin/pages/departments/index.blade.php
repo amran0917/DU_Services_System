@@ -118,7 +118,8 @@
                                         @endforeach
                                         
                                 </table>
-                            {{-- </div> --}}
+                            </div>
+                            
                         </div>
                     </div>
                     {{ $dept->render() }}

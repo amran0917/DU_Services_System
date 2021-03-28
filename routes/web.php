@@ -46,7 +46,8 @@ Route::get('/home',[PagesController::class,'index'])->name('home');
 Route::get('/about',[PagesController::class,'about'])->name('about');
 Route::get('/contact',[PagesController::class,'contact'])->name('contact');
 Route::get('/applicant/status',[PagesController::class,'status'])->name('status');
-
+Route::get('reset-password2/{token}', [ResetPasswordController::class,'getPassword']);
+Route::post('reset-Password2', [ResetPasswordController::class,'updatePassword'])->name('rest-pass');
 
 /*
      GEt testimonial route
@@ -101,11 +102,7 @@ Route::group(['prefix' => 'language'], function () {
 
     //forget password
     Route::get('forget-password', [ForgotPasswordController::class,'getEmail'])->name('forget-password');
-    Route::post('forgot-password', [ForgotPasswordController::class,'postEmail'])->name('forgot-password');
-
-    // reset-password
-    //  Route::get('reset-password/{token}', [ResetPasswordController::class,'getPassword']);
-    // Route::post('reset-Password', [ResetPasswordController::class,'updatePassword'])->name('rest-pass');
+    Route::post('forgot-password', [ForgotPasswordController::class,'postEmail'])->name('forgot-password');  
 
  });
 
@@ -136,15 +133,9 @@ Route::group(['prefix' => 'admin','middleware' => 'admincheck'], function () {
          Route::get('/list', [ApplicationController::class,'getApplicant'])->name('applicant.list');
          Route::get('/edit/{applicant_id}', [ApplicationController::class,'edit'])->name('applicant.edit');
          Route::post('/update/{applicant_id}', [ApplicationController::class,'update'])->name('applicant.update');
-         Route::post('/change-status', [ApplicationController::class,'changestatus'])->name('statusChange');
-        //  Route::get('/notificatin', [ApplicationController::class,'notification'])->name('notify');
-        //  Route::get('/notification', [ApplicationController::class,'sendNotfication'])->name('notification');
-        Route::get('/approve/{applicant_id}', [ApplicationController::class,'download'])->name('approve');
-        Route::post('/cancel', [ApplicationController::class,'cancelapplication'])->name('cancel');
-
-
-      
- 
+         Route::post('/change-status', [ApplicationController::class,'changestatus'])->name('statusChange');   
+         Route::get('/approve/{applicant_id}', [ApplicationController::class,'download'])->name('approve');
+         Route::post('/cancel', [ApplicationController::class,'cancelapplication'])->name('cancel');
      
      });
 
