@@ -24,7 +24,7 @@
                 Registration Number, Date of Birth, Phone, Session,Department, Current year for the
                 application. After completing his details, they transact the money with bKash. There are two types of admin .Super admin and normal admin.. Normal admin would be admin controller from each department. They control their
                 tasks department wise.. Like approve applications and give certificates etc. Admin can see the details of applicants. Admin can accept or reject the application. Applicant will inform about his application’s status. Admin accept the application and
-                inform the applicant for taking his testimonial copy/certificates.
+                inform the applicant for taking his testimonial copy.
                 
                     
             </p>
@@ -49,12 +49,12 @@
 
           
        
-          <b> <h1 style="font-famiy: sans-serif; font-size:35px; color:rgb(227, 245, 236)"> To get testimonial click here</h1>  </b>  <br>
+          <b> <h1 style="font-famiy: sans-serif; font-size:30px; color:rgb(227, 245, 236)"> To get testimonial click here</h1>  </b>  <br>
 
              <div class="button_cont" ><a class="example_a" href="{{route('student.registration')}}"  rel="nofollow noopener">Get Testimonial</a></div> 
              <br> <br>
        
-             <b> <h1 style="font-family: 'Times New Roman', serif;color:rgb(227, 245, 236)">To know Application status ? click here</h1>  </b>  <br>
+             <b> <h1 style="font-famiy: sans-serif; font-size:30px;color:rgb(227, 245, 236)">To know Application status ? click here</h1>  </b>  <br>
              <div class="button_cont" ><a class="example_c" href="{{route('student.search_status')}}"  rel="nofollow noopener">Application status</a></div>
 
 

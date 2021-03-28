@@ -59,7 +59,6 @@ class AdminController extends Controller
             return Redirect::back()->withErrors($errors)->withInput($request->except('password'));
         
 
-            // return Redirect()->route('admin.logIn') ->withErrors($notification);
         }
 
     }

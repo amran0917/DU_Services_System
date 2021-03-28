@@ -104,8 +104,8 @@ Route::group(['prefix' => 'language'], function () {
     Route::post('forgot-password', [ForgotPasswordController::class,'postEmail'])->name('forgot-password');
 
     // reset-password
-    Route::get('reset-password/{token}', [ResetPasswordController::class,'getPassword']);
-    Route::post('reset-Password', [ResetPasswordController::class,'updatePassword'])->name('rest-pass');
+    //  Route::get('reset-password/{token}', [ResetPasswordController::class,'getPassword']);
+    // Route::post('reset-Password', [ResetPasswordController::class,'updatePassword'])->name('rest-pass');
 
  });
 

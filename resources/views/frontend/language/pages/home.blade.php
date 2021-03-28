@@ -46,12 +46,12 @@
             </div>
 
             
-           <b> <h1 style="font-famiy: sans-serif; font-size:35px; color:rgb(227, 245, 236)"> To get Language Certificate click here</h1>  </b>  <br>
+           <b> <h1 style="font-famiy: sans-serif; font-size:30px; color:rgb(227, 245, 236)"> To get Language Certificate click here</h1>  </b>  <br>
 
              <div class="button_cont" ><a class="example_a" href="{{route('student.application')}}"  rel="nofollow noopener">Get Language Certificate</a></div> 
              <br> <br>
        
-             <b> <h1 style="font-family: 'Times New Roman', serif;color:rgb(227, 245, 236)">To know Application status ? click here</h1>  </b>  <br>
+             <b> <h1 style="font-family: sans-serif;font-size:30px; color:rgb(227, 245, 236)">To know Application status ? click here</h1>  </b>  <br>
              <div class="button_cont" ><a class="example_c" href="{{route('search_status')}}"  rel="nofollow noopener">Application status</a></div>
 
 
