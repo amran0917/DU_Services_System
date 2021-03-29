@@ -353,7 +353,7 @@ class AdminController extends Controller
 
     function getDept(){
         
-        $dept = Departments::paginate(10);
+        $dept = Departments::paginate(8);
         return view('admin.pages.departments.index',compact('dept'));
     }
 

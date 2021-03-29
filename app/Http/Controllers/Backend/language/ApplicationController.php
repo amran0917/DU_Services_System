@@ -217,9 +217,6 @@ class ApplicationController extends Controller
        
 
 
-
-
-
     }
 
    public function cancelapplication(Request $request) {
