@@ -166,7 +166,65 @@ class ApplicationController extends Controller
 
     }
 
+    // public function download(Request $request, $applicant_id){
+       
+
+    //     $stdnt = Applicant::where('applicant_id', $request->applicant_id)->first();
+    //     $stdnt->notification_status = 1;
+    //     $stdnt->save();
+
+    //     $allstdnt = AllStudent::where('registration_no',$stdnt->registration_no)->first();
+    //     $lang = Language::where('language_name',$stdnt->language)->first();
+    //     $dir = Director::where('fac_name',$lang->fac_name)->first();
+    //     //  Log::info($dir);
+    //     $certificate_id =rand(10000,99999);
+    //     $count = Certificate::where('certificate_id',  $request->get('certificate_id'))->count();
+
+    //     while($count>0)
+    //     {
+    //         $certificate_id =rand(10000,99999);
+    //         $count = Certificate::where('certificate_id',  $request->get('certificate_id'))->count();
+    //     }
+
+        
+    //     $certificate=Certificate::where('applicant_id',  $applicant_id)->first();
+    //     if($certificate){
+           
+    //         $path =$certificate->path;
+           
+    //         $headers = [
+    //             'Content-Type' => 'application/pdf',
+    //          ];
+    //          $fileName =$certificate->certificate_id. '.' .$certificate->applicant_name.'.pdf' ;
+    //         return  response()->download( $path, $fileName , $headers);
+            
+    //     }
+
+    //     else{ 
+
+    //         $response['certificate_id'] =$certificate_id;
+    //         $certificate = new Certificate();
+    //         $certificate->certificate_id = $certificate_id; 
+    //         $certificate->applicant_id=$applicant_id;
+    //         $certificate->applicant_name=$stdnt->name; 
+    //         $path = public_path('file/');
+    //         $fileName = $certificate_id. '.' .$certificate->applicant_name.'.pdf' ;
+
+    //        $pdf = PDF::loadView('admin.pages.partials.certificate', compact('stdnt','allstdnt', 'dir'));  
+            
+    //        $pdf->save($path . '/' . $fileName);
+    //        $certificate->path = $path . '/' . $fileName;
+    //        $certificate->save();
+    //        return $pdf->stream($fileName);
+    //     }
+       
+
+
+    // }
+
     public function download(Request $request, $applicant_id){
+       
+        $count_time = 1;
         $stdnt = Applicant::where('applicant_id', $request->applicant_id)->first();
         $stdnt->notification_status = 1;
         $stdnt->save();
@@ -176,47 +234,26 @@ class ApplicationController extends Controller
         $dir = Director::where('fac_name',$lang->fac_name)->first();
         //  Log::info($dir);
         $certificate_id =rand(10000,99999);
-        $count = Certificate::where('certificate_id',  $request->get('certificate_id'))->count();
 
-        while($count>0)
-        {
-            $certificate_id =rand(10000,99999);
-            $count = Certificate::where('certificate_id',  $request->get('certificate_id'))->count();
-        }
-
-        
         $certificate=Certificate::where('applicant_id',  $applicant_id)->first();
+        $pdf = PDF::loadView('admin.pages.partials.certificate', compact('stdnt','allstdnt', 'dir'));  
+        $fileName = $certificate_id. '.' .$stdnt->name.'-'.date('d-m-Y_h-i-s').'.pdf' ;
+
         if($certificate){
-
-            $path =$certificate->path;
-            $headers = [
-                'Content-Type' => 'application/pdf',
-             ];
-             $fileName =$certificate->certificate_id. '.' .$certificate->applicant_name.'.pdf' ;
-            return  response()->download( $path, $fileName , $headers);
-          
-        }
-
-        else{
-
+            $pdf->save(public_path('file/') . '/' . $fileName);
+            $certificate->path = '/files/' . $fileName;
+            $certificate->save();
+        } else{ 
             $response['certificate_id'] =$certificate_id;
             $certificate = new Certificate();
             $certificate->certificate_id = $certificate_id; 
             $certificate->applicant_id=$applicant_id;
             $certificate->applicant_name=$stdnt->name; 
-            $path = public_path('file/');
-            $fileName = $certificate_id. '.' .$certificate->applicant_name.'.pdf' ;
-   
-           $pdf = PDF::loadView('admin.pages.partials.certificate', compact('stdnt','allstdnt', 'dir'));  
-            
-           $pdf->save($path . '/' . $fileName);
-           $certificate->path = $path . '/' . $fileName;
-           $certificate->save();
-           return $pdf->stream($fileName);
+            $pdf->save(public_path('file/') . '/' . $fileName);
+            $certificate->path = '/files/' . $fileName;
+            $certificate->save();
         }
-       
-
-
+        return $pdf->stream($fileName);
     }
 
    public function cancelapplication(Request $request) {

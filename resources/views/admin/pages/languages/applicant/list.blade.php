@@ -48,7 +48,7 @@
                                                         <th>Applicant Name</th>
                                                         <th>Registration No</th>
                                                         {{-- <th>Department</th> --}}
-                                                        <th>Language</th>
+                                                        <th>Course</th>
                                                         <th>Action</th>
                             
                                                     </tr>

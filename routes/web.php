@@ -134,7 +134,7 @@ Route::group(['prefix' => 'admin','middleware' => 'admincheck'], function () {
          Route::get('/edit/{applicant_id}', [ApplicationController::class,'edit'])->name('applicant.edit');
          Route::post('/update/{applicant_id}', [ApplicationController::class,'update'])->name('applicant.update');
          Route::post('/change-status', [ApplicationController::class,'changestatus'])->name('statusChange');   
-        Route::get('/download/{applicant_id}', [ApplicationController::class,'download'])->name('approve');
+         Route::get('/approve/{applicant_id}', [ApplicationController::class,'download'])->name('approve');
          Route::post('/cancel', [ApplicationController::class,'cancelapplication'])->name('cancel');
      
      });
