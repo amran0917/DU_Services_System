@@ -1,35 +1,43 @@
 
-<div style="width:800px; height:600px; padding:20px; text-align:center; border: 10px solid #787878">
-    <div style="width:750px; height:550px; padding:20px; text-align:center; border: 5px solid #787878">
-       <span style="font-size:50px; font-weight:bold">Certificate of Completion</span>
-       <br><br>
-       <span style="font-size:25px"><i>This is to certify that</i></span>
-       <br><br>
-       <span style="font-size:25px"> <i>{{ $stdnt->name}}</i></span>, 
-       <span style="font-size:25px"><i> father name: {{$stdnt->father_name}}</i></span>, 
-       <span style="font-size:25px"> <i> mother name: {{$stdnt->mother_name}}.</i></span><br/><br/>
-       <span style="font-size:25px"><i>He has completed the course {{$stdnt->language}} language with glorious result.</i></span> <br/>
-       {{-- <span style="font-size:30px"></span> <br/><br/> --}}
-       {{-- <span style="font-size:20px">with score of <b>{{$allstdnt->cgpa}} </b></span> <br/><br/><br/><br/> --}}
-       <span style="font-size:25px"> <i>  He is energetic, efficient and well behaved. he has a pleasant personality and possesses good
-        moral character. To the best of my knowledge, he did not take part in any activity subversive
-        of the state or of discipline.</i></span><br/> <br/>
-      <span style="font-size:28px"> <i>I wish him every success in life. </i> </span>
-       <br/> <br/> 
+<html>
 
-        <span style="font-size:30px; text-align:left"> 
-                (Prof.
-                {{        $dir->dir_name
-                }} ) 
-                <br>
+    <body  style =" background-repeat:no-repeat;background-image: url('https://i.pinimg.com/originals/02/83/fa/0283fa0096f31843dabee05fcd4b4b1c.jpg?fbclid=IwAR0ATqgSqdhIEDFX88UUbLg-4uQR-LyMKXWcbRZK7dxsgClVZW0kga6DU-M'); ">
+        <div style="margin-top:85px;">
+            <div
+                style="float: left;margin-left:85px;width:50px; height:70px; background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Dhaka_University_logo.svg/1200px-Dhaka_University_logo.svg.png'); background-repeat:no-repeat;background-size:cover;">
+            </div>
+            <div style="float: left;margin-top:20px;margin-left:45px;">
+                <span style="font-size:25px; font-weight:bold">Certificate of Completion</span>
+            </div>
+    
+            <div
+                style="margin-left:500px;width:50px; height:70px; background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Dhaka_University_logo.svg/1200px-Dhaka_University_logo.svg.png'); background-repeat:no-repeat;background-size:cover;">
+            </div>
+        </div>
+
+        <div style="margin-top:10px;  width:400px;margin-left:130px;  text-align: center;"> 
+            <span style="height: 30px;"><i>This is to certify that {{ $stdnt->name}}, father name: {{$stdnt->father_name}},  mother name: {{$stdnt->mother_name}} has completed the course {{$stdnt->language}} language with glorious result. </i></span>
+        <br/>
+          
+           <span style="height:30px"> <i>  He is energetic, efficient and well behaved. he has a pleasant personality and possesses good
+            moral character. </i></span><br/> <br/>
+          <span style="height: 30px;"> <i>I wish him every success in life. </i> </span>
+           <br/> 
+        
+        </div>
+
+            
+      
+        <div style="margin-top: 10px; ">
+            <hr style="margin-left: 350px; width: 200px;"> 
+            <span style="margin-left: 350px; float: left;"> 
+                (Prof.{{ $dir->dir_name}}) 
+                <br >
                 Director
-                <br>
+                <br >
                 {{  $dir->fac_name  }} 
         </span>
-       
-       
-    </div>
-</div>
-<br>
-
+        </div>
+    </body>
+</html>
 

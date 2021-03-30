@@ -15,7 +15,7 @@
     <br>
     
     <div>
-        This is to certify that {{ $stdnt->name}} S/o, {{$stdnt->father_name}} &amp; {{$stdnt->mother_name}},{{$allstdnt->address}}, was a student of  {{$stdnt->department}}
+        This is to certify that {{ $stdnt->name}} S/o, {{$stdnt->father_name}} &amp; {{$stdnt->mother_name}}, {{$allstdnt->address}}, was a student of  {{$stdnt->department}}
         , University of Dhaka. He has successfully completed the final examination of “Master
         in Information Technology (MIT)” course (Session- {{$stdnt->session}}, Roll-{{$stdnt->roll_no}}) and his
         CGPA is {{$allstdnt->cgpa}} on a scale of 4.00.

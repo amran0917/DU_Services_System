@@ -120,13 +120,15 @@
 
 /*------------------------------registration--------------------*/
 
+.cert_img{
+	height: 1000px;
+	width: 1000px;
+}
 .home_img{
 	height: 100%;
 	margin-top: 0px;
 	opacity: 0.7;
 	background-repeat: no-repeat;
-
-
 
 }
 .reg_img

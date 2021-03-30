@@ -232,7 +232,7 @@ class ApplicationController extends Controller
         $allstdnt = AllStudent::where('registration_no',$stdnt->registration_no)->first();
         $lang = Language::where('language_name',$stdnt->language)->first();
         $dir = Director::where('fac_name',$lang->fac_name)->first();
-        //  Log::info($dir);
+        
         $certificate_id =rand(10000,99999);
 
         $certificate=Certificate::where('applicant_id',  $applicant_id)->first();
@@ -241,7 +241,7 @@ class ApplicationController extends Controller
 
         if($certificate){
             $pdf->save(public_path('file/') . '/' . $fileName);
-            $certificate->path = '/files/' . $fileName;
+            $certificate->path = '/file/' . $fileName;
             $certificate->save();
         } else{ 
             $response['certificate_id'] =$certificate_id;
@@ -250,7 +250,7 @@ class ApplicationController extends Controller
             $certificate->applicant_id=$applicant_id;
             $certificate->applicant_name=$stdnt->name; 
             $pdf->save(public_path('file/') . '/' . $fileName);
-            $certificate->path = '/files/' . $fileName;
+            $certificate->path = '/file/' . $fileName;
             $certificate->save();
         }
         return $pdf->stream($fileName);
