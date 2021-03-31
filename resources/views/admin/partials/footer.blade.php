@@ -1,6 +1,12 @@
 
-<footer class="footer-bottom">
-    <p class="text-center" style="color: wheat">&copy;<span id="year"></span> All rights reserved|DU Services site</p>
+<footer  style=" left: 0; position: fixed;
+                                bottom: 0;
+                                width: 100%;
+                                padding:8px;
+                                margin-top: 10px;
+                                background-color: rgb(56, 84, 145);">
+                                
+    <p  style="color: wheat; text-align: center;">&copy;<span id="year"></span> All rights reserved|DU Services site</p>
 </footer>
 
 <script>

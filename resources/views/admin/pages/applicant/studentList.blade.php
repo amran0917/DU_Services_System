@@ -11,12 +11,12 @@
                 <!--/.sidebar-->
             </div>
             <!--/.span3-->
-                
+              
            
             <div class="span9">
                 <div class="content">
                     <div class="btn-controls">
-                        {{-- <div class="btn-box-row row-fluid"> --}}
+                   
                             <div class="card text-white bg-success mb-3" style="max-width: 100%">
                                 <div> 
                                     @if(session()->has('message'))
@@ -36,9 +36,11 @@
 
                                 
                                     <div class="card-header " style="text-align: center">
-                                        <b style="color: rgb(76, 0, 255)">  Applicant List</b> 
-    
+                                        <b style="color: rgb(5, 1, 15); font-size:20px;">  Applicant List</b> 
                                     </div>
+                                    <br>
+
+                                    
                         
                                     <div class="card-body">
                             

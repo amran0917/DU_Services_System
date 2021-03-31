@@ -16,6 +16,7 @@
                     <div class="btn-controls">
                         <div class="btn-box-row row-fluid">
                             <div class="card text-white bg-success mb-3" style="max-width: 100%">
+                                <br>
                                 <div > 
                                     @if(session()->has('message'))
                                         <div class="alert alert-info">
@@ -39,9 +40,10 @@
                                 </div>
                                
                                 <div class="card-header " style="text-align: center">
-                                    <b style="color: rgb(0, 255, 42)">  Admin List</b> 
+                                    <br>
+                                    <b style="color: rgb(5, 49, 12); font-size:20px">  Admin List</b> 
                                 </div>
-                    
+                                <br>
                                 <div class="card-body">
                     
                                     <table style="width:100%" class="table table-hover table-stripped">
@@ -62,7 +64,7 @@
                                                 <td>
                                                     <a href="{{route('admin.view',$row->id)}}" class="btn btn-sm btn-primary" >View</a> 
                                                     <a href="{{ route('admin.edit',$row->id)}}" class="btn btn-sm btn-info">Edit</a>
-                                                    <a href="#myModal{{$row->id}}"  class="btn btn-danger btn-sm" data-toggle="modal" > Delete</a>
+                                                    
                                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal{{$row->id}}">
                                                         Delete
                                                     </button>

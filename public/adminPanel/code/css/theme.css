@@ -179,7 +179,6 @@ body [class^="icon-"], body [class*=" icon-"] {
 	margin-bottom: 0!important
 }
 .navbar {
-	position: static!important;
 	margin: 0!important
 }
 .navbar .navbar-inner {

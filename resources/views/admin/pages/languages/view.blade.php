@@ -17,14 +17,13 @@
                 <div class="content">
                     
                             <div class="card text-white bg-success mb-3" style="max-width: 100%">
-                                
-                          
-                                                   
+                    
                                     <div class="card-header" style="text-align: center ">
-                                        <b style="color: rgb(76, 0, 255)">  Language Details : Name  <b class="label green"> {{ $lang->language_name}}</b>
+                                        <br>
+                                        <b style="color: rgb(10, 5, 22); font-size:20px">  Language Details : Name  <b class="label green"> {{ $lang->language_name}}</b>
                                     </b> 
                                     </div>
-                
+                                    <br>
                                     <div class="card-body">
 
                                         <form action="#" method="POST"  >
@@ -34,12 +33,12 @@
                                                     <div class="col-lg-4">
                                                             <div class="form-group ">
                                                                 <label for="name">Department Name:</label>
-                                                                <input type="text" class="form-control" id="department" name="department" value="{{$lang->department}}">
+                                                                <input type="text" class="form-control" id="department" style="width: 60%" name="department" value="{{$lang->department}}">
                                                              </div>
                             
                                                              <div class="form-group ">
                                                                 <label for="name">Faculty or Institute Name:</label>
-                                                                <input type="text" class="form-control" id="name" name="fac_name" value="{{$lang->fac_name}}" >
+                                                                <input type="text" class="form-control" id="name"  style="width: 60%"name="fac_name" value="{{$lang->fac_name}}" >
                                                              </div>                                      
                                                     </div>
 

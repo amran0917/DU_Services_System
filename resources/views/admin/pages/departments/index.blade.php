@@ -1,27 +1,26 @@
 @extends('admin.layouts.master')
 @section('contents')
 
-    <div class="container">
-        <div class="row">
-            <div class="span3">
-                @include('admin.partials.sidebar')
-                <!--/.sidebar-->
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+            @include('admin.partials.sidebar')
+            <!--/.sidebar-->
+        </div>
             <!--/.span3-->
-                
-           
-            <div class="span9">
-                <div class="content">
-                    <div class="btn-controls">
+   
+        <div class="span9">
+            <div class="content">
+                <div class="btn-controls">
                         <div class="btn-box-row row-fluid">
                             <div class="card text-white bg-success mb-3" style="max-width: 100%">
                             <div> 
                                 @if(session()->has('message'))
-                                <div class="alert alert-info">
-                                    {{ session()->get('message') }}
-                                </div>
-                            @endif
-                        </div>
+                                    <div class="alert alert-info">
+                                        {{ session()->get('message') }}
+                                    </div>
+                                @endif
+                            </div>
                         <div > 
                             @if(session()->has('delete'))
                                 <div class="alert alert-danger">
@@ -42,7 +41,7 @@
                             <form action="{{ route('search') }}" method="GET">
                                  <br>
 
-                                <input type="text" name="search" placeholder="department name" required/>
+                                <input type="text" name="search" placeholder="search department name" required/>
                             </form>
                         </div>
                        
@@ -54,10 +53,10 @@
                         </div>
                         <div id="dept_list"></div>      --}}
 
-                        <div class="card-header " style="text-align: center">
-                            <b style="color: rgb(76, 0, 255)">  Departments List</b> 
-
+                         <div class="card-header " style="text-align: center">
+                            <b style="color: rgb(15, 14, 27); font-size:20px;">  Department List</b> 
                         </div>
+                        <br>
 
                 
                             <div class="card-body">
@@ -135,7 +134,7 @@
             <!--/.span9-->
 
         </div>
-    </div>
+</div>
     <!--/.container-->
 
 

@@ -15,7 +15,7 @@ class LangPageController extends Controller
 
     function index(){
         
-        $lang = Language::paginate(10);
+        $lang = Language::paginate(8);
         return view('admin.pages.languages.index',compact('lang'));
     }
 

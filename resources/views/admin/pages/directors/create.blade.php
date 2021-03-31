@@ -16,13 +16,11 @@
                 <div class="content">
                     
                             <div class="card text-white bg-success mb-3" style="max-width: 100%">
-                                
-                          
-                                                   
+                                <br>                       
                                     <div class="card-header" style="text-align: center ">
-                                        <b style="color: rgb(76, 0, 255)"> Add Directors  </b> 
+                                        <b style="color: rgb(14, 9, 26); font-size:20px"> Add Directors  </b> 
                                     </div>
-                
+                                    <br>
                                     <div class="card-body">
 
                                         <form action="{{route('admin.store')}}" method="POST"  >
@@ -32,22 +30,25 @@
                                                     <div class="col-lg-6">
                                                             <div class="form-group ">
                                                                 <label for="name">Director Name:</label>
-                                                                <input type="text" class="form-control" id="dir_name" name="dir_name" required>
+                                                                <input type="text" class="form-control" style="width: 60%" id="dir_name" name="dir_name" required>
 
                                                              </div>
                                                              <div class="form-group ">
                                                                 <label for="name">Deparment Name:</label>
-                                                                <input type="text" class="form-control" id="department" name="department" required>
+                                                                <input type="text" class="form-control" style="width: 60%" id="department" name="department" required>
 
                                                              </div>
                             
                                                              <div class="form-group ">
                                                                 <label for="name">Faculty/Institute Name:</label>
-                                                                <input type="text" class="form-control" id="fac_name" name="fac_name" >
+                                                                <input type="text" class="form-control" style="width: 60%" id="fac_name" name="fac_name" >
                                                              </div>                                      
                                                  
                                                             <div class="form-group">
                                                                 <button type="submit" class="btn btn-success">Add Director</button>
+                                                            </div>
+                                                            <div style="height: 60px">
+
                                                             </div>
 
                                                                         

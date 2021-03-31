@@ -262,9 +262,9 @@ class AdminController extends Controller
         $admin->password = $request->password;
         $admin->department = $request->dept;
         $admin->type = $request->adminType;
-
+        
         $admin->save();
-  // Hash::make
+         // Hash::make
         if($admin){
            
             return Redirect()->route('admin.list')->with('success', 'Successfully saved!');;
@@ -297,6 +297,7 @@ class AdminController extends Controller
 
     public  function updateAdmin(Request $request,$id)
     {
+       
         $validation= $request->validate([
             'name' => 'required',
             'email' => 'required',
@@ -304,12 +305,13 @@ class AdminController extends Controller
         ]);
 
         $admin = Admin::find($id);
+        
         $admin->name =  $request->name;
         $admin->email= $request->email;
+        $admin->password = $request->password;
         $admin->department = $request->dept;
-        $admin->password = $request->pasword; //bcrypt
         $admin->type = $request->adminType;
-        $admin->update();
+        $admin->save();
 
    
         if($admin){

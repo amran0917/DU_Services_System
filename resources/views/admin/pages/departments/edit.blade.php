@@ -3,8 +3,6 @@
 
 @section('contents')
 
-<div class="wrapper">
-   
     
     <div class="container">
         <div class="row">
@@ -18,14 +16,13 @@
             <div class="span9">
                 <div class="content">
                     
-                            <div class="card text-white bg-success mb-3" style="max-width: 100%">
-                                
-                          
+                         <div class="card text-white bg-success mb-3" style="max-width: 100%">
+                             <br>
                                                    
                                     <div class="card-header" style="text-align: center ">
-                                        <b style="color: rgb(76, 0, 255)"> Edit Departments </b> 
+                                        <b style="color: rgb(27, 20, 43); font-size:20px"> Edit Departments </b> 
                                     </div>
-                
+                                    <br>
                                     <div class="card-body">
 
                                         <form action="{{route('dept.update',$dept->id)}}" method="POST"  >
@@ -35,12 +32,12 @@
                                                     <div class="col-lg-4">
                                                             <div class="form-group ">
                                                                 <label for="name">Department Name:</label>
-                                                                <input type="text" class="form-control" id="name" name="dept_name" value="{{$dept->department_name}}" required>
+                                                                <input type="text" class="form-control" style="width: 60%;" id="name" name="dept_name" value="{{$dept->department_name}}" required>
                                                              </div>
                             
                                                              <div class="form-group ">
                                                                 <label for="name">Faculty/Institute Name:</label>
-                                                                <input type="text" class="form-control" id="name" name="fac_name" value="{{$dept->fac_name}}" >
+                                                                <input type="text" class="form-control" id="name"  style="width: 60%;" name="fac_name" value="{{$dept->fac_name}}" >
                                                              </div>                                      
                                                  
                                                             <div class="form-group">
@@ -64,8 +61,6 @@
         </div>
     </div>
     <!--/.container-->
-</div>
-<!--/.wrapper-->
 
 @endsection
 

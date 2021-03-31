@@ -1,6 +1,9 @@
-<div class="navbar navbar-fixed-top">
+
+
+<div class="navbar">
+  
     {{-- /navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row --}}
-    <div class="navbar-inner">
+    <div class="navbar-inner  navbar-fixed-top">
         <div class="container">
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
                 <i class="icon-reorder shaded"></i></a><a class="brand" href="#">Admin </a>
@@ -49,4 +52,5 @@
     </div>
     <!-- /navbar-inner -->
 </div>
+
 <!-- /navbar -->

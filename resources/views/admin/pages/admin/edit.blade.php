@@ -3,7 +3,6 @@
 
 @section('contents')
 
-<div class="wrapper">
     <div class="container">
         <div class="row">
             <div class="span3">
@@ -13,15 +12,15 @@
             <!--/.span3-->
                 
            
-            <div class="span9">
+            <div class="span9" style="text-align: center;">
                 <div class="content">
-                    <div class="btn-controls">
-                        <div class="btn-box-row row-fluid">
+                    <div class="card text-white  mb-3" style="max-width: 100%">
                                                    
                             <div class="card-header">
-                               Edit Admin 
+                                <br>
+                              <b style="color:black; font-size:20px "> Edit Admin</b>  
                             </div>
-                
+                            <br>
                             <div class="card-body">
 
                                 <form action="{{route('admin.update',$admin->id)}}" method="POST"  >
@@ -31,17 +30,24 @@
                                             <div class="col-lg-4">
                                                     <div class="form-group ">
                                                         <label for="name">Name:</label>
-                                                        <input type="text" class="form-control" id="name" name="name" value="{{$admin->name}}" required>
+                                                        <input type="text" class="form-control" style="width: 60%" id="name" name="name" value="{{$admin->name}}" required>
                                                     </div>
                     
                                                     <div class="form-group ">
                                                         <label for="email">Email</label>
-                                                        <input type="email" class="form-control" id="email" name="email" value="{{$admin->email}}" required>
+                                                        <input type="email" class="form-control"  style="width: 60%" id="email" name="email" value="{{$admin->email}}" required>
                                                     </div>
+
+                                                    
+                                                    <div class="form-group ">
+                                                        <label for="dept">Department</label>
+                                                        <input type="text" class="form-control"  style="width: 60%" id="dept" name="dept" value="{{$admin->department}}" required>
+                                                    </div>
+
                     
                                                     <div class="form-group ">
                                                         <label for="password">Password</label>
-                                                        <input type="password" class="form-control" id="password" name="password" value="{{$admin->password}}" required>
+                                                        <input type="password" class="form-control" style="width: 60%" id="password" name="password" value="{{$admin->password}}" required>
                                                     </div> 
 
                                                     <div class="form-group">
@@ -58,25 +64,22 @@
 
                                                                 
                                         </div>
+                                        <div style="height: 60px">
+
+                                        </div>
                             </div>
-                
-                            
-                        </div>
-                        
-                            
-                        </div> 
-                    </div>
-                 
+                    </div>              
+                      
                 </div>
-                <!--/.content-->
+                 
             </div>
+                <!--/.content-->
+        </div>
             <!--/.span9-->
 
-        </div>
     </div>
     <!--/.container-->
-</div>
-<!--/.wrapper-->
+
 
 @endsection
 

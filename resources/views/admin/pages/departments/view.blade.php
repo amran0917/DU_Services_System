@@ -13,54 +13,47 @@
             <!--/.span3-->
                 
            
-            <div class="span9">
-                <div class="content">
-                    
-                            <div class="card text-white bg-success mb-3" style="max-width: 100%">
-                                
-                          
-                                                   
-                                    <div class="card-header" style="text-align: center ">
-                                        <b style="color: rgb(76, 0, 255)">  Dept Details : Name  <b class="label green"> {{ $dept->department_name}}</b>
-                                    </b> 
-                                    </div>
-                
-                                    <div class="card-body">
+            <div class="span9" style="text-align: center">
+               
+                    <div class="card text-white  mb-3" style="max-width: 100%">
+                        
+                        <br>
+                            <div class="card-header" style="text-align: center ">
+                                <b style="color: rgb(17, 11, 32)">  Department Details : Name  <b class="label green"> {{ $dept->department_name}}</b>
+                                 </b> 
+                             </div>
+                                <br>
+                            <div class="card-body">
 
-                                        <form action="#" method="POST"  >
-                                            @csrf
-                                                <div class="row " style="text-align: center">
-                                                            
-                                                    <div class="col-lg-4">
-                                                            <div class="form-group ">
-                                                                <label for="name">Department Name:</label>
-                                                                <input type="text" class="form-control" id="name" name="dept_name" value="{{$dept->department_name}}">
-                                                             </div>
-                            
-                                                             <div class="form-group ">
-                                                                <label for="name">Faculty/Institute Name:</label>
-                                                                <input type="text" class="form-control" id="name" name="fac_name" value="{{$dept->fac_name}}" >
-                                                             </div>                                      
-                                                    </div>
-
-                                                                        
-                                                </div>
-                                        </form>
+                                <form action="#" method="POST"  >
+                                    @csrf
+                                    <img src="https://www.flaticon.com/svg/vstatic/svg/3652/3652193.svg?token=exp=1617209635~hmac=180d2bbc1adbafcd9366d73c5e5fb9cb" alt="" height="100px" width="100px" style="align:center">
+                                    <br>
+                                    <div class="form-group ">
+                                        <label for="name">Department Name:</label>
+                                        <input type="text" class="form-control" style="width:60%;" id="name" name="dept_name" value="{{$dept->department_name}}">
                                     </div>
+    
+                                    <div class="form-group ">
+                                        <label for="name">Faculty/Institute Name:</label>
+                                        <input type="text" class="form-control" style="width: 60%" id="name" name="fac_name" value="{{$dept->fac_name}}" >
+                                    </div>                                      
+                                   
+                                </form>
                             </div>
+                        </div>
                             
                         
                             
                     </div>
                  
-                </div>
+              
                 <!--/.content-->
             </div>
             <!--/.span9-->
 
         </div>
     <!--/.container-->
-
 
 @endsection
 

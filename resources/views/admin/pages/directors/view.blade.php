@@ -21,10 +21,11 @@
                           
                                                    
                                     <div class="card-header" style="text-align: center ">
-                                        <b style="color: rgb(76, 0, 255)">  Director Details : Name  <b class="label green"> {{ $dir->dir_name}}</b>
+                                        <br>
+                                        <b style="color: rgb(255, 94, 0)">  Director Details : Name  <b class="label green"> {{ $dir->dir_name}}</b>
                                     </b> 
                                     </div>
-                
+                                    <br>
                                     <div class="card-body">
 
                                         <form action="#" method="POST"  >
@@ -32,14 +33,17 @@
                                                 <div class="row " style="text-align: center">
                                                             
                                                     <div class="col-lg-4">
-                                                            <div class="form-group ">
+                                                        <img src="https://www.flaticon.com/svg/vstatic/svg/3135/3135715.svg?token=exp=1617216283~hmac=ab908424bed4eb61663f87cb4e29e8ca" alt="" height="100px" width="100px">
+                                                        <br>   
+                                                        <br>
+                                                        <div class="form-group ">
                                                                 <label for="name">Department Name:</label>
-                                                                <input type="text" class="form-control" id="department" name="department" value="{{$dir->department}}">
+                                                                <input type="text" class="form-control" style="width: 60%" id="department" name="department" value="{{$dir->department}}">
                                                              </div>
                             
                                                              <div class="form-group ">
                                                                 <label for="name">Faculty/Institute Name:</label>
-                                                                <input type="text" class="form-control" id="name" name="fac_name" value="{{$dir->fac_name}}" >
+                                                                <input type="text" class="form-control" id="name" style="width: 60%"  name="fac_name" value="{{$dir->fac_name}}" >
                                                              </div>                                      
                                                     </div>
 

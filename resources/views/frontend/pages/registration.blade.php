@@ -57,7 +57,7 @@
 
                                     <div class="form-group ">
                                         <label for="reg_no">Registration No:</label>
-                                        <input type="text" class="form-control" id="registration_no" name="registration_no" required>
+                                        <input type="text" placeholder="exmple: xxxx-xxx-xxx" class="form-control" id="registration_no" name="registration_no" required>
                                     </div>
                                     <div id="error_reg"></div>
 

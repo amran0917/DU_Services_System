@@ -16,21 +16,21 @@
         </div>
 
         <div style="margin-top:10px;  width:400px;margin-left:130px;  text-align: center;"> 
-            <span style="height: 30px;"><i>This is to certify that {{ $stdnt->name}}, father name: {{$stdnt->father_name}},  mother name: {{$stdnt->mother_name}} has completed the course {{$stdnt->language}} language with glorious result. </i></span>
+            <span style="height: 30px;"><i>This is to certify that <b> {{ $stdnt->name}}</b>, father name: {{$stdnt->father_name}},  mother name: {{$stdnt->mother_name}} has completed the course <b>  {{$stdnt->language}}</b> language with glorious result. </i></span>
         <br/>
           
            <span style="height:30px"> <i>  He is energetic, efficient and well behaved. he has a pleasant personality and possesses good
-            moral character. </i></span><br/> <br/>
+            moral character. </i></span><br/> 
           <span style="height: 30px;"> <i>I wish him every success in life. </i> </span>
-           <br/> 
+           
         
         </div>
 
-            
+        <br/> 
       
         <div style="margin-top: 10px; ">
-            <hr style="margin-left: 350px; width: 200px;"> 
-            <span style="margin-left: 350px; float: left;"> 
+            {{-- <hr style="margin-left: 350px; width: 200px;">  --}}
+            <span style="margin-left: 350px; float: left; font-size:13px;"> 
                 (Prof.{{ $dir->dir_name}}) 
                 <br >
                 Director

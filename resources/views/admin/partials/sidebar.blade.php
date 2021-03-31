@@ -1,5 +1,5 @@
 
-<div class="sidebar" id="side">
+<div class="sidebar" style="position:fixed;" id="side">
     <ul class="widget widget-menu unstyled">
 
         <li><a href="{{route('student.list')}}"><i class="menu-icon icon-inbox"></i>Inbox 
@@ -124,4 +124,9 @@
 
     </ul>
 </div>
+
+<div class="sidebar" style="" id="side">
+    
+</div>
+
 

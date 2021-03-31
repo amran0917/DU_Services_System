@@ -1,7 +1,6 @@
 @extends('admin.layouts.master')
 @section('contents')
 
-{{-- <div class="wrapper"> --}}
     <div class="container">
         <div class="row">
             <div class="span3">
@@ -17,9 +16,12 @@
                         <div class="btn-box-row row-fluid">
                             <div class="card text-white bg-success mb-3" style="max-width: 100%">
                                 <div class="card-header " style="text-align: center">
-                                    <b style="color: rgb(76, 0, 255)">  Languages List</b> 
+                                    <br>
+                                    <b style="color: rgb(17, 13, 29); font-size:20px">  Languages List</b> 
 
                                 </div>
+                                <br>
+
                                 <div > 
                                     @if(session()->has('message'))
                                         <div class="alert alert-info">
@@ -42,7 +44,7 @@
                                     @endif
                                 </div>
                                
-
+                                <br>
                             <div class="card-body">
                 
                                 <table style="width:100%" class="table table-hover table-stripped">
@@ -118,8 +120,7 @@
         </div>
     </div>
     <!--/.container-->
-{{-- </div> --}}
-<!--/.wrapper-->
+
 
 @endsection
 

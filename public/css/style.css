@@ -9,16 +9,6 @@
     max-height: 250px;
 }
 
-.footer-bottom{
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    padding:8px;
-    margin-top: 10px;
-    background-color: rgb(54, 81, 139);
-}
-
 
 /* .navbar-nav>li {
     margin-left: 40px;
