@@ -113,11 +113,9 @@ Route::group(['prefix' => 'admin','middleware' => 'admincheck'], function () {
     Route::post('/student_details/update/{applicant_id}', [AdminController::class,'studentUpdate'])->name('studentUpdate');
 
     Route::post('/student_details/approve/{applicant_id}', [AdminController::class,'approveTestimonial'])->name('admin.student.update');
-    Route::get('/student/approve/{applicant_id}', [AdminController::class,'approve'])->name('admin.approve');
+    Route::get('/student/download/{applicant_id}', [AdminController::class,'download'])->name('admin.download');
     Route::post('/studentlist/change-status', [AdminController::class,'changeActiveStatus'])->name('change.status');
     Route::post('/studentlist/cancel', [AdminController::class,'cancel'])->name('cancel.status');
-
-    
     
     Route::get('/adminList', [AdminController::class,'getAdmin'])->name('admin.list');
     Route::get('/create', [AdminController::class,'createAdmin'])->name('admin.create');
@@ -183,6 +181,7 @@ Route::group(['prefix' => 'admin','middleware' => 'admincheck'], function () {
     Route::get('/search', [SearchController::class,'search'])->name('search');
     Route::get('/searchapplicant', [SearchController::class,'searchapplicant'])->name('searchapplicant');
     Route::get('/searchStudent', [SearchController::class,'searchStudent'])->name('searchStudent');
+    Route::get('/searchCourse', [SearchController::class,'searchCourse'])->name('searchCourse');
 
 
 

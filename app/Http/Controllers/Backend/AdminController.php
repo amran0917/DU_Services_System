@@ -75,8 +75,7 @@ class AdminController extends Controller
         { 
             $type = Session::get('type'); 
             $admin = Admin::where('type',$type)->get();
-            // Log::info($admin[1]->department);
-            //  Log::info(Session::get('department'));
+           
             $cnt = count($admin);
             if($cnt>0){
                
@@ -193,7 +192,9 @@ class AdminController extends Controller
         // return view('admin.pages.testmonial',compact('stdnt'));
     }
 
-    public function approve($applicant_id, Request $request){
+    public function download($applicant_id, Request $request){
+        
+        
 
         $stdnt = Student::where('applicant_id', $request->applicant_id)->first();
         $stdnt->notification_status = 1;
@@ -211,6 +212,9 @@ class AdminController extends Controller
         }
        
         $testimonial=Testimonial::where('applicant_id',  $applicant_id)->first();
+
+      
+
         if($testimonial){
 
             $path =$testimonial->path;
@@ -230,7 +234,7 @@ class AdminController extends Controller
             $testmonial->applicant_name=$stdnt->name;
             $path = public_path('file/');
             $fileName = $testimonial_id. '.' .$testmonial->applicant_name.'.pdf' ;
-            $pdf = PDF::loadView('admin.pages.partials.testmonial', compact('stdnt','allstdnt', 'dir'));
+            $pdf = PDF::loadView('admin.pages.partials.testimonial', compact('stdnt','allstdnt', 'dir'));
             $pdf->save($path . '/' . $fileName);
             $testmonial->path = $path . '/' . $fileName;
             $testmonial->save();

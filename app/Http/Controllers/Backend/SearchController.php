@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Models\Departments;
 use App\Models\Student;
 use App\Models\Applicant;
+use App\Models\Language;
+
 
 
 class SearchController extends Controller
@@ -51,6 +53,17 @@ class SearchController extends Controller
                         ->orderBy('id','desc')
                         ->paginate(4);
      return view('admin.pages.applicant.studentList',compact('student'));
+
+   }
+
+   public function searchCourse(Request $request){
+    $search = $request->searchCourse;
+    $lang = Language::orWhere('language_name','like','%'. $search.'%')
+                        ->orWhere('department','like','%'. $search.'%')
+                        
+                        ->orderBy('id','desc')
+                        ->paginate(8);
+     return view('admin.pages.languages.index',compact('lang'));
 
    }
 }

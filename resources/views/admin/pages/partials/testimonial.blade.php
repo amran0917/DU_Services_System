@@ -7,10 +7,15 @@
     <title>Document</title>
 </head>
 <body>
-    <div style="text-align: center">
-
-       <b>  TO WHOM IT MAY CONCERN </b>
+    {{-- <div
+        style=" margin: auto; height:70px; background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Dhaka_University_logo.svg/1200px-Dhaka_University_logo.svg.png'); background-repeat:no-repeat;background-size:cover;">
     </div>
+   --}}
+    {{-- <div style="text-align: center">
+      
+        <br>
+       <b>  TO WHOM IT MAY CONCERN </b>
+    </div> --}}
     <br>
     <br>
     
@@ -32,14 +37,12 @@
         <br>
         <br>
         <br>
-        (Prof.
-        {{        $dir->dir_name
-        }} ) 
+        Prof.
+        {{        $dir->dir_name }} 
         <br>
         Director
         <br>
-        {{       $dir->fac_name 
-        }}
+        {{       $dir->fac_name  }}
     </div>
 </body>
 </html>
