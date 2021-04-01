@@ -69,7 +69,7 @@
                                                 @if($row->status=='complete')
                                                     <a href="" class="btn btn-sm btn-success"  >Approved</a>
                                                 @endif
-                                                <a href=" {{route('admin.download',$row->applicant_id)}}" target="_blank" ><button class="btnD "><i class="fa fa-download"></i> Download</button></a>
+                                                <a href="{{route('admin.download2',$row->applicant_id)}}" target="_blank" ><button class="btnD "><i class="fa fa-download"></i> Download</button></a>
 
                                                 @if ($row->status=='pending' || $row->status=='complete')
                                                         <a  class="btn btn-sm btn-danger"  onclick="cancelStatus(event.target, {{$row->applicant_id}});" >Cancel</a>

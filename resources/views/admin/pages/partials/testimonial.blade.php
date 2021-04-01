@@ -7,15 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    {{-- <div
-        style=" margin: auto; height:70px; background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Dhaka_University_logo.svg/1200px-Dhaka_University_logo.svg.png'); background-repeat:no-repeat;background-size:cover;">
-    </div>
-   --}}
-    {{-- <div style="text-align: center">
-      
+   
+    <div style="text-align: center">
+        <img  src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Dhaka_University_logo.svg/1200px-Dhaka_University_logo.svg.png" height="80px">
+        <br>
         <br>
        <b>  TO WHOM IT MAY CONCERN </b>
-    </div> --}}
+    </div>
     <br>
     <br>
     
@@ -26,8 +24,7 @@
         CGPA is {{$allstdnt->cgpa}} on a scale of 4.00.
         <br>
         <br>
-        <br>
-
+    
         He is energetic, efficient and well behaved. he has a pleasant personality and possesses good
         moral character. To the best of my knowledge, he did not take part in any activity subversive
         of the state or of discipline.

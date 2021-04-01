@@ -238,7 +238,7 @@ class AdminController extends Controller
             $pdf->save($path . '/' . $fileName);
             $testmonial->path = $path . '/' . $fileName;
             $testmonial->save();
-          return $pdf->stream($fileName);
+            return $pdf->stream($fileName);
         }
       
     }
