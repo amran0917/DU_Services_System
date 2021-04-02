@@ -34,9 +34,6 @@ class AdminController extends Controller
         $email = $request->email;
         $password = $request->password;
         
-        // var_dump($email);
-        // var_dump($password);
-
         $data = Admin::where('email',$email)->where('password',$password)->get(); 
         // var_dump($data);
 
@@ -47,7 +44,8 @@ class AdminController extends Controller
             $request->session()->put('type',$data[0]->type);
             $request->session()->put('department',$data[0]->department);
 
-            return view('admin.pages.index');
+            $student = Student::paginate(7);
+            return view('admin.pages.applicant.studentlist',compact('student'));
         }
 
         else{
@@ -86,7 +84,7 @@ class AdminController extends Controller
         }
 
         else{
-            $student = Student::paginate(4);
+            $student = Student::paginate(7);
             return view('admin.pages.applicant.studentlist',compact('student'));
         }
         
@@ -114,8 +112,6 @@ class AdminController extends Controller
             return response()->json(['success'=>'Status changed successfully.']);
         }
     }
-
-
 
     public function showDetails($applicant_id,Request $request) {
 
@@ -359,7 +355,7 @@ class AdminController extends Controller
 
     function getDept(){
         
-        $dept = Departments::paginate(8);
+        $dept = Departments::paginate(7);
         return view('admin.pages.departments.index',compact('dept'));
     }
 

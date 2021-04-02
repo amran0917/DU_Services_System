@@ -19,7 +19,7 @@
                        
                                     <div class="card-header" style="text-align: center ">
                                         <br>
-                                        <b style="color: rgb(8, 6, 14); font-size:20px"> Edit Languages Information</b> 
+                                        <b style="color: rgb(8, 6, 14); font-size:20px"> Edit Courses Information</b> 
                                     </div>
                                     <br>
                                     <div class="card-body">
@@ -32,7 +32,7 @@
                                                                      
                                                         
                                                         <div class="form-group ">
-                                                            <label for="name">Language Name:</label>
+                                                            <label for="name">Course Name:</label>
                                                             <input type="text" class="form-control" style="width: 60%" id="language_name" name="language_name" value="{{$lang->language_name}}" required>
 
                                                         </div>

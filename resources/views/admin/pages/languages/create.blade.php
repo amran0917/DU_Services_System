@@ -20,7 +20,7 @@
                  
                                     <div class="card-header" style="text-align: center ">
                                         <br>
-                                        <b style="color: rgb(18, 13, 29); font-size:20px"> Add Language  </b> 
+                                        <b style="color: rgb(18, 13, 29); font-size:20px"> Add Courses  </b> 
                                     </div>
                                     <br>
                                     <div class="card-body">
@@ -31,7 +31,7 @@
                                                             
                                                     <div class="col-lg-6">
                                                             <div class="form-group ">
-                                                                <label for="name">Language Name:</label>
+                                                                <label for="name">Course Name:</label>
                                                                 <input type="text" class="form-control" style="width: 60%" id="language_name" name="language_name" required>
 
                                                              </div>

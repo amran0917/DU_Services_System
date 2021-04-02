@@ -29,7 +29,7 @@
 
                     <div class="form-group ">
                         <label for="applican_id">Applicant's ID:</label>
-                        <input type="text" class="form-control" name="applicant_id" class="applicant_id" required>
+                        <input type="text" class="form-control" name="applicant_id" class="applicant_id" autocomplete="off"  required>
                     </div>
 
                    

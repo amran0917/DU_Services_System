@@ -12,6 +12,8 @@
         @endif
     </div>
 
+
+
     <div class="box2">
         <h1 style="text-align: center; font-size: 35px;font-family: Lucida Console;"> &nbsp; &nbsp; &nbsp; Language Certificate Management System</h1>
         <h1 style="text-align: center; font-size: 25px;"> Application Form</h1>
@@ -36,7 +38,7 @@
                 <div class="col-lg-4">
                     <div class="form-group ">
                         <label for="name">Student's name:</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
+                        <input type="text" class="form-control" id="name" name="name" autocomplete="off" required>
                     </div>
 
                     <div class="form-group ">
@@ -51,7 +53,7 @@
 
                     <div class="form-group ">
                         <label for="reg_no">Registration No:</label>
-                        <input type="text" class="form-control" id="registration_no" name="registration_no" required>
+                        <input type="text" placeholder="ex: XXXX-XXX-XXX" class="form-control" id="registration_no" name="registration_no" required>
                     </div>
 
                     <div class="form-group ">
@@ -81,7 +83,7 @@
                         
                     <div class="form-group ">
                         <label for="email">Email address:</label>
-                        <input type="email" class="form-control" id="email" name="email" >
+                        <input type="email" class="form-control" id="email" name="email" autocomplete="off" >
                     </div>
 
                                 
@@ -112,7 +114,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="lang">Choose Language:</label> <br>
+                            <label for="lang">Choose Course:</label> <br>
                             <select name="lang" id="lang">
                                 @foreach($lang as $type)
                                     <option value = "{{$type->language_name}}">
@@ -163,7 +165,7 @@
         var form_data = $(this);
         var url = form_data.attr('action');
         alert(url);
-
+      
         $.ajax({
 
                 type    :'POST',
@@ -173,12 +175,10 @@
                 data    : form_data.serialize(),
                 
                 success : function(data){
-                        alert('success');
-                         $('#myModal').modal('show');
-                        // console.log('success');
-                  
+                    console.log('success');
+                         $('#myModal').modal('show');       
                         $("#applicaId").text(data.applicant_id);
-                        // alert(data.success);
+                         
                 },
 
                 error: function (xhr) {
@@ -207,7 +207,7 @@
                         <h4 class="modal-title w-100">Successfully Registerd.</h4>	
                     </div>
                     <div class="modal-body">
-                        <p class="text-center">You are registerd.Now Pay Fees with <br>
+                        <p class="text-center">You are registerd.Please remember this for future use.Now Pay Fees with <br>
                             Your applicant ID:
                              <mark id="applicaId">  </mark>                           
                           

@@ -20,7 +20,7 @@ class DirectorController extends Controller
     
     function index(){
         
-        $dir = Director::paginate(10);
+        $dir = Director::paginate(7);
         return view('admin.pages.directors.index',compact('dir'));
     }
     

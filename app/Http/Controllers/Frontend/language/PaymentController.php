@@ -13,12 +13,7 @@ class PaymentController extends Controller
 {
     public function exampleEasyCheckout(Request $request)
     {
-        // if(! $request->session()->has('applicant_id')) {
-        //     return "stop no session"; 
-        // }
-  
-        // $data = $request->session()->all();
-       # Log::info( $data);
+        
         return view('frontend.language.pages.payment');
     }
 
@@ -31,8 +26,6 @@ class PaymentController extends Controller
         # In orders table order uniq identity is "transaction_id","status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
 
          $requestData= (array)json_decode($request->cart_json);
-     #    Log::info($requestData);
-
         $post_data = array();
         $post_data['total_amount'] = '100'; # You cant not pay less than 100// $requestData['amount']
         $post_data['currency'] = "BDT";
@@ -85,11 +78,11 @@ class PaymentController extends Controller
                 'name' => $post_data['cus_name'],
                 'email' => $post_data['cus_email'],
                 'phone' => $post_data['cus_phone'],
+                'status' => 'Pending',
                 'reg_no' => $post_data['reg_no'],
                 'department' => $post_data['department'],
                 'amount' => $post_data['total_amount'],
                 'application_status' => 'Pending',
-                'status' => 'Pending',
                 'address' => $post_data['cus_add1'],
                 'transaction_id' => $post_data['tran_id'],
                 'applicant_id'=> $request->session()->get('applicant_id'),
@@ -105,6 +98,7 @@ class PaymentController extends Controller
         if (!is_array($payment_options)) {
             print_r($payment_options);
             $payment_options = array();
+
         }
 
     }
@@ -159,7 +153,7 @@ class PaymentController extends Controller
             echo "Invalid Transaction";
         }
        
-
+        
         return Redirect()->route('l_home')->with('message', 'Successfully Transaction completed.!');
 
 

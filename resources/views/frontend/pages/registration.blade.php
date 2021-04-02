@@ -39,7 +39,7 @@
                             <div class="col-lg-4">
                                     <div class="form-group ">
                                         <label for="name">Student's name:</label>
-                                        <input type="text" class="form-control" id="name" name="name" required>
+                                        <input type="text" class="form-control" id="name" name="name"   autocomplete="off" required>
                                     </div>
                                     <div id="error_name"></div>
 
@@ -57,7 +57,7 @@
 
                                     <div class="form-group ">
                                         <label for="reg_no">Registration No:</label>
-                                        <input type="text" placeholder="exmple: xxxx-xxx-xxx" class="form-control" id="registration_no" name="registration_no" required>
+                                        <input type="text" placeholder="exmple: xxxx-xxx-xxx" class="form-control" id="registration_no" autocomplete="off" name="registration_no" required>
                                     </div>
                                     <div id="error_reg"></div>
 
@@ -89,7 +89,7 @@
                                     
                                 <div class="form-group ">
                                     <label for="email">Email address:</label>
-                                    <input type="email" class="form-control" id="email" name="email" >
+                                    <input type="email" class="form-control" id="email" name="email" autocomplete="off">
                                 </div>
 
                                             

@@ -45,6 +45,9 @@ Route::get('/',[PagesController::class,'index']);
 Route::get('/home',[PagesController::class,'index'])->name('home');
 Route::get('/about',[PagesController::class,'about'])->name('about');
 Route::get('/contact',[PagesController::class,'contact'])->name('contact');
+Route::post('/sendMail',[PagesController::class,'sendEmail'])->name('contact-send');
+
+
 Route::get('/applicant/status',[PagesController::class,'status'])->name('status');
 Route::get('reset-password2/{token}', [ResetPasswordController::class,'getPassword']);
 Route::post('reset-Password2', [ResetPasswordController::class,'updatePassword'])->name('rest-pass');
@@ -84,10 +87,7 @@ Route::group(['prefix' => 'language'], function () {
     
     Route::get('/transaction', [PaymentController::class, 'exampleEasyCheckout'])->name('payment')->middleware('trancheck');
     Route::post('/pay-with-ajax', [PaymentController::class, 'payViaAjax'])->name('pay');
-    // Route::post('/success', [PaymentController::class, 'success']);
-    // Route::post('/fail', [PaymentController::class, 'fail']);
-    // Route::post('/cancel', [PaymentController::class, 'cancel']);
-    // Route::post('/ipn', [PaymentController::class, 'ipn']);
+  
 
 
 });

@@ -94,10 +94,10 @@
 
             <li><a class="collapsed" data-toggle="collapse" href="#lang"><i class="menu-icon icon-table">
             </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
-            </i>Languages </a>
+            </i>Courses </a>
                 <ul id="lang" class="collapse unstyled">
-                    <li><a href="{{route('language.list')}}"><i class="icon-inbox"></i>Language List </a></li>
-                    <li><a href="{{route('language.create')}}"><i class="icon-inbox"></i>Add Language</a></li>
+                    <li><a href="{{route('language.list')}}"><i class="icon-inbox"></i>Courses List </a></li>
+                    <li><a href="{{route('language.create')}}"><i class="icon-inbox"></i>Add Courses</a></li>
 
                 </ul>
             </li>

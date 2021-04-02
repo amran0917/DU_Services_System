@@ -4,9 +4,7 @@
 @section('content')
 <div class="reg_img">
     <div class="row">
-
-        <!-- <div class="box2"> -->
-            <!-- <h1 style="text-align: center; font-size: 25px;">User Search Result</h1> -->
+            
             <div class="card text-center" style="width: 1500px;">
                 <div class="card-header">
                    <b> User Profile </b>
@@ -25,18 +23,22 @@
                         <tr>
                             <td> <h5>ID </h5></td>
                             <td>{{$row->applicant_id}}</td>
-                            @if($row->status == 'complete')
-                                <td rowspan="13">  <mark style="background: rgb(0, 255, 170) "> success</mark> </td>
-                            @endif
-                            @if($row->status == 'cancel')
-                                <td rowspan="13">  <mark style="background: rgb(255, 51, 0) "> cancel</mark> </td>
-                            @endif  
-                            @if ($row->status == 'pending')
-                                <td rowspan="13">  <mark style="background: rgb(255, 217, 0) "> Pending</mark> </td>
+                            
+                                @if($row->status == 'complete')
+                                
+                                    <td rowspan="13" style="padding-left:20px; margin-left:10px">  <mark style="background: rgb(0, 255, 170);padding:10px;border-radius: 10px; "> success</mark> </td>
+                            
+                                @endif
+                           
+                                @if($row->status == 'cancel')
+                                    <td rowspan="13" style="padding-left:20px; margin-left:10px">  <mark style="background: rgb(255, 51, 0);padding:10px;border-radius: 10px; "> canceled</mark> </td>
+      
+                                @endif  
+                            
+                                @if ($row->status == 'pending')
+                                    <td rowspan="13" style="padding-left:20px; margin-left:10px">  <mark style="background: rgb(14, 21, 116);padding:10px;border-radius: 10px;color:rgb(219, 213, 236)"> Pending</mark> </td>
 
-                            @endif
-
-
+                                @endif
                            
                         </tr>
                         <tr>
@@ -87,7 +89,7 @@
                         </tr>
 
                         <tr>
-                            <td> <h5>Language </h5></td>
+                            <td> <h5>Course </h5></td>
                             <td> {{$row->language}} </td>
                         </tr>
 
@@ -103,9 +105,6 @@
 
                 </div>
             </div>
-            
-
-        <!-- </div> -->
         
     </div>
 </div>

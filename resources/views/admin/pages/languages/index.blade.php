@@ -59,7 +59,7 @@
                         <table style="width:100%" class="table table-hover table-stripped">
                                 <tr>
                                     <th>#</th>
-                                    <th>Language Name</th>
+                                    <th>Course Name</th>
                                     <th>Department Name</th>
                                     <th>Faculty or Institute name</th>
                                     <th>Action</th>

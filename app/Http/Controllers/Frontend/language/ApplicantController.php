@@ -91,7 +91,7 @@ class ApplicantController extends Controller
 
         else{
         
-            return redirect()->back()->with('message', 'Your data didn"t matched .Please input correctly.');
+            return Redirect()->route('student.application')->with('message', 'Your data didn"t matched .Please input correctly.');
 
         }
     

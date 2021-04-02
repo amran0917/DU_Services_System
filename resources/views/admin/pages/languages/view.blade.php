@@ -20,7 +20,7 @@
                     
                                     <div class="card-header" style="text-align: center ">
                                         <br>
-                                        <b style="color: rgb(10, 5, 22); font-size:20px">  Language Details : Name  <b class="label green"> {{ $lang->language_name}}</b>
+                                        <b style="color: rgb(10, 5, 22); font-size:20px">  Course Details : Name  <b class="label green"> {{ $lang->language_name}}</b>
                                     </b> 
                                     </div>
                                     <br>

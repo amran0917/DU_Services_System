@@ -25,8 +25,8 @@ class ApplicationController extends Controller
     public function getApplicant(){
 
 
-        $student = Applicant::paginate(4);
-       return view('admin.pages.languages.applicant.list',compact('student'));
+        $student = Applicant::paginate(6);
+        return view('admin.pages.languages.applicant.list',compact('student'));
         
         // if(Session::get('type')=='admin')
         // { 
@@ -52,6 +52,8 @@ class ApplicationController extends Controller
 
     public function edit(Request $request){
         $stdnt = Applicant::where('applicant_id', $request->applicant_id)->first();
+        $stdnt->notification_status = 1;
+        $stdnt->save();
         $dept= Departments::all();
         $lang = Language::all();
         return view('admin.pages.languages.applicant.edit',compact('stdnt','dept','lang'));
