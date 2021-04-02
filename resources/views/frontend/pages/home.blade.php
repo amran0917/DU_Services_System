@@ -23,23 +23,21 @@
                 form. Students should give his Name, Father’s Name, Mother’s Name, University
                 Registration Number, Date of Birth, Phone, Session,Department, Current year for the
                 application. After completing his details, they transact the money with bKash. There are two types of admin .Super admin and normal admin.. Normal admin would be admin controller from each department. They control their
-                tasks department wise.. Like approve applications and give certificates etc. Admin can see the details of applicants. Admin can accept or reject the application. Applicant will inform about his application’s status. Admin accept the application and
+                tasks department wise.. Like approve applications and give certificates etc. Admin can see the details of applicants. Admin can accept or reject the application.  Admin accept the application and
                 inform the applicant for taking his testimonial copy/certificates.
                 
                     
             </p>
            
-
-
         </div> 
 
         <div class="col-1"> </div>
-        <div class="col-5">
+        <div class="col-5" style="padding-left:10px">
            <b> <h1 style="font-famiy: sans-serif; color:rgb(227, 245, 236)"> To get testimonial and Language certificate click here</h1>  </b>  <br>
 
              <div class="button_cont" ><a class="example_b" href="{{route('student.registration')}}"  rel="nofollow noopener">Get Testimonial</a>
             
-                <a class="example_a" href="{{route('student.application')}}"
+                <a  class="example_a" href="{{route('student.application')}}"
                 rel="nofollow noopener">Get Language Certificate</a>
             
             </div> 
@@ -50,6 +48,7 @@
         </div>
    
     </div> 
+    
 </div>
 
 @endsection
