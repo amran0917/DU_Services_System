@@ -402,11 +402,22 @@ class AdminController extends Controller
     }
 
     public function cancel(Request $request){
-        
+        include(app_path() . '\Http\Controllers\Backend\PHPMailSender\mailsender.php');
+
         $applicant = Student::where('applicant_id', $request->applicant_id)->first(); 
         $applicant->status = $request->status;
-        $applicant->notification->status =1;
+        $applicant->notification_status =1;
         $applicant->save();
+
+        $title =  'Application status';
+        
+        $body = '<h1 align=center> Congratulations!!!</h1> <br>
+        <h4 align=center> Your Application is canceled. </h4> <br>
+        <h5 align=left> Regards</h5>
+        <h6 align=left> DU Services Team.</h6>
+        ';
+    sendMail($applicant->email, $title,$body);
+
     }
 
 }

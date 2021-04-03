@@ -126,47 +126,7 @@ class ApplicationController extends Controller
         sendMail($applicant->email, $title,$body);
     }
 
-    public function sendNotfication(){
-        $token = "edL4ukAZ4vY:APA91bFgz4DFVeP29MqVayuEUvs-7Qix8buB1vI10mthr2sBahe8t7tFxfJ5ogA6FgNw3Wfyo_HyORDzlpKURPpc4m942LdscyOWloX_2Kn2CR1nwEpMxPLI5kViRIT16t_K1sbPbdZQ";  
-        $from = "AAAAJQfpSc4:APA91bH6fWzO0F-P1GpQWnsBHde1jDKsSvpi_M1Si1ZN439CtkaxqwUhgkVkKD8BCe6cIAQvezfydhXM81WAndf6TGluhM4JSkZVA6mxrSa6PskcyW6w2nfbaxyoKZXj9a4-QPTHruIR";
-        $msg = array
-              (
-                'body'  => "Testing Testing",
-                'title' => "Hi, From Raj",
-                'receiver' => 'erw',
-                'icon'  => "https://image.flaticon.com/icons/png/512/270/270014.png",/*Default Icon*/
-                'sound' => 'mySound'/*Default sound*/
-              );
-
-        $fields = array
-                (
-                    'to'        => $token,
-                    'notification'  => $msg
-                );
-
-        $headers = array
-                (
-                    'Authorization: key=' . $from,
-                    'Content-Type: application/json'
-                );
-        //#Send Reponse To FireBase Server 
-        $ch = curl_init();
-        curl_setopt( $ch,CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send' );
-        curl_setopt( $ch,CURLOPT_POST, true );
-        curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
-        curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
-        curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
-        curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
-        $result = curl_exec($ch );
-        dd($result);
-        curl_close( $ch );
-    }
-        
-
-    public function notification(){
-        return view ('admin.partials.notification');
-
-    }
+    
 
     // public function download(Request $request, $applicant_id){
        
@@ -259,10 +219,20 @@ class ApplicationController extends Controller
     }
 
    public function cancelapplication(Request $request) {
+    include(app_path() . '\Http\Controllers\Backend\PHPMailSender\mailsender.php');
+
     $applicant = Applicant::where('applicant_id', $request->applicant_id)->first(); 
     $applicant->status = $request->status;
     $applicant->notification_status=1;
     $applicant->save();
+
+    $title =  'Application status';
+    $body = '<h1 align=center> Congratulations!!!</h1> <br>
+    <h4 align=center> Your Application is canceled. </h4> <br>
+     <h5 align=left> Regards</h5>
+     <h6 align=left> DU Services Team.</h6>
+     ';
+    sendMail($applicant->email, $title,$body);
 
    }
 }

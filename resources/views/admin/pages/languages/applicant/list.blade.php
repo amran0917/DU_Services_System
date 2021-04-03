@@ -53,7 +53,15 @@
         
                                 </tr>
 
+                                @php
+                                    $count=0;  
+                                @endphp
+
                                 @foreach($student as $row)
+                                    @php
+                                      $count = $count+1;  
+                                    @endphp
+
                                     @if ($row->notification_status == 1)
                                     <tr>
                                         <td>#</td>
@@ -67,76 +75,27 @@
                                             <a href="{{ route('applicant.edit',$row->applicant_id)}}" class="btn btn-sm btn-primary" >View Details</a> 
                                             
                                             @if ($row->status=='pending' || $row->status=='cancel')
-                                                <a href="#" class="btn btn-sm btn-info" onclick="changeStatus(event.target, {{$row->applicant_id}});"> Approve </a> 
+                                                <button id="{{$row->applicant_id}}" class="btn btn-sm btn-info"
+                                                        onclick="changeStatus(event.target, {{$row->applicant_id}});"> 
+                                                        Approve 
+                                                </button> 
 
                                             @endif
 
                                             @if($row->status=='complete')
-                                                <a href="" class="btn btn-sm btn-success"  >Approved</a>
+                                                <button class="btn btn-sm btn-success"  >Approved</button>
                                             @endif
                                             
-                                            <a href=" {{route('approve',$row->applicant_id)}}" target="_blank" ><button class="btnD "><i class="fa fa-download"></i> Download</button></a>
+                                            <a href="{{route('approve',$row->applicant_id)}}" target="_blank" ><button class="btnD "><i class="fa fa-download"></i> Download</button></a>
 
                                             @if ($row->status=='pending' || $row->status=='complete')
-                                            <a href="" class="btn btn-sm btn-danger"  onclick="cancelStatus(event.target, {{$row->applicant_id}});" >Cancel</a>
+                                                <button id="{{$row->applicant_id+$count}}"  class="btn btn-sm btn-danger"  onclick="cancelStatus(event.target, {{$row->applicant_id}}, {{$row->applicant_id+$count}});" >cancel</button>
 
                                             @endif
 
                                             @if($row->status=='cancel')
-                                                <a class="btn btn-sm btn-danger"  >Canceled</a>
+                                                <button class="btn btn-sm btn-danger"  >canceled</button>
                                             @endif
-
-
-                                            <script>
-                                                function cancelStatus(_this, applicant_id) {
-                                                    
-
-                                                    var status = 'cancel';
-                                                    
-                                                    let _token = $('meta[name="csrf-token"]').attr('content');
-
-                                                
-                                                    $.ajax({
-                                                                                                                        
-                                                        url: "{{route('cancel')}}",
-                                                        type: 'post',
-                                                        data: {
-                                                            _token: _token,
-                                                            'applicant_id': applicant_id,
-                                                            'status': status 
-                                                        },
-                                                        success: function (data) {
-                                                            console.log(data.applicant_id);
-                                                        }
-                                                    });
-                                                }
-                                                
-                                            </script>
-
-                                            <script>
-                                                function changeStatus(_this, applicant_id) {
-                                                    
-                                                    var status = $(_this).prop('pending') == true ? 'pending' : 'complete';
-                                                    
-                                                    let _token = $('meta[name="csrf-token"]').attr('content');
-
-                                                
-                                                    $.ajax({
-                                                                                                                        
-                                                        url: "{{route('statusChange')}}",
-                                                        type: 'post',
-                                                        data: {
-                                                            _token: _token,
-                                                            'applicant_id': applicant_id,
-                                                            'status': status 
-                                                        },
-                                                        success: function (data) {
-                                                            console.log(data.applicant_id);
-                                                        }
-                                                    });
-                                                }
-                                                
-                                            </script>
 
                                         </td>
                                     </tr>
@@ -153,80 +112,86 @@
                                             <a href="{{ route('applicant.edit',$row->applicant_id)}}" class="btn btn-sm btn-primary" >View Details</a> 
                                             
                                             @if ($row->status=='pending' || $row->status=='cancel')
-                                                <a href="#" class="btn btn-sm btn-info" onclick="changeStatus(event.target, {{$row->applicant_id}});"> Approve </a> 
+                                                <button id="{{$row->applicant_id}}" 
+                                                        class="btn btn-sm btn-info" 
+                                                        onclick="changeStatus(event.target, {{$row->applicant_id}});">
+                                                        Approve 
+                                                </button> 
 
                                             @endif
 
                                             @if($row->status=='complete')
-                                                <a href="" class="btn btn-sm btn-success"  >Approved</a>
+                                                <button class="btn btn-sm btn-success"  >Approved</button>
                                             @endif
                                             
                                             <a href=" {{route('approve',$row->applicant_id)}}" target="_blank" ><button class="btnD "><i class="fa fa-download"></i> Download</button></a>
 
                                             @if ($row->status=='pending' || $row->status=='complete')
-                                            <a href="" class="btn btn-sm btn-danger"  onclick="cancelStatus(event.target, {{$row->applicant_id}});" >Cancel</a>
+                                             <button id="{{$row->applicant_id+$count}}"  class="btn btn-sm btn-danger"  onclick="cancelStatus(event.target, {{$row->applicant_id}}, {{$row->applicant_id+$count}});" >cancel</button>
 
                                             @endif
 
                                             @if($row->status=='cancel')
-                                                <a class="btn btn-sm btn-danger"  >Canceled</a>
+                                                <button class="btn btn-sm btn-danger"  >canceled</button>
                                             @endif
 
 
-                                            <script>
-                                                function cancelStatus(_this, applicant_id) {
-                                                    
-
-                                                    var status = 'cancel';
-                                                    
-                                                    let _token = $('meta[name="csrf-token"]').attr('content');
-
-                                                
-                                                    $.ajax({
-                                                                                                                        
-                                                        url: "{{route('cancel')}}",
-                                                        type: 'post',
-                                                        data: {
-                                                            _token: _token,
-                                                            'applicant_id': applicant_id,
-                                                            'status': status 
-                                                        },
-                                                        success: function (data) {
-                                                            console.log(data.applicant_id);
-                                                        }
-                                                    });
-                                                }
-                                                
-                                            </script>
-
-                                            <script>
-                                                function changeStatus(_this, applicant_id) {
-                                                    
-                                                    var status = $(_this).prop('pending') == true ? 'pending' : 'complete';
-                                                    
-                                                    let _token = $('meta[name="csrf-token"]').attr('content');
-
-                                                
-                                                    $.ajax({
-                                                                                                                        
-                                                        url: "{{route('statusChange')}}",
-                                                        type: 'post',
-                                                        data: {
-                                                            _token: _token,
-                                                            'applicant_id': applicant_id,
-                                                            'status': status 
-                                                        },
-                                                        success: function (data) {
-                                                            console.log(data.applicant_id);
-                                                        }
-                                                    });
-                                                }
-                                                
-                                            </script>
+                                           
 
                                         </td>
                                     </tr>
                                     @endif
+
+                                    <script>
+                                        function cancelStatus(_this, applicant_id, id) {
+                                            
+
+                                            var status = 'cancel';                                          
+                                            let _token = $('meta[name="csrf-token"]').attr('content');
+                                            document.getElementById(id).innerHTML = "canceled";
+
+                                        
+                                            $.ajax({
+                                                                                                                
+                                                url: "{{route('cancel')}}",
+                                                type: 'post',
+                                                data: {
+                                                    _token: _token,
+                                                    'applicant_id': applicant_id,
+                                                    'status': status 
+                                                },
+                                                success: function (data) {
+                                                    console.log(data);
+                                                }
+                                            });
+                                        }
+                                        
+                                    </script>
+
+                                    <script>
+                                        function changeStatus(_this, applicant_id) {
+                                            
+                                            var status = $(_this).prop('pending') == true ? 'pending' : 'complete';                                           
+                                            let _token = $('meta[name="csrf-token"]').attr('content');
+                                            document.getElementById(applicant_id).innerHTML = "Approved";
+
+                                        
+                                            $.ajax({
+                                                                                                                
+                                                url: "{{route('statusChange')}}",
+                                                type: 'post',
+                                                data: {
+                                                    _token: _token,
+                                                    'applicant_id': applicant_id,
+                                                    'status': status 
+                                                },
+                                                success: function (data) {
+                                                    console.log(data.applicant_id);
+                                                }
+                                            });
+                                        }
+                                        
+                                    </script>
                                 @endforeach
 
                                         
