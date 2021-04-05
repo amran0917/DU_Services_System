@@ -15,7 +15,7 @@
 
 
     <div class="box2">
-        <h1 style="text-align: center; font-size: 35px;font-family: Lucida Console;"> &nbsp; &nbsp; &nbsp; Language Certificate Management System</h1>
+        <h1 style="text-align: center; font-size: 35px;font-family: Lucida Console;"> &nbsp; &nbsp; &nbsp; Course Certificate Management System</h1>
         <h1 style="text-align: center; font-size: 25px;"> Application Form</h1>
     
         <div>

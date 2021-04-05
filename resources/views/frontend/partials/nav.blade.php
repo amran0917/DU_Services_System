@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-light bg-light navbar-expand-lg" >
+<nav onload="load({{ isset($name)?$name:'Services'}});" class="navbar navbar-inverse navbar-light bg-light navbar-expand-lg" >
     <div class="container">
         
         <div class="navbar-header">
@@ -12,7 +12,6 @@
         
         </div>
       
-
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
                  <ul class=" navbar-nav  ml-auto ">
                     <li class="nav-item active">
@@ -32,30 +31,74 @@
                         <a class="nav-link" href="{{route('contact')}}" style="color:white; font-size:1.5vw;">Contact</a>
                     </li>
 
-                       <li class="nav-item dropdown">
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white; font-size:1.5vw;">
-                        Services
+                         <span id="selected">Services </span> <span class="caret"></span>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{route('t_home')}}" >Testimonial</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{route('l_home')}}">Language Certificate</a>
-                        </div>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                             <li> <a class="dropdown-item"  id="testimonial"  href="{{route('t_home')}}">Testimonial</a> </li>
+                            <div class="dropdown-divider"></div>
+                           <li>  <a class="dropdown-item" href="{{route('l_home')}}" id="course">Course Certificate</a></li>
+                        </ul>
                     </li>
                  
                 </ul>
 
-                        {{-- <form class="form-inline my-2 my-lg-0" action="{{route('search')}}" method="GET">
-                        
-
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Recipients username" name = "search" aria-describedby="button-addon2">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-search"></i></button>
-                                </div>
-                            </div>
-
-                        </form> --}}
-                </div>
-            </div>
+        </div>
+    </div>
 </nav>
+
+<script type="text/javascript">
+    $(document).ready (function () {
+        jQuery.each ($("[onload]"), function (index, item) {
+            $(item).prop ("onload").call (item);
+            return false;
+        });
+    });
+
+    $(document).ready(function(){
+                $("#course").click(function(){
+                    $("#selected").text($(this).text());
+                });
+                $("#testimonial").click(function(){
+                    $("#selected").text($(this).text());
+                });
+                
+      
+    });
+
+    function load(name)
+    {
+       // alert("i am called");
+        console.log("data2"+name);
+        var str=""+name;
+        if(str.includes("testimonial")){
+            $("#selected").text("Testimonial");
+            console.log("data2"+name);
+        }
+       else if(str.includes("language")){
+        $("#selected").text("Course Certificate");
+        console.log("data3"+name);
+       }
+       else if(str.includes("service")){
+        $("#selected").text("Services");
+        console.log("data3"+name);
+       }
+
+       else if(str.includes("About")){
+        $("#selected").text("About");
+        
+       }
+
+       else if(str.includes("Contact")){
+        $("#selected").text("Contact");
+        alert("data3"+name);
+       }
+       else if(str.includes("Application_Status")){
+        $("#selected").text("Application_Status");
+        alert("data3"+name);
+       }
+    }
+                    
+               
+</script>

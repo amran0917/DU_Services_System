@@ -24,7 +24,7 @@
                         @csrf 
                 
                         
-                        <img src="https://www.flaticon.com/svg/vstatic/svg/1/1819.svg?token=exp=1617215032~hmac=1dae60a60b91ae964e3ab713e11de0cb" alt="" height="100px" width="100px" >
+                        <img src="{{url("../images/manager.png")}}" alt="" height="100px" width="100px" >
                               
                         <br>
                         <div class="form-group ">

@@ -33,7 +33,7 @@
                                                 <div class="row " style="text-align: center">
                                                             
                                                     <div class="col-lg-4">
-                                                        <img src="https://www.flaticon.com/svg/vstatic/svg/3135/3135715.svg?token=exp=1617216283~hmac=ab908424bed4eb61663f87cb4e29e8ca" alt="" height="100px" width="100px">
+                                                        <img src=" {{url("../images/man.png")}}" alt="" height="100px" width="100px">
                                                         <br>   
                                                         <br>
                                                         <div class="form-group ">

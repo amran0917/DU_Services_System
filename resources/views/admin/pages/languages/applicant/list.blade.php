@@ -1,7 +1,6 @@
 @extends('admin.layouts.master')
 @section('title', 'AdminPanel|StudentList')
 
-
 @section('contents')
 
 <div class="container">
@@ -88,9 +87,17 @@
                                             
                                             <a href="{{route('approve',$row->applicant_id)}}" target="_blank" ><button class="btnD "><i class="fa fa-download"></i> Download</button></a>
 
-                                            @if ($row->status=='pending' || $row->status=='complete')
+                                            @if ($row->status=='pending')
                                                 <button id="{{$row->applicant_id+$count}}"  class="btn btn-sm btn-danger"  onclick="cancelStatus(event.target, {{$row->applicant_id}}, {{$row->applicant_id+$count}});" >cancel</button>
 
+                                            @endif
+
+                                            @if ($row->status=='complete')
+                                                    <button  
+                                                        class="btn btn-sm btn-danger" 
+                                                        disabled>
+                                                        cancel
+                                                    </button> 
                                             @endif
 
                                             @if($row->status=='cancel')
@@ -126,9 +133,17 @@
                                             
                                             <a href=" {{route('approve',$row->applicant_id)}}" target="_blank" ><button class="btnD "><i class="fa fa-download"></i> Download</button></a>
 
-                                            @if ($row->status=='pending' || $row->status=='complete')
+                                            @if ($row->status=='pending')
                                              <button id="{{$row->applicant_id+$count}}"  class="btn btn-sm btn-danger"  onclick="cancelStatus(event.target, {{$row->applicant_id}}, {{$row->applicant_id+$count}});" >cancel</button>
 
+                                            @endif
+
+                                            @if ($row->status=='complete')
+                                                    <button  
+                                                        class="btn btn-sm btn-danger" 
+                                                        disabled>
+                                                        cancel
+                                                    </button> 
                                             @endif
 
                                             @if($row->status=='cancel')
@@ -211,7 +226,6 @@
 </div>
     <!--/.container-->
     
-
 @endsection
 
 

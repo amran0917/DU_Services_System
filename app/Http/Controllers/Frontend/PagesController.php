@@ -11,31 +11,37 @@ class PagesController extends Controller
 {
     public function index()
     {
-
-        return view('frontend.pages.home');
+        $name = 'services';
+        return view('frontend.pages.home',compact('name'));
     } 
 
     public function languageIndex(){
-        return view('frontend.language.pages.home');
+
+        $name = 'course';
+        return view('frontend.language.pages.home',compact('name'));
     }
     public function testmonialIndex(){
-        return view('frontend.testmonials.pages.home');
+        $name = 'testimonial';
+        return view('frontend.testmonials.pages.home',compact('name'));
 
     }
 
     public function about()
     {
-        return view('frontend.pages.about');
+        $name = 'About';
+        return view('frontend.pages.about',compact('name'));
     } 
 
     public function contact()
     {
-        return view('frontend.pages.contact');
+        $name = 'Contact';
+        return view('frontend.pages.contact',compact('name'));
     } 
 
     public function status()
     {
-        return view('frontend.pages.status');
+        $name = 'Application_Status';
+        return view('frontend.pages.status',compact('name'));
     } 
 
     public function sendEmail(Request $request){

@@ -27,7 +27,7 @@
 
                                 <form action="#" method="POST"  >
                                     @csrf
-                                    <img src="https://www.flaticon.com/svg/vstatic/svg/3652/3652193.svg?token=exp=1617209635~hmac=180d2bbc1adbafcd9366d73c5e5fb9cb" alt="" height="100px" width="100px" style="align:center">
+                                    <img src="{{url("../images/department.png")}}" alt="" height="100px" width="100px" style="align:center">
                                     <br>
                                     <div class="form-group ">
                                         <label for="name">Department Name:</label>

@@ -21,8 +21,7 @@
                         <div class="card-header" style="text-align: center ">
                                 <b style="color: rgb(76, 0, 255); font-size:20px"> Add Departments </b> 
                         </div>
-                                
-                                <br>
+                        <br>
                                 
                         <div class="card-body">
 
@@ -47,6 +46,9 @@
                                         </div>
 
                                                                         
+                                </div>
+                                <div style="height: 60px">
+
                                 </div>
                         </div>
                     </div>
